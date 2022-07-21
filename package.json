@@ -1,6 +1,6 @@
 {
-  "name": "react-kit",
-  "version": "0.0.1",
+  "name": "@king-kite/react-kit",
+  "version": "0.0.2",
   "description": "A React Component Library Built With Tailwind And React Icons",
   "scripts": {
     "rollup": "rollup -c"
@@ -29,5 +29,8 @@
   "files": [
     "dist"
   ],
-  "types": "dist/index.d.ts"
+  "types": "dist/index.d.ts",
+  "publishConfig": {
+    "registry": "https://npm.pkg.github.com/king-kite"
+  }
 }
