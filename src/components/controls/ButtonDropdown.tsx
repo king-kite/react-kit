@@ -33,7 +33,7 @@ const Dropdown = ({ list, setVisible }: DropdownProps) => (
 );
 
 export type ButtonDropdownProps = {
-	component?: any; // new() => React.Component<any, any>;
+	component?: JSX.Element;
 	props: ButtonProps;
 	dropList?: {
 		title: string;
