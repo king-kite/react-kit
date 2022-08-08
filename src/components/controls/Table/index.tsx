@@ -1,205 +1,30 @@
-import React, {
-	FC,
-	ChangeEvent,
-	CSSProperties,
-	ReactNode,
-	useCallback,
-	useEffect,
-	useState,
-} from 'react';
-import { IconType } from 'react-icons';
-import { FaSadTear } from 'react-icons/fa';
+import React, { ChangeEvent, useCallback, useEffect, useState } from 'react';
+
+import Actions from './Actions';
+import Container from './DataContainer';
+import Empty from './Empty';
+
 import Badge from '../Badge';
 import Button from '../Button';
 import Checkbox from '../Checkbox';
 import Input from '../Input';
 import Select from '../Select';
-import { DotsLoader } from '../Loader';
-import Actions from './Actions';
 
-export type HeadType = {
-	style?: CSSProperties;
-	type?: 'actions';
-	value: string;
-}[];
-
-export type RowBaseType = {
-	options?: any;
-	classes?: string;
-	Icon?: IconType;
-	link?: string;
-	type?:
-		| 'actions'
-		| 'badge'
-		| 'button'
-		| 'icon'
-		| 'image'
-		| 'switch'
-		| 'input'
-		| 'select';
-	style?: CSSProperties;
-	value?: any;
-};
-
-export type RowType =
-	| RowBaseType[]
-	| {
-			id: string;
-			rows: RowBaseType[];
-	  };
-
-export type TableOptionsProps = {
-	heads?: {
-		sticky?: boolean;
-		textForm?: 'capitalize' | 'uppercase' | 'normal';
-	};
-	maxHeight?: string;
-	rows?: {
-		bold?: boolean;
-		center?: boolean;
-		hoverDefault?: boolean;
-		hoverClasses?: string;
-		textForm?: 'capitalize' | 'uppercase' | 'normal';
-	};
-};
-
-export type GetTickedValuesParamType = 'all' | string[];
-export type GetTickedValuesType = (Ids: GetTickedValuesParamType) => void;
-
-export type TableProps = {
-	heads: HeadType;
-	options?: TableOptionsProps;
-	loading?: boolean;
-	rows: RowType[];
-	split?: {
-		actions: {
-			active: boolean;
-			onClick: () => void;
-			title: string;
-		}[];
-		length?: {
-			md?: string;
-			lg?: string;
-		};
-	};
-	sn?: boolean;
-	title?: string;
-	showTicks?: boolean;
-	getTickedValues?: GetTickedValuesType;
-};
-
-const NoData = ({ loading }: { loading?: boolean }) => (
-	<div className="bg-gray-200 flex flex-col h-[250px] items-center justify-center w-full">
-		{loading ? (
-			<DotsLoader color="info" />
-		) : (
-			<>
-				<FaSadTear
-					className="leading-[0px] inline-block text-gray-400"
-					style={{
-						fontSize: '120px',
-					}}
-				/>
-				<p className="font-semibold mt-2 text-center text-gray-500 text-base md:text-lg">
-					There is currently no data on this table.
-				</p>
-			</>
-		)}
-	</div>
-);
-
-export type TableContainerProps = {
-	children: ReactNode;
-	link?: string;
-	classes?: string;
-	props?: any;
-};
-
-export type NavLinkType = {
-	children: React.ReactNode;
-	link: string;
-	className?: string;
-};
-let ButtonLink = ({
-	className = '',
-	children,
-	link,
-	...props
-}: NavLinkType) => (
-	<a {...props} href={link || '#'} className={className}>
-		{children}
-	</a>
-);
-
-try {
-	const { Link: ReactRouterLink } = require('react-router-dom');
-	// eslint-disable-next-line react/display-name
-	ButtonLink = ({ className = '', children, link, ...props }: NavLinkType) => (
-		<ReactRouterLink {...props} to={link || '#'} className={className}>
-			{children}
-		</ReactRouterLink>
-	);
-} catch (error) {
-	try {
-		const NextLink = require('next/link');
-		// eslint-disable-next-line react/display-name
-		ButtonLink = ({
-			className = '',
-			children,
-			link,
-			...props
-		}: NavLinkType) => (
-			<NextLink href={link || '#'}>
-				<a {...props} className={className}>
-					{children}
-				</a>
-			</NextLink>
-		);
-	} catch (error) {
-		// eslint-disable-next-line react/display-name
-		ButtonLink = ({
-			className = '',
-			children,
-			link,
-			...props
-		}: NavLinkType) => (
-			<a {...props} href={link || '#'} className={className}>
-				{children}
-			</a>
-		);
-	}
-}
-
-export const Container: FC<TableContainerProps> = ({
-	children,
-	link,
-	classes,
-	...props
-}) => {
-	const defaultClasses =
-		'flex items-center justify-center px-2 py-3 w-full ' + (classes || '');
-	const linkClass = !classes ? ' cursor-pointer hover:bg-purple-100 ' : '';
-	return link ? (
-		<ButtonLink className={defaultClasses + linkClass} link={link} {...props}>
-			{children}
-		</ButtonLink>
-	) : (
-		<div className={defaultClasses} {...props}>
-			{children}
-		</div>
-	);
-};
+import { RowBaseType, TableOptionsProps, TableProps } from './types';
 
 const Table = ({
 	heads,
 	options,
 	loading = false,
+	renderContainerLinkAs,
+	renderActionLinkAs,
 	rows,
 	split,
 	sn,
 	showTicks,
 	getTickedValues,
 	title,
+	emptyProps,
 }: TableProps) => {
 	const [tickAll, setTickAll] = useState(false);
 	const [ticked, setTicked] = useState<string[]>([]);
@@ -290,7 +115,7 @@ const Table = ({
 										}}
 										centered
 										margin=""
-										value={tickAll}
+										checked={tickAll}
 										onChange={handleTickAll}
 										required={false}
 									/>
@@ -371,7 +196,7 @@ const Table = ({
 													centered
 													margin=""
 													name={!isAnArray ? data.id : ''}
-													value={rowTicked}
+													checked={rowTicked}
 													onChange={(e) =>
 														!isAnArray
 															? handleTickChange(data.id, e.target.checked)
@@ -386,7 +211,9 @@ const Table = ({
 												className="text-center"
 												style={{ minWidth: '16px', maxWidth: '32px' }}
 											>
-												<Container>{index + 1}</Container>
+												<Container renderAs={renderContainerLinkAs}>
+													{index + 1}
+												</Container>
 											</td>
 										)}
 										{rowData?.map((props, index: number) => {
@@ -394,13 +221,20 @@ const Table = ({
 											const rowOptions = props?.options || {};
 
 											return type === 'actions' ? (
-												<Actions key={index + 1} actions={value} />
+												<Actions
+													key={index + 1}
+													renderLinkAs={renderActionLinkAs}
+													actions={value}
+												/>
 											) : type === 'image' ? (
 												<td
 													key={index + 1}
 													className="flex items-center justify-center relative"
 												>
-													<Container link={link}>
+													<Container
+														renderAs={renderContainerLinkAs}
+														link={link}
+													>
 														<div
 															style={{
 																height: '30px',
@@ -418,7 +252,7 @@ const Table = ({
 													className="text-center"
 													style={style}
 												>
-													<Container>
+													<Container renderAs={renderContainerLinkAs}>
 														<Checkbox
 															required={false}
 															{...rowOptions}
@@ -443,11 +277,18 @@ const Table = ({
 													}}
 												>
 													{type === 'badge' ? (
-														<Container classes={classes} link={link}>
+														<Container
+															renderAs={renderContainerLinkAs}
+															classes={classes}
+															link={link}
+														>
 															<Badge title={value} {...rowOptions} />
 														</Container>
 													) : type === 'button' ? (
-														<Container classes={classes}>
+														<Container
+															renderAs={renderContainerLinkAs}
+															classes={classes}
+														>
 															<Button
 																bg="bg-primary-600 hover:bg-primary-400"
 																caps
@@ -457,11 +298,18 @@ const Table = ({
 															/>
 														</Container>
 													) : type === 'icon' && Icon ? (
-														<Container classes={classes} link={link}>
+														<Container
+															renderAs={renderContainerLinkAs}
+															classes={classes}
+															link={link}
+														>
 															<Icon {...rowOptions} />
 														</Container>
 													) : type === 'input' ? (
-														<Container classes={classes}>
+														<Container
+															renderAs={renderContainerLinkAs}
+															classes={classes}
+														>
 															<Input
 																required={false}
 																bdrColor="border-gray-300"
@@ -470,7 +318,10 @@ const Table = ({
 															/>
 														</Container>
 													) : type === 'select' ? (
-														<Container classes={classes}>
+														<Container
+															renderAs={renderContainerLinkAs}
+															classes={classes}
+														>
 															<Select
 																required={false}
 																bdrColor="border-gray-300"
@@ -479,7 +330,11 @@ const Table = ({
 															/>
 														</Container>
 													) : (
-														<Container classes={classes} link={link}>
+														<Container
+															renderAs={renderContainerLinkAs}
+															classes={classes}
+															link={link}
+														>
 															{value}
 														</Container>
 													)}
@@ -493,7 +348,7 @@ const Table = ({
 					)}
 				</table>
 				{(rows === null || rows === undefined || rows.length <= 0) && (
-					<NoData loading={loading || false} />
+					<Empty loading={loading || false} {...emptyProps} />
 				)}
 			</div>
 		</>

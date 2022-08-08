@@ -122,6 +122,8 @@ const Loader = ({
 			? "border-green-600"
 			: color === "warning"
 			? "border-yellow-600"
+			: color === "transparent"
+			? "border-transparent"
 			: color === "white" && "border-white"
 
 	const _type =
@@ -175,7 +177,7 @@ export type LoaderProps = {
 	background?: "danger" | "info" | "pacify" | "primary" | "secondary" | "success" | "transparent" | "warning" | "white";
 	border?: string;
 	className?: string;
-	color?: "danger" | "info" | "pacify" | "primary" | "secondary" | "success" | "warning" | "white";
+	color?: "danger" | "info" | "pacify" | "primary" | "secondary" | "success" | "transparent" | "warning" | "white";
 	rounded?: string;
 	size?: number;
 	type?: "dashed" | "dotted" | "double" | "solid";

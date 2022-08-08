@@ -35,13 +35,13 @@ export {
 	HeadType as TableHeadType,
 	RowType as TableRowType,
 	RowBaseType as TableRowBaseType,
-	TableContainerProps as TableContainerType,
 	TableOptionsProps as TableOptionsType,
 	TableProps as TableType,
-} from './Table';
+} from './Table/types';
 export {
 	ContainerProps as TableActionContainerType,
 	ActionLinkType as TableActionLinkType,
 	ActionProps as TableActionType,
 } from './Table/Actions';
+export { TableContainerProps as TableContainerType } from './Table/DataContainer';
 export { TextareaProps as TextareaType } from './Textarea';

@@ -97,15 +97,16 @@ export const Action = ({
 
 export type ActionsProps = {
 	actions: ActionProps[];
+	renderLinkAs?: (props: ActionLinkType) => JSX.Element;
 };
 
-const Actions = ({ actions }: ActionsProps) => (
+const Actions = ({ actions, renderLinkAs }: ActionsProps) => (
 	<td
 		className="flex items-center justify-around mx-auto py-2 text-center text-gray-600 w-full"
 		style={{ maxWidth: '160px' }}
 	>
 		{actions.map((action: ActionProps, index: number) => (
-			<Action key={index + 1} {...action} />
+			<Action key={index + 1} renderAs={renderLinkAs} {...action} />
 		))}
 	</td>
 );
