@@ -9,7 +9,14 @@ export { default as StatusProgressBar } from './StatusProgressBar';
 export { default as TabNavigator } from './TabNavigator';
 
 export { AvatarType, AvatarsType } from './Avatars';
-export { BreadcrumbLinkType, BreadcrumbsType } from './Breadcrumbs';
+export {
+	BaseLinkType as BreadcrumbBaseLinkType,
+	BreadcrumbLinkType,
+	BreadcrumbsType,
+	defaultClassName as DefaultBreadcrumbLinkClassName,
+	RenderAsType as BreadcrumbRenderAsType,
+	RenderAsComponentType as BreadcrumbRenderAsComponentType,
+} from './Breadcrumbs';
 export { FadeInProps as FadeInType } from './FadeIn';
 export { InfoCompType } from './InfoComp';
 export { IconProps as MenuIconType } from './MenuIcon';
