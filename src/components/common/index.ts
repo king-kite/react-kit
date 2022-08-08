@@ -18,7 +18,7 @@ export {
 	RenderAsComponentType as BreadcrumbRenderAsComponentType,
 } from './Breadcrumbs';
 export { FadeInProps as FadeInType } from './FadeIn';
-export { InfoCompType } from './InfoComp';
+export { InfoCompType, InfoCompImageType } from './InfoComp';
 export { IconProps as MenuIconType } from './MenuIcon';
 export { ModalProps as ModalType } from './Modal';
 export { StatusProgressBarType } from './StatusProgressBar';
