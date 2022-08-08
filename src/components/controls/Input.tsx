@@ -1,4 +1,5 @@
 import React, {
+	forwardRef,
 	InputHTMLAttributes,
 	useCallback,
 	useState,
@@ -43,161 +44,167 @@ export interface InputProps extends InputHTMLAttributes<HTMLInputElement> {
 	type?: string;
 }
 
-const Input = ({
-	badge,
-	bg,
-	bdr,
-	bdrColor,
-	btn,
-	color,
-	datalist,
-	disabled,
-	error,
-	errorSize,
-	helpText,
-	helpTextColor,
-	helpTextSize,
-	Icon,
-	iconColor,
-	iconClass,
-	iconSize,
-	label,
-	labelColor,
-	labelSize,
-	name,
-	padding,
-	placeholderColor,
-	rounded,
-	required,
-	requiredColor,
-	textSize,
-	type,
-	value,
-	...props
-}: InputProps) => {
-	const [_type, setType] = useState<string>(type || 'text');
+const Input = forwardRef<HTMLInputElement | null, InputProps>(
+	(
+		{
+			badge,
+			bg,
+			bdr,
+			bdrColor,
+			btn,
+			color,
+			datalist,
+			disabled,
+			error,
+			errorSize,
+			helpText,
+			helpTextColor,
+			helpTextSize,
+			Icon,
+			iconColor,
+			iconClass,
+			iconSize,
+			label,
+			labelColor,
+			labelSize,
+			name,
+			padding,
+			placeholderColor,
+			rounded,
+			required,
+			requiredColor,
+			textSize,
+			type,
+			value,
+			...props
+		},
+		ref
+	) => {
+		const [_type, setType] = useState<string>(type || 'text');
 
-	const bgColor = disabled ? 'bg-gray-500' : bg;
+		const bgColor = disabled ? 'bg-gray-500' : bg;
 
-	const borderColor = disabled
-		? 'border-transparent'
-		: error
-		? 'border-red-500'
-		: bdrColor
-		? bdrColor
-		: 'border-primary-500';
+		const borderColor = disabled
+			? 'border-transparent'
+			: error
+			? 'border-red-500'
+			: bdrColor
+			? bdrColor
+			: 'border-primary-500';
 
-	const _labelColor = disabled
-		? 'text-gray-500'
-		: error
-		? 'text-red-500'
-		: labelColor
-		? labelColor
-		: 'text-primary-500';
+		const _labelColor = disabled
+			? 'text-gray-500'
+			: error
+			? 'text-red-500'
+			: labelColor
+			? labelColor
+			: 'text-primary-500';
 
-	const iconTextColor = disabled ? 'text-white' : iconColor;
+		const iconTextColor = disabled ? 'text-white' : iconColor;
 
-	const textColor = disabled
-		? placeholderColor
-		: type === 'date'
-		? value === '' || value === null || value === undefined
-			? 'text-gray-400'
-			: color
-		: color;
+		const textColor = disabled
+			? placeholderColor
+			: type === 'date'
+			? value === '' || value === null || value === undefined
+				? 'text-gray-400'
+				: color
+			: color;
 
-	const handlePasswordCheck = useCallback((): void => {
-		if (_type === 'password') setType('text');
-		else setType('password');
-	}, [_type]);
+		const handlePasswordCheck = useCallback((): void => {
+			if (_type === 'password') setType('text');
+			else setType('password');
+		}, [_type]);
 
-	return (
-		<>
-			{(label || badge || btn) && (
-				<div className="flex items-center justify-between mb-2">
-					{label && (
-						<label
-							className={`${_labelColor} ${labelSize} block font-semibold`}
-							htmlFor={name}
+		return (
+			<>
+				{(label || badge || btn) && (
+					<div className="flex items-center justify-between mb-2">
+						{label && (
+							<label
+								className={`${_labelColor} ${labelSize} block font-semibold`}
+								htmlFor={name}
+							>
+								{label}
+								{required && (
+									<span className={`${requiredColor || 'text-red-500'} mx-1`}>
+										*
+									</span>
+								)}
+							</label>
+						)}
+						{btn && (
+							<div>
+								<Button
+									bold="normal"
+									caps
+									padding="p-2"
+									titleSize="text-xs"
+									type="button"
+									{...btn}
+								/>
+							</div>
+						)}
+						{badge && (
+							<div>
+								<Badge {...badge} />
+							</div>
+						)}
+					</div>
+				)}
+				<div
+					className={`${borderColor} ${bgColor} ${rounded} ${bdr} flex items-center shadow-lg text-xs w-full`}
+				>
+					{Icon && (
+						<span
+							className={`${bgColor} ${iconTextColor} ${iconSize} ${iconClass}`}
 						>
-							{label}
-							{required && (
-								<span className={`${requiredColor || 'text-red-500'} mx-1`}>
-									*
-								</span>
+							<Icon className={`${iconTextColor} ${iconSize}`} />
+						</span>
+					)}
+					<input
+						className={`${bgColor} ${textColor} ${rounded} ${padding} ${
+							_type === 'date' ? 'cursor-text' : ''
+						} ${textSize} apperance-none leading-tight w-full focus:outline-none focus:shadow-outline`}
+						disabled={disabled}
+						name={name}
+						ref={ref}
+						required={required}
+						type={_type}
+						list={datalist?.id}
+						value={value}
+						{...props}
+					/>
+					{type === 'password' && (
+						<span
+							onClick={handlePasswordCheck}
+							className={`${bgColor} cursor-pointer mr-2`}
+						>
+							{_type === 'password' ? (
+								<FaEye className={iconTextColor + ' text-xs'} />
+							) : (
+								<FaEyeSlash className={iconTextColor + ' text-xs'} />
 							)}
-						</label>
-					)}
-					{btn && (
-						<div>
-							<Button
-								bold="normal"
-								caps
-								padding="p-2"
-								titleSize="text-xs"
-								type="button"
-								{...btn}
-							/>
-						</div>
-					)}
-					{badge && (
-						<div>
-							<Badge {...badge} />
-						</div>
+						</span>
 					)}
 				</div>
-			)}
-			<div
-				className={`${borderColor} ${bgColor} ${rounded} ${bdr} flex items-center shadow-lg text-xs w-full`}
-			>
-				{Icon && (
-					<span
-						className={`${bgColor} ${iconTextColor} ${iconSize} ${iconClass}`}
+				{error && (
+					<p
+						className={`font-secondary font-semibold italic mt-1 text-red-500 ${errorSize}`}
 					>
-						<Icon className={`${iconTextColor} ${iconSize}`} />
-					</span>
+						{error}
+					</p>
 				)}
-				<input
-					className={`${bgColor} ${textColor} ${rounded} ${padding} ${
-						_type === 'date' ? 'cursor-text' : ''
-					} ${textSize} apperance-none leading-tight w-full focus:outline-none focus:shadow-outline`}
-					disabled={disabled}
-					name={name}
-					required={required}
-					type={_type}
-					list={datalist?.id}
-					value={value}
-					{...props}
-				/>
-				{type === 'password' && (
-					<span
-						onClick={handlePasswordCheck}
-						className={`${bgColor} cursor-pointer mr-2`}
+				{helpText && (
+					<p
+						className={`font-secondary font-semibold mt-1 px-1 ${helpTextColor} ${helpTextSize}`}
 					>
-						{_type === 'password' ? (
-							<FaEye className={iconTextColor + ' text-xs'} />
-						) : (
-							<FaEyeSlash className={iconTextColor + ' text-xs'} />
-						)}
-					</span>
+						{helpText}
+					</p>
 				)}
-			</div>
-			{error && (
-				<p
-					className={`font-secondary font-semibold italic mt-1 text-red-500 ${errorSize}`}
-				>
-					{error}
-				</p>
-			)}
-			{helpText && (
-				<p
-					className={`font-secondary font-semibold mt-1 px-1 ${helpTextColor} ${helpTextSize}`}
-				>
-					{helpText}
-				</p>
-			)}
-		</>
-	);
-};
+			</>
+		);
+	}
+);
 
 Input.defaultProps = {
 	bg: 'bg-transparent',

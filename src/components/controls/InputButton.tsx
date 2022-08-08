@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { forwardRef } from 'react';
 import Button, { ButtonProps } from './Button';
 import Input, { InputProps } from './Input';
 
@@ -20,15 +20,17 @@ export const defaultInputProps = {
 	required: false,
 };
 
-const InputButton = ({ buttonProps, inputProps }: InputButtonProps) => (
-	<div className="flex items-end w-full">
-		<div className="w-full">
-			<Input {...defaultInputProps} {...inputProps} />
+const InputButton = forwardRef<HTMLInputElement | null, InputButtonProps>(
+	({ buttonProps, inputProps }, ref) => (
+		<div className="flex items-end w-full">
+			<div className="w-full">
+				<Input {...defaultInputProps} {...inputProps} ref={ref} />
+			</div>
+			<div>
+				<Button {...defaultButtonProps} {...buttonProps} />
+			</div>
 		</div>
-		<div>
-			<Button {...defaultButtonProps} {...buttonProps} />
-		</div>
-	</div>
+	)
 );
 
 export default InputButton;
