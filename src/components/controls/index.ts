@@ -39,4 +39,9 @@ export {
 	TableOptionsProps as TableOptionsType,
 	TableProps as TableType,
 } from './Table';
+export {
+	ContainerProps as TableActionContainerType,
+	ActionLinkType as TableActionLinkType,
+	ActionProps as TableActionType,
+} from './Table/Actions';
 export { TextareaProps as TextareaType } from './Textarea';

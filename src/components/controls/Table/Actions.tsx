@@ -7,51 +7,35 @@ export type ContainerProps = {
 	children: ReactNode;
 	className?: string;
 	link?: string;
+	renderAs?: (props: ActionLinkType) => JSX.Element;
 	style?: CSSProperties;
 };
 
-export type NavLinkType = {
-	children: React.ReactNode;
+export type ActionLinkType = {
+	children: ReactNode;
 	link: string;
+	props: {
+		className?: string;
+		style?: CSSProperties;
+	};
 };
-let ButtonLink = ({ children, link, ...props }: NavLinkType) => (
+
+export const DefaultLink = ({ children, link, ...props }: ActionLinkType) => (
 	<a {...props} href={link || '#'}>
 		{children}
 	</a>
 );
 
-try {
-	const { Link: ReactRouterLink } = require('react-router-dom');
-	// eslint-disable-next-line react/display-name
-	ButtonLink = ({ children, link, ...props }: NavLinkType) => (
-		<ReactRouterLink {...props} to={link || '#'}>
-			{children}
-		</ReactRouterLink>
-	);
-} catch (error) {
-	try {
-		const NextLink = require('next/link');
-		// eslint-disable-next-line react/display-name
-		ButtonLink = ({ children, link, ...props }: NavLinkType) => (
-			<NextLink href={link || '#'}>
-				<a {...props}>{children}</a>
-			</NextLink>
-		);
-	} catch (error) {
-		// eslint-disable-next-line react/display-name
-		ButtonLink = ({ children, link, ...props }: NavLinkType) => (
-			<a {...props} href={link || '#'}>
-				{children}
-			</a>
-		);
-	}
-}
-
-const Container = ({ children, link, ...props }: ContainerProps) =>
+const Container = ({
+	children,
+	link,
+	renderAs: LinkComponent = DefaultLink,
+	...props
+}: ContainerProps) =>
 	link ? (
-		<ButtonLink {...props} link={link}>
+		<LinkComponent props={props} link={link}>
 			{children}
-		</ButtonLink>
+		</LinkComponent>
 	) : (
 		<span {...props}>{children}</span>
 	);
@@ -67,9 +51,16 @@ export type ActionProps = {
 		| 'warning';
 	disabled?: boolean;
 	Icon: IconType;
+	renderAs?: (props: ActionLinkType) => JSX.Element;
 };
 
-export const Action = ({ color, disabled, Icon, ...props }: ActionProps) => {
+export const Action = ({
+	color,
+	disabled,
+	Icon,
+	renderAs,
+	...props
+}: ActionProps) => {
 	const _color = disabled
 		? 'text-gray-700'
 		: color === 'danger'
@@ -95,6 +86,7 @@ export const Action = ({ color, disabled, Icon, ...props }: ActionProps) => {
 					? 'cursor-not-allowed'
 					: 'duration-300 cursor-pointer transform transition-all hover:bg-gray-300 hover:scale-105'
 			} ${actionStyle} ${_color}`}
+			renderAs={renderAs}
 			style={{ fontSize: '10px' }}
 			{...props}
 		>
