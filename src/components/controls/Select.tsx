@@ -1,17 +1,16 @@
-import React, { ChangeEvent } from 'react';
+import React, { SelectHTMLAttributes } from 'react';
 import { IconType } from 'react-icons';
 import { FaChevronDown } from 'react-icons/fa';
 import Badge, { BadgeProps } from './Badge';
 import Button, { ButtonProps } from './Button';
 
-export type SelectProps = {
+export interface SelectProps extends SelectHTMLAttributes<HTMLSelectElement> {
 	badge?: BadgeProps;
 	bg?: string;
 	bdr?: string;
 	bdrColor?: string;
 	btn?: ButtonProps;
 	color?: string;
-	disabled?: boolean;
 	error?: string;
 	errorSize?: string;
 	Icon?: IconType;
@@ -21,21 +20,17 @@ export type SelectProps = {
 	label?: string;
 	labelColor?: string;
 	labelSize?: string;
-	multiple?: boolean;
-	name?: string;
-	onChange?: (e: ChangeEvent<HTMLSelectElement>) => void;
 	options: {
 		title?: string;
 		value?: string | number;
 	}[];
 	padding?: string;
 	placeholder?: string;
-	required?: boolean;
 	requiredColor?: boolean;
 	rounded?: string;
 	textSize?: string;
 	value?: string | number;
-};
+}
 
 const Select = ({
 	badge,
@@ -54,9 +49,7 @@ const Select = ({
 	label,
 	labelColor,
 	labelSize,
-	multiple,
 	name,
-	onChange,
 	options,
 	padding,
 	placeholder,
@@ -140,9 +133,7 @@ const Select = ({
 					} ${textSize} ${rounded} appearance-none bg-transparent block leading-tight pr-8 shadow-lg w-full focus:bg-gray-100 focus:border-primary-300 focus:outline-none`}
 					disabled={disabled}
 					name={name}
-					onChange={onChange}
 					value={value}
-					multiple={multiple}
 					required={required}
 					{...props}
 				>

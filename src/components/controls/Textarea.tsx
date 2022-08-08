@@ -1,31 +1,25 @@
-import React, { ChangeEvent, CSSProperties } from 'react';
+import React, { TextareaHTMLAttributes } from 'react';
 import Badge, { BadgeProps } from './Badge';
 import Button, { ButtonProps } from './Button';
 
-export type TextareaProps = {
+export interface TextareaProps
+	extends TextareaHTMLAttributes<HTMLTextAreaElement> {
 	badge?: BadgeProps;
 	bg?: string;
 	bdr?: string;
 	bdrColor?: string;
 	btn?: ButtonProps;
 	color?: string;
-	disabled?: boolean;
 	error?: string;
 	errorSize?: string;
 	label?: string;
 	labelColor?: string;
 	labelSize?: string;
-	name?: string;
-	onChange?: (e: ChangeEvent<HTMLTextAreaElement>) => void;
-	placeholder?: string;
 	placeholderColor?: string;
 	rounded?: string;
-	required?: boolean;
 	requiredColor?: string;
-	style?: CSSProperties;
 	textSize?: string;
-	value?: string;
-};
+}
 
 const Textarea = ({
 	badge,
@@ -41,15 +35,11 @@ const Textarea = ({
 	labelColor,
 	labelSize,
 	name,
-	onChange,
-	placeholder,
 	placeholderColor,
 	rounded,
 	required,
 	requiredColor,
-	style,
 	textSize,
-	value,
 	...props
 }: TextareaProps) => {
 	const bgColor = disabled ? 'bg-gray-500' : bg;
@@ -115,11 +105,7 @@ const Textarea = ({
 					className={`${bgColor} ${textColor} ${textSize} apperance-none leading-tight px-3 py-2 resize w-full focus:outline-none focus:shadow-outline`}
 					disabled={disabled}
 					name={name}
-					onChange={onChange}
-					placeholder={placeholder}
 					required={required}
-					value={value}
-					style={style}
 					{...props}
 				/>
 			</div>

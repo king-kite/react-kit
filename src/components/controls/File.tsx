@@ -1,34 +1,26 @@
-import React, { ChangeEvent } from 'react';
+import React, { InputHTMLAttributes } from 'react';
 import { IconType } from 'react-icons';
 
-export type FileProps = {
-	accept?: string;
+export interface FileProps extends InputHTMLAttributes<HTMLInputElement> {
 	bg?: string;
 	bdr?: string;
 	bdrColor?: string;
-	disabled?: boolean;
 	error?: string;
 	errorSize?: string;
+	label?: string;
 	Icon?: IconType;
 	iconColor?: string;
 	iconSize?: string;
-	label?: string;
 	labelColor?: string;
 	labelSize?: string;
-	onChange?: (e: ChangeEvent<HTMLInputElement>) => void;
-	name?: string;
 	padding?: string;
-	placeholder?: string;
-	required?: boolean;
 	requiredColor?: string;
 	rounded?: string;
 	txtColor?: string;
 	textSize?: string;
-	value?: string;
-};
+}
 
 const File = ({
-	accept,
 	bg,
 	bdr,
 	bdrColor,
@@ -41,8 +33,6 @@ const File = ({
 	label,
 	labelColor,
 	labelSize,
-	onChange,
-	name,
 	padding,
 	placeholder,
 	required,
@@ -102,11 +92,8 @@ const File = ({
 						{placeholder}
 					</p>
 					<input
-						accept={accept}
 						className="h-[1px] opacity-0 w-[1px]"
 						disabled={disabled}
-						onChange={onChange}
-						name={name}
 						required={required}
 						type="file"
 						{...props}
