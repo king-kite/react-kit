@@ -1,57 +1,36 @@
-import React, { forwardRef } from 'react';
+import React, { forwardRef, ReactNode, ButtonHTMLAttributes } from 'react';
 import { IconType } from 'react-icons';
 import Loader from './Loader';
 
 export interface ContainerProps extends ButtonProps {
-	children: React.ReactNode;
+	children: ReactNode;
 	className: string;
 	link?: string;
 	ref?: any;
 }
-export type NavLinkType = {
-	children: React.ReactNode;
+
+export type ButtonLinkType = {
+	children: ReactNode;
 	link: string;
+	props: Omit<ButtonProps, 'renderAs'>;
 };
-let ButtonLink = ({ children, link, ...props }: NavLinkType) => (
+
+export const DefaultLink = ({ children, link, ...props }: ButtonLinkType) => (
 	<a {...props} href={link || '#'}>
 		{children}
 	</a>
 );
 
-try {
-	const { Link: ReactRouterLink } = require('react-router-dom');
-	// eslint-disable-next-line react/display-name
-	ButtonLink = ({ children, link, ...props }: NavLinkType) => (
-		<ReactRouterLink to={link || '#'}>
-			<span {...props}>{children}</span>
-		</ReactRouterLink>
-	);
-} catch (error) {
-	try {
-		const NextLink = require('next/link');
-		// eslint-disable-next-line react/display-name
-		ButtonLink = ({ children, link, ...props }: NavLinkType) => (
-			<NextLink href={link || '#'}>
-				<a {...props}>{children}</a>
-			</NextLink>
-		);
-	} catch (error) {
-		// eslint-disable-next-line react/display-name
-		ButtonLink = ({ children, link, ...props }: NavLinkType) => (
-			<a {...props} href={link || '#'}>
-				{children}
-			</a>
-		);
-	}
-}
-
 // eslint-disable-next-line react/display-name
 export const Container = forwardRef<HTMLButtonElement | null, ContainerProps>(
-	({ children, link, ...props }, ref) =>
+	(
+		{ children, link, renderLinkAs: LinkComponent = DefaultLink, ...props },
+		ref
+	) =>
 		link ? (
-			<ButtonLink link={link}>
-				<span {...props}>{children}</span>
-			</ButtonLink>
+			<LinkComponent link={link} props={props}>
+				{children}
+			</LinkComponent>
 		) : (
 			<button {...props} ref={ref}>
 				{children}
@@ -70,16 +49,13 @@ const Button = ({
 	iconSize,
 	IconLeft,
 	IconRight,
-	link,
 	loader,
 	loading,
 	margin,
-	onClick,
 	padding,
 	rounded,
 	title,
 	titleSize,
-	type,
 	...props
 }: ButtonProps) => {
 	const bgColor = disabled ? 'bg-gray-500' : bg;
@@ -116,10 +92,7 @@ const Button = ({
 					disabled ? 'cursor-not-allowed' : 'cursor-pointer'
 				} ${border} ${color} ${titleSize} flex items-center justify-center text-center tracking-wide w-full focus:outline-none focus:shadow-outline`}
 				disabled={disabled}
-				link={link}
-				onClick={onClick}
 				title={title}
-				type={type}
 				{...props}
 			>
 				{loader === true && loading === true ? (
@@ -153,13 +126,13 @@ Button.defaultProps = {
 	focus: '',
 	iconSize: 'text-xs md:text-sm',
 	padding: 'px-4 py-2',
+	renderAs: DefaultLink,
 	rounded: 'rounded',
-	ref: null,
 	titleSize: 'text-xs md:text-sm',
 	type: 'submit',
 };
 
-export interface ButtonProps {
+export interface ButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
 	bg?: string;
 	bold?:
 		| 'thin'
@@ -174,7 +147,6 @@ export interface ButtonProps {
 	border?: string;
 	caps?: boolean;
 	color?: string;
-	disabled?: boolean;
 	focus?: string;
 	iconSize?: string;
 	IconLeft?: IconType;
@@ -183,12 +155,11 @@ export interface ButtonProps {
 	loader?: boolean;
 	loading?: boolean;
 	margin?: string;
-	onClick?: () => void;
 	padding?: string;
+	renderLinkAs?: (props: ButtonLinkType) => JSX.Element;
 	rounded?: string;
 	title: string;
 	titleSize?: string;
-	type?: 'button' | 'submit';
 }
 
 export default Button;

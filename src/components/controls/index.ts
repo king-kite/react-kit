@@ -17,6 +17,7 @@ export { AlertProps as AlertType } from './Alert';
 export { BadgeProps as BadgeType } from './Badge';
 export {
 	ButtonProps as ButtonType,
+	ButtonLinkType,
 	ContainerProps as ButtonContainerType,
 } from './Button';
 export { ButtonDropdownProps as ButtonDropdownType } from './ButtonDropdown';
