@@ -13,13 +13,13 @@ export type CheckboxProps = {
   labelStyle?: CSSProperties;
   margin?: string;
   name?: string;
-  onChange: (e: ChangeEvent<HTMLInputElement>) => void;
+  onChange?: (e: ChangeEvent<HTMLInputElement>) => void;
   required?: boolean;
   requiredColor?: string;
   reverse?: boolean;
   textSize?: string;
   type?: "checkbox" | "switch";
-  value: boolean;
+  value?: boolean;
 };
 
 const Checkbox = ({
@@ -84,7 +84,7 @@ const Checkbox = ({
           onChange={onChange}
           required={required}
           type="checkbox"
-          checked={value === null || value === undefined ? false : value}
+          checked={value}
           {...props}
         />
         {label && (
@@ -107,7 +107,7 @@ const Checkbox = ({
         )}
       </label>
       {error && (
-        <p className={`capitalize font-primary font-semibold italic mt-1 text-red-500 ${errorSize}`}>
+        <p className={`font-primary font-semibold italic mt-1 text-red-500 ${errorSize}`}>
           {error}
         </p>
       )}

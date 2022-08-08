@@ -140,7 +140,7 @@ const Select: FC<SelectProps> = ({
 				<div className="flex items-center justify-between mb-2">
 					{label && (
 						<label
-							className={`${_labelColor} ${labelSize} block capitalize font-semibold`}
+							className={`${_labelColor} ${labelSize} block font-semibold`}
 							htmlFor={name}
 						>
 							{label}
@@ -202,7 +202,7 @@ const Select: FC<SelectProps> = ({
 				</button>
 				{error && (
 					<p
-						className={`capitalize font-primary font-semibold italic mt-1 text-red-500 ${errorSize}`}
+						className={`font-primary font-semibold italic mt-1 text-red-500 ${errorSize}`}
 					>
 						{error}
 					</p>

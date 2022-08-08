@@ -42,7 +42,7 @@ export interface InputProps extends InputHTMLAttributes<HTMLInputElement> {
 	rounded?: string;
 	textSize?: string;
 	type?: string;
-	value: string | number;
+	value?: string | number;
 }
 
 const Input = ({
@@ -121,7 +121,7 @@ const Input = ({
 				<div className="flex items-center justify-between mb-2">
 					{label && (
 						<label
-							className={`${_labelColor} ${labelSize} block capitalize font-semibold`}
+							className={`${_labelColor} ${labelSize} block font-semibold`}
 							htmlFor={name}
 						>
 							{label}
@@ -198,7 +198,7 @@ const Input = ({
 			)}
 			{error && (
 				<p
-					className={`capitalize font-secondary font-semibold italic mt-1 text-red-500 ${errorSize}`}
+					className={`font-secondary font-semibold italic mt-1 text-red-500 ${errorSize}`}
 				>
 					{error}
 				</p>

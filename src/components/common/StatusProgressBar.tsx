@@ -1,6 +1,16 @@
 import React, { useEffect, useState } from "react";
 import { useFadeIn } from "../../hooks";
 
+export type StatusProgressBarType = {
+	border?: string;
+	borderColor?: string;
+	background: string;
+	containerColor?: string;
+	title: string;
+	result: number;
+	value: number | string
+}
+
 const StatusProgressBar = ({
 	background,
 	border = "border",
@@ -9,15 +19,7 @@ const StatusProgressBar = ({
 	title,
 	result,
 	value,
-}: {
-	border?: string;
-	borderColor?: string;
-	background: string;
-	containerColor?: string;
-	title: string;
-	result: number;
-	value: number | string
-}) => {
+}: StatusProgressBarType) => {
 	const [width, setWidth] = useState(0);
 	const { ref, visible } = useFadeIn<HTMLDivElement>(true);
 

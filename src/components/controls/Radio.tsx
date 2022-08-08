@@ -27,7 +27,7 @@ export interface RadioProps extends InputHTMLAttributes<HTMLInputElement> {
 	labelSize?: string;
 
 	name: string;
-	onChange: (e: ChangeEvent<HTMLInputElement>) => void;
+	onChange?: (e: ChangeEvent<HTMLInputElement>) => void;
 
 	padding?: string;
 
@@ -39,7 +39,7 @@ export interface RadioProps extends InputHTMLAttributes<HTMLInputElement> {
 	title: string;
 	titleSize?: string;
 
-	value: string;
+	value?: string;
 }
 
 const Radio = ({
@@ -109,7 +109,7 @@ const Radio = ({
 				<div className="flex items-center justify-between mb-2">
 					{label && (
 						<label
-							className={`${_labelColor} ${labelSize} block capitalize font-semibold`}
+							className={`${_labelColor} ${labelSize} block font-semibold`}
 							htmlFor={name}
 						>
 							{label}
@@ -158,7 +158,7 @@ const Radio = ({
 			</label>
 			{error && (
 				<p
-					className={`capitalize font-secondary font-semibold italic mt-1 text-red-500 ${errorSize}`}
+					className={`font-secondary font-semibold italic mt-1 text-red-500 ${errorSize}`}
 				>
 					{error}
 				</p>
