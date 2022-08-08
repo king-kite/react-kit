@@ -8,7 +8,7 @@ export { default as Modal } from './Modal';
 export { default as StatusProgressBar } from './StatusProgressBar';
 export { default as TabNavigator } from './TabNavigator';
 
-export { AvatarType, AvatarsType } from './Avatars';
+export { AvatarImageType, AvatarType, AvatarsType } from './Avatars';
 export {
 	BaseLinkType as BreadcrumbBaseLinkType,
 	BreadcrumbLinkType,
