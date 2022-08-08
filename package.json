@@ -1,36 +1,36 @@
 {
-  "name": "@king-kite/react-kit",
-  "version": "0.0.2",
-  "description": "A React Component Library Built With Tailwind And React Icons",
-  "scripts": {
-    "rollup": "rollup -c"
-  },
-  "author": "Emmanuel (king-kite)",
-  "license": "MIT",
-  "devDependencies": {
-    "@lopatnov/rollup-plugin-uglify": "^2.1.2",
-    "@rollup/plugin-commonjs": "^22.0.1",
-    "@rollup/plugin-node-resolve": "^13.3.0",
-    "@rollup/plugin-typescript": "^8.3.3",
-    "@types/react": "^18.0.15",
-    "autoprefixer": "^10.4.7",
-    "postcss": "^8.4.14",
-    "react": "^18.2.0",
-    "react-icons": "^4.4.0",
-    "rollup": "^2.77.0",
-    "rollup-plugin-dts": "^4.2.2",
-    "rollup-pluginutils": "^2.8.2",
-    "tailwindcss": "^3.1.6",
-    "terser": "^5.14.2",
-    "typescript": "^4.7.4"
-  },
-  "main": "dist/cjs/index.js",
-  "module": "dist/esm/index.js",
-  "files": [
-    "dist"
-  ],
-  "types": "dist/index.d.ts",
-  "publishConfig": {
-    "registry": "https://npm.pkg.github.com/king-kite"
-  }
+	"name": "@king-kite/react-kit",
+	"version": "0.0.3",
+	"description": "A React Component Library Built With Tailwind And React Icons",
+	"scripts": {
+		"rollup": "rollup -c"
+	},
+	"author": "Emmanuel (king-kite)",
+	"license": "MIT",
+	"devDependencies": {
+		"@lopatnov/rollup-plugin-uglify": "^2.1.2",
+		"@rollup/plugin-commonjs": "^22.0.1",
+		"@rollup/plugin-node-resolve": "^13.3.0",
+		"@rollup/plugin-typescript": "^8.3.3",
+		"@types/react": "^18.0.15",
+		"autoprefixer": "^10.4.7",
+		"postcss": "^8.4.14",
+		"react": "^18.2.0",
+		"react-icons": "^4.4.0",
+		"rollup": "^2.77.0",
+		"rollup-plugin-dts": "^4.2.2",
+		"rollup-pluginutils": "^2.8.2",
+		"tailwindcss": "^3.1.6",
+		"terser": "^5.14.2",
+		"typescript": "^4.7.4"
+	},
+	"main": "dist/cjs/index.js",
+	"module": "dist/esm/index.js",
+	"files": [
+		"dist"
+	],
+	"types": "dist/index.d.ts",
+	"publishConfig": {
+		"registry": "https://npm.pkg.github.com/king-kite"
+	}
 }
