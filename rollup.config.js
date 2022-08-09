@@ -1,16 +1,19 @@
+import { babel } from '@rollup/plugin-babel';
 import commonjs from '@rollup/plugin-commonjs';
 import resolve from '@rollup/plugin-node-resolve';
 import typescript from '@rollup/plugin-typescript';
 import dts from 'rollup-plugin-dts';
+import peerDepsExternal from 'rollup-plugin-peer-deps-external';
 import postcss from 'rollup-plugin-postcss';
 
 import uglify from '@lopatnov/rollup-plugin-uglify';
 
+const path = require('path');
 const packageJson = require('./package.json');
 
 export default [
 	{
-		externals: ['react', 'react-dom'],
+		external: ['react', 'react-dom'],
 		input: 'src/index.ts',
 		output: [
 			{
@@ -25,6 +28,7 @@ export default [
 			},
 		],
 		plugins: [
+			peerDepsExternal(),
 			postcss({
 				config: {
 					path: './postcss.config.js',
@@ -35,10 +39,15 @@ export default [
 					insertAt: 'top',
 				},
 			}),
-			resolve(),
+			resolve({
+				alias: {
+					react: path.resolve('./node_modules/react'),
+				},
+			}),
 			commonjs(),
 			typescript({ tsconfig: './tsconfig.json' }),
 			uglify(),
+			babel({ babelHelpers: 'bundled' }),
 		],
 	},
 	{
