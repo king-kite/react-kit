@@ -10,6 +10,7 @@ const packageJson = require('./package.json');
 
 export default [
 	{
+		externals: ['react', 'react-dom'],
 		input: 'src/index.ts',
 		output: [
 			{
