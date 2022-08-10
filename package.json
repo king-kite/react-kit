@@ -2,11 +2,21 @@
 	"name": "@king-kite/react-kit",
 	"version": "0.0.6",
 	"description": "A React Component Library Built With Tailwind And React Icons",
+	"author": "Emmanuel (king-kite)",
+	"license": "MIT",
 	"scripts": {
 		"rollup": "rollup -c"
 	},
-	"author": "Emmanuel (king-kite)",
-	"license": "MIT",
+	"main": "dist/cjs/index.js",
+	"module": "dist/esm/index.js",
+	"files": [
+		"dist"
+	],
+	"types": "dist/index.d.ts",
+	"publishConfig": {
+		"registry": "https://npm.pkg.github.com/king-kite"
+	},
+	"dependencies": {},
 	"devDependencies": {
 		"@lopatnov/rollup-plugin-uglify": "^2.1.2",
 		"@rollup/plugin-babel": "^5.3.1",
@@ -32,14 +42,5 @@
 	"peerDependencies": {
 		"react": "^18.2.0",
 		"react-dom": "^18.2.0"
-	},
-	"main": "dist/cjs/index.js",
-	"module": "dist/esm/index.js",
-	"files": [
-		"dist"
-	],
-	"types": "dist/index.d.ts",
-	"publishConfig": {
-		"registry": "https://npm.pkg.github.com/king-kite"
 	}
 }
