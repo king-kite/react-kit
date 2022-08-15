@@ -44,6 +44,7 @@ export type ActionProps = {
 	color:
 		| 'danger'
 		| 'info'
+		| 'main'
 		| 'pacify'
 		| 'primary'
 		| 'secondary'
@@ -67,6 +68,8 @@ export const Action = ({
 		? 'text-red-500 hover:text-red-400'
 		: color === 'info'
 		? 'text-gray-500 hover:text-gray-400'
+		: color === 'main'
+		? 'text-main-500 hover:text-main-400'
 		: color === 'pacify'
 		? 'text-blue-500 hover:text-blue-400'
 		: color === 'primary'
@@ -98,16 +101,19 @@ export const Action = ({
 export type ActionsProps = {
 	actions: ActionProps[];
 	renderLinkAs?: (props: ActionLinkType) => JSX.Element;
+	style?: CSSProperties
 };
 
-const Actions = ({ actions, renderLinkAs }: ActionsProps) => (
-	<td
-		className="flex items-center justify-around mx-auto py-2 text-center text-gray-600 w-full"
-		style={{ maxWidth: '160px' }}
-	>
-		{actions.map((action: ActionProps, index: number) => (
-			<Action key={index + 1} renderAs={renderLinkAs} {...action} />
-		))}
+const Actions = ({ actions, renderLinkAs, style }: ActionsProps) => (
+	<td>
+		<div 
+			className="flex items-center justify-around mx-auto py-2 text-center text-gray-600 w-full"
+			style={{ maxWidth: '160px', ...style }}
+		>
+			{actions.map((action: ActionProps, index: number) => (
+				<Action key={index + 1} renderAs={renderLinkAs} {...action} />
+			))}
+		</div>
 	</td>
 );
 

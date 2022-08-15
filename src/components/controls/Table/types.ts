@@ -38,8 +38,14 @@ export type RowType =
 
 export type TableOptionsProps = {
 	heads?: {
+		bg?: string;
+		bold?: string;
+		rounded?: string;
 		sticky?: boolean;
-		textForm?: 'capitalize' | 'uppercase' | 'normal';
+		textAlign?: string;
+		textColor?: string;
+		textForm?: 'capitalize' | 'normal' | 'uppercase';
+		textSize?: string;
 	};
 	maxHeight?: string;
 	rows?: {
