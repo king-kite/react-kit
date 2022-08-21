@@ -24,6 +24,7 @@ const Table = ({
 	showTicks,
 	getTickedValues,
 	title,
+	titleClasses='capitalize font-semibold mb-2 text-primary-500 text-sm md:text-base',
 	emptyProps,
 }: TableProps) => {
 	const [tickAll, setTickAll] = useState(false);
@@ -60,7 +61,7 @@ const Table = ({
 	return (
 		<>
 			{title && (
-				<h4 className="capitalize font-semibold mb-2 text-primary-500 text-sm md:text-base">
+				<h4 className={titleClasses}>
 					{title}
 				</h4>
 			)}

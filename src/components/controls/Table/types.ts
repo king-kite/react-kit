@@ -78,6 +78,7 @@ export type TableProps = {
 	};
 	sn?: boolean;
 	title?: string;
+	titleClasses?: string;
 	showTicks?: boolean;
 	emptyProps?: EmptyType;
 	renderContainerLinkAs?: (props: ContainerLinkType) => JSX.Element;
