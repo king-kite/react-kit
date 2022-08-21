@@ -8,7 +8,7 @@ export interface FileProps extends InputHTMLAttributes<HTMLInputElement> {
 	error?: string;
 	errorSize?: string;
 	label?: string;
-	Icon?: IconType;
+	icon?: IconType;
 	iconColor?: string;
 	iconSize?: string;
 	labelColor?: string;
@@ -29,7 +29,7 @@ const File = forwardRef<HTMLInputElement | null, FileProps>(
 			disabled,
 			error,
 			errorSize,
-			Icon,
+			icon: Icon,
 			iconColor,
 			iconSize,
 			label,

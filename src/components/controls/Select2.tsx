@@ -20,7 +20,7 @@ export type SelectProps = {
 	errorSize?: string;
 	focus?: string;
 	focusColor?: string;
-	Icon?: IconType;
+	icon?: IconType;
 	iconColor?: string;
 	iconSize?: string;
 	label?: string;
@@ -86,7 +86,7 @@ const Select = forwardRef<HTMLDivElement | null, SelectProps>(
 			errorSize,
 			focus,
 			focusColor,
-			Icon,
+			icon: Icon,
 			iconColor,
 			iconSize,
 			imageSize,
@@ -129,10 +129,8 @@ const Select = forwardRef<HTMLDivElement | null, SelectProps>(
 			? labelColor
 			: 'text-primary-500';
 
-		const { buttonRef, ref, setVisible, visible } = useOutClick<
-			HTMLUListElement,
-			HTMLButtonElement
-		>();
+		const { buttonRef, ref, setVisible, visible } =
+			useOutClick<HTMLUListElement, HTMLButtonElement>();
 		const iconTextColor = disabled ? 'text-white' : iconColor;
 
 		const textColor = disabled ? 'text-white' : value ? color : 'text-gray-400';

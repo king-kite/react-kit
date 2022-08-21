@@ -56,7 +56,7 @@ const ButtonDropdown = ({
 				<Button
 					bold="normal"
 					caps
-					IconRight={controls.visible ? FaChevronDown : FaChevronRight}
+					iconRight={controls.visible ? FaChevronDown : FaChevronRight}
 					onClick={() => controls.setVisible(!controls.visible)}
 					rounded="rounded-xl"
 					{...props}

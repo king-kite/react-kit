@@ -9,15 +9,15 @@ export type EmptyType = {
 	loaderProps?: DotsLoaderType | LoaderProps;
 	loaderType?: 'dots' | 'spinner';
 	description?: string;
-	Icon?: IconType;
-}
+	icon?: IconType;
+};
 
 const Empty = ({
 	loading,
 	loaderProps,
 	loaderType = 'dots',
 	description = 'There is currently no data on this table.',
-	Icon = FaSadTear,
+	icon: Icon = FaSadTear,
 }: EmptyType) => (
 	<div className="bg-gray-200 flex flex-col h-[250px] items-center justify-center w-full">
 		{loading ? (

@@ -29,7 +29,7 @@ export interface InputProps extends InputHTMLAttributes<HTMLInputElement> {
 	helpText?: string;
 	helpTextColor?: string;
 	helpTextSize?: string;
-	Icon?: IconType;
+	icon?: IconType;
 	iconColor?: string;
 	iconClass?: string;
 	iconSize?: string;
@@ -60,7 +60,7 @@ const Input = forwardRef<HTMLInputElement | null, InputProps>(
 			helpText,
 			helpTextColor,
 			helpTextSize,
-			Icon,
+			icon: Icon,
 			iconColor,
 			iconClass,
 			iconSize,
@@ -81,6 +81,11 @@ const Input = forwardRef<HTMLInputElement | null, InputProps>(
 		ref
 	) => {
 		const [_type, setType] = useState<string>(type || 'text');
+
+		const handlePasswordCheck = useCallback((): void => {
+			if (_type === 'password') setType('text');
+			else setType('password');
+		}, [_type]);
 
 		const bgColor = disabled ? 'bg-gray-500' : bg;
 
@@ -109,11 +114,6 @@ const Input = forwardRef<HTMLInputElement | null, InputProps>(
 				? 'text-gray-400'
 				: color
 			: color;
-
-		const handlePasswordCheck = useCallback((): void => {
-			if (_type === 'password') setType('text');
-			else setType('password');
-		}, [_type]);
 
 		return (
 			<>

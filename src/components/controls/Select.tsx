@@ -13,7 +13,7 @@ export interface SelectProps extends SelectHTMLAttributes<HTMLSelectElement> {
 	color?: string;
 	error?: string;
 	errorSize?: string;
-	Icon?: IconType;
+	icon?: IconType;
 	iconColor?: string;
 	iconClass?: string;
 	iconSize?: string;
@@ -44,7 +44,7 @@ const Select = forwardRef<HTMLSelectElement | null, SelectProps>(
 			disabled,
 			error,
 			errorSize,
-			Icon,
+			icon: Icon,
 			iconColor,
 			iconClass,
 			iconSize,

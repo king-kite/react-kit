@@ -51,14 +51,14 @@ export type ActionProps = {
 		| 'success'
 		| 'warning';
 	disabled?: boolean;
-	Icon: IconType;
+	icon: IconType;
 	renderAs?: (props: ActionLinkType) => JSX.Element;
 };
 
 export const Action = ({
 	color,
 	disabled,
-	Icon,
+	icon: Icon,
 	renderAs,
 	...props
 }: ActionProps) => {
@@ -101,12 +101,12 @@ export const Action = ({
 export type ActionsProps = {
 	actions: ActionProps[];
 	renderLinkAs?: (props: ActionLinkType) => JSX.Element;
-	style?: CSSProperties
+	style?: CSSProperties;
 };
 
 const Actions = ({ actions, renderLinkAs, style }: ActionsProps) => (
 	<td>
-		<div 
+		<div
 			className="flex items-center justify-around mx-auto py-2 text-center text-gray-600 w-full"
 			style={{ maxWidth: '160px', ...style }}
 		>

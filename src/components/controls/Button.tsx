@@ -47,8 +47,8 @@ const Button = ({
 	disabled,
 	focus,
 	iconSize,
-	IconLeft,
-	IconRight,
+	iconLeft: IconLeft,
+	iconRight: IconRight,
 	loader,
 	loading,
 	margin,
@@ -149,8 +149,8 @@ export interface ButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
 	color?: string;
 	focus?: string;
 	iconSize?: string;
-	IconLeft?: IconType;
-	IconRight?: IconType;
+	iconLeft?: IconType;
+	iconRight?: IconType;
 	link?: string;
 	loader?: boolean;
 	loading?: boolean;
