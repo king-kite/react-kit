@@ -45,7 +45,10 @@ export default [
 				},
 			}),
 			commonjs(),
-			typescript({ tsconfig: './tsconfig.json' }),
+			typescript({
+				exclude: ['**/__stories__', '**/*.stories.tsx'],
+				tsconfig: './tsconfig.json',
+			}),
 			uglify(),
 			babel({ babelHelpers: 'bundled' }),
 		],
