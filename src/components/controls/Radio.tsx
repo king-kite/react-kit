@@ -1,4 +1,9 @@
-import React, { forwardRef, InputHTMLAttributes, useState } from 'react';
+import React, {
+	forwardRef,
+	Fragment,
+	InputHTMLAttributes,
+	useState,
+} from 'react';
 import Badge, { BadgeProps } from './Badge';
 import Button, { ButtonProps } from './Button';
 
@@ -95,7 +100,7 @@ const Radio = forwardRef<HTMLInputElement | null, RadioProps>(
 		const labelStyle = `inline-block mx-3 ${textColor} ${titleSize}`;
 
 		return (
-			<>
+			<Fragment>
 				{(label || badge || btn) && (
 					<div className="flex items-center justify-between mb-2">
 						{label && (
@@ -160,7 +165,7 @@ const Radio = forwardRef<HTMLInputElement | null, RadioProps>(
 						{helpText}
 					</p>
 				)}
-			</>
+			</Fragment>
 		);
 	}
 );

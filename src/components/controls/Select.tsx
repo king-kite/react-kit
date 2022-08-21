@@ -1,4 +1,4 @@
-import React, { forwardRef, SelectHTMLAttributes } from 'react';
+import React, { forwardRef, Fragment, SelectHTMLAttributes } from 'react';
 import { IconType } from 'react-icons';
 import { FaChevronDown } from 'react-icons/fa';
 import Badge, { BadgeProps } from './Badge';
@@ -86,7 +86,7 @@ const Select = forwardRef<HTMLSelectElement | null, SelectProps>(
 		const textColor = disabled ? 'text-white' : value ? color : 'text-gray-400';
 
 		return (
-			<>
+			<Fragment>
 				{(label || badge || btn) && (
 					<div className="flex items-center justify-between mb-2">
 						{label && (
@@ -166,7 +166,7 @@ const Select = forwardRef<HTMLSelectElement | null, SelectProps>(
 						{error}
 					</p>
 				)}
-			</>
+			</Fragment>
 		);
 	}
 );

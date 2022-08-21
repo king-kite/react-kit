@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { Fragment } from 'react';
 import { IconType } from 'react-icons';
 import { FaSadTear } from 'react-icons/fa';
 
@@ -27,7 +27,7 @@ const Empty = ({
 				<Loader {...loaderProps} />
 			)
 		) : (
-			<>
+			<Fragment>
 				<Icon
 					className="leading-[0px] inline-block text-gray-400"
 					style={{
@@ -37,7 +37,7 @@ const Empty = ({
 				<p className="font-semibold mt-2 text-center text-gray-500 text-base md:text-lg">
 					{description}
 				</p>
-			</>
+			</Fragment>
 		)}
 	</div>
 );

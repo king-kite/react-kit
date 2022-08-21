@@ -1,4 +1,9 @@
-import React, { forwardRef, CSSProperties, InputHTMLAttributes } from 'react';
+import React, {
+	forwardRef,
+	CSSProperties,
+	Fragment,
+	InputHTMLAttributes,
+} from 'react';
 
 export interface CheckboxProps extends InputHTMLAttributes<HTMLInputElement> {
 	caps?: boolean | 'upper';
@@ -42,7 +47,7 @@ const Checkbox = forwardRef<HTMLInputElement | null, CheckboxProps>(
 		ref
 	) => {
 		return (
-			<>
+			<Fragment>
 				<label
 					className={`${
 						centered ? 'justify-center' : between ? 'justify-between' : ''
@@ -113,7 +118,7 @@ const Checkbox = forwardRef<HTMLInputElement | null, CheckboxProps>(
 						{error}
 					</p>
 				)}
-			</>
+			</Fragment>
 		);
 	}
 );

@@ -1,4 +1,9 @@
-import React, { forwardRef, ReactNode, ButtonHTMLAttributes } from 'react';
+import React, {
+	forwardRef,
+	Fragment,
+	ReactNode,
+	ButtonHTMLAttributes,
+} from 'react';
 import { IconType } from 'react-icons';
 import Loader from './Loader';
 
@@ -98,7 +103,7 @@ const Button = ({
 				{loader === true && loading === true ? (
 					<Loader color="white" size={4} type="dashed" width="xs" />
 				) : (
-					<>
+					<Fragment>
 						{IconLeft && (
 							<span className="flex items-center justify-center mx-2 text-xs">
 								<IconLeft className={`${color} ${iconSize}`} />
@@ -110,7 +115,7 @@ const Button = ({
 								<IconRight className={`${color} ${iconSize}`} />
 							</span>
 						)}
-					</>
+					</Fragment>
 				)}
 			</Container>
 		</div>

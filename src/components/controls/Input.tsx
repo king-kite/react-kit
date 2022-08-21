@@ -1,5 +1,6 @@
 import React, {
 	forwardRef,
+	Fragment,
 	InputHTMLAttributes,
 	useCallback,
 	useState,
@@ -116,7 +117,7 @@ const Input = forwardRef<HTMLInputElement | null, InputProps>(
 			: color;
 
 		return (
-			<>
+			<Fragment>
 				{(label || badge || btn) && (
 					<div className="flex items-center justify-between mb-2">
 						{label && (
@@ -201,7 +202,7 @@ const Input = forwardRef<HTMLInputElement | null, InputProps>(
 						{helpText}
 					</p>
 				)}
-			</>
+			</Fragment>
 		);
 	}
 );

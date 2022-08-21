@@ -1,4 +1,4 @@
-import React, { forwardRef, TextareaHTMLAttributes } from 'react';
+import React, { forwardRef, Fragment, TextareaHTMLAttributes } from 'react';
 import Badge, { BadgeProps } from './Badge';
 import Button, { ButtonProps } from './Button';
 
@@ -67,7 +67,7 @@ const Textarea = forwardRef<HTMLTextAreaElement | null, TextareaProps>(
 		const textColor = disabled ? placeholderColor : color;
 
 		return (
-			<>
+			<Fragment>
 				{(label || badge || btn) && (
 					<div className="flex items-center justify-between mb-2">
 						{label && (
@@ -121,7 +121,7 @@ const Textarea = forwardRef<HTMLTextAreaElement | null, TextareaProps>(
 						{error}
 					</p>
 				)}
-			</>
+			</Fragment>
 		);
 	}
 );

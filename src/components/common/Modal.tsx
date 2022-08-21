@@ -1,7 +1,7 @@
 import React, { forwardRef } from 'react';
 
 const wrapperStyle =
-	'duration-500 fixed flex h-full items-center justify-center left-0 overflow-hidden px-3 top-0 transform transition-opacity w-full';
+	'bg-dark-transparent duration-500 fixed flex h-full items-center justify-center left-0 overflow-hidden px-3 top-0 transform transition-opacity w-full';
 const containerStyle =
 	'duration-1000 mx-auto overflow-y-auto relative shadow-lg transform transition-all z-50';
 
@@ -44,7 +44,6 @@ const Modal = forwardRef<HTMLDivElement | null, ModalProps>(
 			className={`${wrapperStyle} ${
 				visible ? 'opacity-100 visible z-40' : 'invisible opacity-0 z-[-20]'
 			}`}
-			style={{ background: 'rgba(0, 0, 0, 0.6)' }}
 		>
 			<div
 				className={`${
