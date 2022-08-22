@@ -188,6 +188,13 @@ const Input = forwardRef<HTMLInputElement | null, InputProps>(
 						</span>
 					)}
 				</div>
+				{datalist && (
+					<datalist id={datalist.id}>
+						{datalist.list?.map((item) => (
+							<option id={item.id} value={item.value} />
+						))}
+					</datalist>
+				)}
 				{error && (
 					<p
 						className={`font-secondary font-semibold italic mt-1 text-red-500 ${errorSize}`}

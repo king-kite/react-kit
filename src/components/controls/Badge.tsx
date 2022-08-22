@@ -14,6 +14,7 @@ export type BadgeProps = {
 	cap?: boolean | null;
 	centered?: boolean;
 	container?: string;
+	color?: string;
 	icon?: IconType;
 	margin?: string;
 	padding?: string;
@@ -27,6 +28,7 @@ const Badge = ({
 	cap,
 	centered,
 	container,
+	color,
 	icon: Icon,
 	margin,
 	padding,
@@ -67,7 +69,9 @@ const Badge = ({
 
 	return (
 		<div
-			className={`${background} ${txtColor} ${margin} ${round} ${container} w-full flex items-center ${
+			className={`${
+				color || background
+			} ${txtColor} ${margin} ${round} ${container} w-full flex items-center ${
 				centered ? 'justify-center' : ''
 			}`}
 		>
