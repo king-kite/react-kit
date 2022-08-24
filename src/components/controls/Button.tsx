@@ -17,7 +17,7 @@ export interface ContainerProps extends ButtonProps {
 export type ButtonLinkType = {
 	children: ReactNode;
 	link: string;
-	props: Omit<ButtonProps, 'renderAs'>;
+	props: Omit<ButtonProps, 'renderLinkAs'>;
 };
 
 export const DefaultLink = ({ children, link, ...props }: ButtonLinkType) => (
@@ -131,7 +131,7 @@ Button.defaultProps = {
 	focus: '',
 	iconSize: 'text-xs md:text-sm',
 	padding: 'px-4 py-2',
-	renderAs: DefaultLink,
+	renderLinkAs: DefaultLink,
 	rounded: 'rounded',
 	titleSize: 'text-xs md:text-sm',
 	type: 'submit',
