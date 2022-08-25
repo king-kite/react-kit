@@ -19,7 +19,7 @@ export type ColorTypes =
 
 export type AlertProps = {
 	message?: string;
-	onClick?: () => void;
+	onClose?: () => void;
 	rounded?: string;
 	type?: ColorTypes;
 	visible?: boolean;
@@ -51,7 +51,7 @@ const Icon = ({ type }: { type?: ColorTypes }) => {
 const classes =
 	'p-3 text-sm inline-flex items-center justify-between w-full sm:px-4 md:px-6 md:py-5 md:text-base';
 
-const Alert = ({ message, onClick, rounded, type, visible }: AlertProps) => {
+const Alert = ({ message, onClose, rounded, type, visible }: AlertProps) => {
 	const [_visible, setVisible] = useState(false);
 
 	const visibility = visible !== undefined ? visible : _visible;
@@ -88,7 +88,7 @@ const Alert = ({ message, onClick, rounded, type, visible }: AlertProps) => {
 				<span
 					onClick={() => {
 						visible === undefined && setVisible(false);
-						onClick && onClick();
+						onClose && onClose();
 					}}
 					className="cursor-pointer"
 				>
