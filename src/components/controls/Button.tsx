@@ -126,7 +126,7 @@ Button.defaultProps = {
 	bg: 'bg-primary-500 hover:bg-primary-400',
 	bold: 'font-semibold',
 	border: 'border-none',
-	caps: false,
+	caps: true,
 	color: 'text-white',
 	focus: '',
 	iconSize: 'text-xs md:text-sm',
