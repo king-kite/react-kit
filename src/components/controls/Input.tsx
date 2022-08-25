@@ -161,7 +161,7 @@ const Input = forwardRef<HTMLInputElement | null, InputProps>(
 					</div>
 				)}
 				<div
-					className={`${borderColor} ${bgColor} ${rounded} ${bdr} ${shadow} flex items-center w-full`}
+					className={`${borderColor} ${bgColor} ${rounded} ${bdr} flex items-center w-full`}
 				>
 					{Icon && (
 						<span

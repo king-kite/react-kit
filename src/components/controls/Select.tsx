@@ -137,7 +137,7 @@ const Select = forwardRef<HTMLSelectElement | null, SelectProps>(
 				<div
 					className={` ${bgColor} ${borderColor} ${rounded} ${bdr}  ${
 						Icon ? 'flex items-center' : ''
-					} ${shadow} relative w-full`}
+					} relative w-full`}
 				>
 					{Icon && (
 						<Icon

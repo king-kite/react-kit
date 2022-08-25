@@ -117,10 +117,10 @@ const Textarea = forwardRef<HTMLTextAreaElement | null, TextareaProps>(
 					</div>
 				)}
 				<div
-					className={`${borderColor} ${bgColor} ${rounded} ${bdr} ${shadow} w-full`}
+					className={`${borderColor} ${bgColor} ${rounded} ${bdr} w-full`}
 				>
 					<textarea
-						className={`${bgColor} ${extraClasses} ${padding} ${focus} ${textColor} ${textSize} w-full`}
+						className={`${bgColor} ${extraClasses} ${padding} ${focus} ${shadow} ${textColor} ${textSize} w-full`}
 						disabled={disabled}
 						name={name}
 						required={required}
