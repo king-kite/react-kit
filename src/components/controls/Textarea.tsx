@@ -12,12 +12,16 @@ export interface TextareaProps
 	color?: string;
 	error?: string;
 	errorSize?: string;
+	extraClasses?: string;
+	focus?: string;
 	label?: string;
 	labelColor?: string;
 	labelSize?: string;
+	padding?: string;
 	placeholderColor?: string;
 	rounded?: string;
 	requiredColor?: string;
+	shadow?: string;
 	textSize?: string;
 }
 
@@ -33,14 +37,18 @@ const Textarea = forwardRef<HTMLTextAreaElement | null, TextareaProps>(
 			disabled,
 			error,
 			errorSize,
+			extraClasses,
+			focus,
 			label,
 			labelColor,
 			labelSize,
 			name,
+			padding,
 			placeholderColor,
 			rounded,
 			required,
 			requiredColor,
+			shadow,
 			textSize,
 			...props
 		},
@@ -103,10 +111,10 @@ const Textarea = forwardRef<HTMLTextAreaElement | null, TextareaProps>(
 					</div>
 				)}
 				<div
-					className={`${borderColor} ${bgColor} ${rounded} ${bdr} shadow-lg w-full`}
+					className={`${borderColor} ${bgColor} ${rounded} ${bdr} ${shadow} w-full`}
 				>
 					<textarea
-						className={`${bgColor} ${textColor} ${textSize} apperance-none leading-tight px-3 py-2 resize w-full focus:outline-none focus:shadow-outline`}
+						className={`${bgColor} ${extraClasses} ${padding} ${focus} ${textColor} ${textSize} w-full`}
 						disabled={disabled}
 						name={name}
 						required={required}
@@ -131,11 +139,15 @@ Textarea.defaultProps = {
 	bdr: 'border',
 	color: 'text-gray-600',
 	errorSize: 'text-xs',
+	extraClasses: 'appearance-none leading-tight resize',
+	focus: 'focus:outline-none focus:shadow-outline',
 	labelSize: 'text-xs md:text-sm',
+	padding: 'px-3 py-2',
 	placeholderColor: 'placeholder-white text-white',
 	required: true,
 	requiredColor: 'text-red-500',
 	rounded: 'rounded',
+	shadow: 'shadow-lg',
 	textSize: 'text-xs md:text-sm',
 };
 

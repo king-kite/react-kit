@@ -13,6 +13,8 @@ export interface SelectProps extends SelectHTMLAttributes<HTMLSelectElement> {
 	color?: string;
 	error?: string;
 	errorSize?: string;
+	extraClasses?: string;
+	focus?: string;
 	icon?: IconType;
 	iconColor?: string;
 	iconClass?: string;
@@ -28,6 +30,7 @@ export interface SelectProps extends SelectHTMLAttributes<HTMLSelectElement> {
 	placeholder?: string;
 	requiredColor?: string;
 	rounded?: string;
+	shadow?: string;
 	textSize?: string;
 	value?: string | number;
 }
@@ -44,6 +47,8 @@ const Select = forwardRef<HTMLSelectElement | null, SelectProps>(
 			disabled,
 			error,
 			errorSize,
+			extraClasses,
+			focus,
 			icon: Icon,
 			iconColor,
 			iconClass,
@@ -58,6 +63,7 @@ const Select = forwardRef<HTMLSelectElement | null, SelectProps>(
 			required,
 			requiredColor,
 			rounded,
+			shadow,
 			textSize,
 			value,
 			...props
@@ -124,7 +130,7 @@ const Select = forwardRef<HTMLSelectElement | null, SelectProps>(
 				<div
 					className={` ${bgColor} ${borderColor} ${rounded} ${bdr}  ${
 						Icon ? 'flex items-center' : ''
-					} relative w-full`}
+					} ${shadow} relative w-full`}
 				>
 					{Icon && (
 						<Icon
@@ -132,9 +138,9 @@ const Select = forwardRef<HTMLSelectElement | null, SelectProps>(
 						/>
 					)}
 					<select
-						className={`${textColor} ${padding} ${
+						className={`${extraClasses} ${textColor} ${padding} ${
 							disabled ? 'cursor-not-allowed' : 'cursor-pointer'
-						} ${textSize} ${rounded} appearance-none bg-transparent block leading-tight pr-8 shadow-lg w-full focus:bg-gray-100 focus:border-primary-300 focus:outline-none`}
+						} ${textSize} ${rounded} ${focus} ${shadow} bg-transparent block pr-8 w-full`}
 						disabled={disabled}
 						name={name}
 						value={value}
@@ -177,6 +183,8 @@ Select.defaultProps = {
 	bdrColor: 'border-primary-500',
 	color: 'text-gray-700',
 	errorSize: 'text-xs',
+	extraClasses: 'appearance-none leading-tight',
+	focus: 'focus:bg-gray-100 focus:border-primary-300 focus:outline-none',
 	iconColor: 'text-primary-500',
 	iconSize: 'text-xs',
 	iconClass: 'mx-2',
@@ -186,6 +194,7 @@ Select.defaultProps = {
 	rounded: 'rounded',
 	required: true,
 	requiredColor: 'text-red-500',
+	shadow: 'shadow-lg',
 	textSize: 'text-xs md:text-sm',
 };
 

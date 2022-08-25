@@ -27,6 +27,8 @@ export interface InputProps extends InputHTMLAttributes<HTMLInputElement> {
 	disabled?: boolean;
 	error?: string;
 	errorSize?: string;
+	extraClasses?: string;
+	focus?: string;
 	helpText?: string;
 	helpTextColor?: string;
 	helpTextSize?: string;
@@ -41,6 +43,7 @@ export interface InputProps extends InputHTMLAttributes<HTMLInputElement> {
 	placeholderColor?: string;
 	requiredColor?: string;
 	rounded?: string;
+	shadow?: string;
 	textSize?: string;
 	type?: string;
 }
@@ -58,6 +61,8 @@ const Input = forwardRef<HTMLInputElement | null, InputProps>(
 			disabled,
 			error,
 			errorSize,
+			extraClasses,
+			focus,
 			helpText,
 			helpTextColor,
 			helpTextSize,
@@ -74,6 +79,7 @@ const Input = forwardRef<HTMLInputElement | null, InputProps>(
 			rounded,
 			required,
 			requiredColor,
+			shadow,
 			textSize,
 			type,
 			value,
@@ -153,7 +159,7 @@ const Input = forwardRef<HTMLInputElement | null, InputProps>(
 					</div>
 				)}
 				<div
-					className={`${borderColor} ${bgColor} ${rounded} ${bdr} flex items-center shadow-lg text-xs w-full`}
+					className={`${borderColor} ${bgColor} ${rounded} ${bdr} ${shadow} flex items-center w-full`}
 				>
 					{Icon && (
 						<span
@@ -163,9 +169,9 @@ const Input = forwardRef<HTMLInputElement | null, InputProps>(
 						</span>
 					)}
 					<input
-						className={`${bgColor} ${textColor} ${rounded} ${padding} ${
+						className={`${bgColor} ${extraClasses} ${textColor} ${rounded} ${padding} ${
 							_type === 'date' ? 'cursor-text' : ''
-						} ${textSize} apperance-none leading-tight w-full focus:outline-none focus:shadow-outline`}
+						} ${textSize} ${shadow} ${focus} w-full`}
 						disabled={disabled}
 						name={name}
 						ref={ref}
@@ -219,6 +225,8 @@ Input.defaultProps = {
 	bdr: 'border',
 	color: 'text-gray-600',
 	errorSize: 'text-xs',
+	extraClasses: 'appearance-none leading-tight',
+	focus: 'focus:outline-none focus:shadow-outline',
 	helpTextColor: 'text-gray-400',
 	helpTextSize: 'text-xs',
 	iconColor: 'text-primary-500',
@@ -230,6 +238,7 @@ Input.defaultProps = {
 	required: true,
 	requiredColor: 'text-red-500',
 	rounded: 'rounded',
+	shadow: 'shadow-lg',
 	textSize: 'text-xs md:text-sm',
 	type: 'text',
 };
