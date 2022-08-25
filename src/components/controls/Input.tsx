@@ -184,7 +184,7 @@ const Input = forwardRef<HTMLInputElement | null, InputProps>(
 					{type === 'password' && (
 						<span
 							onClick={handlePasswordCheck}
-							className={`${bgColor} cursor-pointer mr-2`}
+							className={`${bgColor} cursor-pointer mx-2`}
 						>
 							{_type === 'password' ? (
 								<FaEye className={iconTextColor + ' text-xs'} />
