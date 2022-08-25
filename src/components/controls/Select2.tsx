@@ -43,6 +43,7 @@ export type SelectProps = {
 	}[];
 	padding?: string;
 	placeholder?: string;
+	placeholderColor?: string;
 	placeholderImage?: string;
 	rounded?: string;
 	required?: boolean;
@@ -105,6 +106,7 @@ const Select = forwardRef<HTMLDivElement | null, SelectProps>(
 			padding,
 			placeholder,
 			placeholderImage,
+			placeholderColor,
 			rounded,
 			required,
 			requiredColor,
@@ -133,7 +135,12 @@ const Select = forwardRef<HTMLDivElement | null, SelectProps>(
 			useOutClick<HTMLUListElement, HTMLButtonElement>();
 		const iconTextColor = disabled ? 'text-white' : iconColor;
 
-		const textColor = disabled ? 'text-white' : value ? color : 'text-gray-400';
+		// const textColor = disabled ? 'text-white' : value ? color : 'text-gray-400';
+		const textColor = disabled
+			? value
+				? 'text-white'
+				: 'placeholder-white text-white'
+			: `${color} ${placeholderColor}`;
 
 		const isAnArray = value ? Array.isArray(value) : false;
 
@@ -304,6 +311,7 @@ Select.defaultProps = {
 	optionTextActive: 'text-gray-700',
 	optionTextColor: 'text-gray-900',
 	optionTextHover: 'hover:text-gray-700',
+	placeholderColor: 'text-gray-400',
 	padding: 'pl-3 pr-10 py-2',
 	rounded: 'rounded-md',
 	required: true,

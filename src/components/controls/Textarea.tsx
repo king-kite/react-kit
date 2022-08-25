@@ -50,6 +50,7 @@ const Textarea = forwardRef<HTMLTextAreaElement | null, TextareaProps>(
 			requiredColor,
 			shadow,
 			textSize,
+			value,
 			...props
 		},
 		ref
@@ -72,7 +73,12 @@ const Textarea = forwardRef<HTMLTextAreaElement | null, TextareaProps>(
 			? labelColor
 			: 'text-primary-500';
 
-		const textColor = disabled ? placeholderColor : color;
+		// const textColor = disabled ? placeholderColor : color;
+		const textColor = disabled
+			? value
+				? 'text-white'
+				: 'placeholder-white text-white'
+			: `${color} ${placeholderColor}`;
 
 		return (
 			<Fragment>
@@ -119,6 +125,7 @@ const Textarea = forwardRef<HTMLTextAreaElement | null, TextareaProps>(
 						name={name}
 						required={required}
 						ref={ref}
+						value={value}
 						{...props}
 					/>
 				</div>
@@ -143,7 +150,7 @@ Textarea.defaultProps = {
 	focus: 'focus:outline-none focus:shadow-outline',
 	labelSize: 'text-xs md:text-sm',
 	padding: 'px-3 py-2',
-	placeholderColor: 'placeholder-white text-white',
+	placeholderColor: 'placeholder-gray-400',
 	required: true,
 	requiredColor: 'text-red-500',
 	rounded: 'rounded',

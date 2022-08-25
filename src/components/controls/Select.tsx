@@ -28,6 +28,7 @@ export interface SelectProps extends SelectHTMLAttributes<HTMLSelectElement> {
 	}[];
 	padding?: string;
 	placeholder?: string;
+	placeholderColor?: string;
 	requiredColor?: string;
 	rounded?: string;
 	shadow?: string;
@@ -60,6 +61,7 @@ const Select = forwardRef<HTMLSelectElement | null, SelectProps>(
 			options,
 			padding,
 			placeholder,
+			placeholderColor,
 			required,
 			requiredColor,
 			rounded,
@@ -89,7 +91,12 @@ const Select = forwardRef<HTMLSelectElement | null, SelectProps>(
 			? labelColor
 			: 'text-primary-500';
 
-		const textColor = disabled ? 'text-white' : value ? color : 'text-gray-400';
+		// const textColor = disabled ? 'text-white' : value ? color : 'text-gray-400';
+		const textColor = disabled
+			? value
+				? 'text-white'
+				: 'placeholder-white text-white'
+			: `${color} ${placeholderColor}`;
 
 		return (
 			<Fragment>
@@ -191,6 +198,7 @@ Select.defaultProps = {
 	labelSize: 'text-xs md:text-sm',
 	multiple: false,
 	padding: 'px-3 py-2',
+	placeholderColor: 'text-gray-400',
 	rounded: 'rounded',
 	required: true,
 	requiredColor: 'text-red-500',

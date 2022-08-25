@@ -115,12 +115,14 @@ const Input = forwardRef<HTMLInputElement | null, InputProps>(
 		const iconTextColor = disabled ? 'text-white' : iconColor;
 
 		const textColor = disabled
-			? placeholderColor
+			? value
+				? 'text-white'
+				: 'placeholder-white text-white'
 			: type === 'date'
 			? value === '' || value === null || value === undefined
-				? 'text-gray-400'
-				: color
-			: color;
+				? `text-gray-400 ${placeholderColor}`
+				: `${color} ${placeholderColor}`
+			: `${color} ${placeholderColor}`;
 
 		return (
 			<Fragment>
@@ -234,7 +236,7 @@ Input.defaultProps = {
 	iconSize: 'text-xs',
 	labelSize: 'text-xs md:text-sm',
 	padding: 'px-3 py-2',
-	placeholderColor: 'placeholder-white text-white',
+	placeholderColor: 'placeholder-gray-400',
 	required: true,
 	requiredColor: 'text-red-500',
 	rounded: 'rounded',
