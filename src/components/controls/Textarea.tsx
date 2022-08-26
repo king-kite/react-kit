@@ -21,6 +21,12 @@ export interface TextareaProps
 	placeholderColor?: string;
 	rounded?: string;
 	requiredColor?: string;
+	requirements?: {
+		classes?: string;
+		color?: string;
+		size?: string;
+		value: string;
+	}[];
 	shadow?: string;
 	textSize?: string;
 }
@@ -48,6 +54,7 @@ const Textarea = forwardRef<HTMLTextAreaElement | null, TextareaProps>(
 			rounded,
 			required,
 			requiredColor,
+			requirements,
 			shadow,
 			textSize,
 			value,
@@ -116,9 +123,7 @@ const Textarea = forwardRef<HTMLTextAreaElement | null, TextareaProps>(
 						)}
 					</div>
 				)}
-				<div
-					className={`${borderColor} ${bgColor} ${rounded} ${bdr} w-full`}
-				>
+				<div className={`${borderColor} ${bgColor} ${rounded} ${bdr} w-full`}>
 					<textarea
 						className={`${bgColor} ${extraClasses} ${padding} ${focus} ${shadow} ${textColor} ${textSize} w-full`}
 						disabled={disabled}
@@ -136,6 +141,23 @@ const Textarea = forwardRef<HTMLTextAreaElement | null, TextareaProps>(
 						{error}
 					</p>
 				)}
+				{requirements &&
+					Array.isArray(requirements) &&
+					requirements.map(
+						(
+							{
+								classes = 'font-semibold mt-1 px-1',
+								color = 'text-gray-400',
+								size = 'text-xs',
+								value = '',
+							},
+							index
+						) => (
+							<p key={index} className={`${size} ${color} ${classes}`}>
+								{value}
+							</p>
+						)
+					)}
 			</Fragment>
 		);
 	}

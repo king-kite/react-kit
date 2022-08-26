@@ -20,10 +20,6 @@ export interface RadioProps extends InputHTMLAttributes<HTMLInputElement> {
 	error?: string;
 	errorSize?: string;
 
-	helpText?: string;
-	helpTextColor?: string;
-	helpTextSize?: string;
-
 	label?: string;
 	labelColor?: string;
 	labelSize?: string;
@@ -31,6 +27,12 @@ export interface RadioProps extends InputHTMLAttributes<HTMLInputElement> {
 	padding?: string;
 
 	requiredColor?: string;
+	requirements?: {
+		classes?: string;
+		color?: string;
+		size?: string;
+		value: string;
+	}[];
 	rounded?: string;
 
 	titleSize?: string;
@@ -50,9 +52,6 @@ const Radio = forwardRef<HTMLInputElement | null, RadioProps>(
 			disabled,
 			error,
 			errorSize,
-			helpText,
-			helpTextColor,
-			helpTextSize,
 			id,
 			label,
 			labelColor,
@@ -62,6 +61,7 @@ const Radio = forwardRef<HTMLInputElement | null, RadioProps>(
 			required,
 			rounded,
 			requiredColor,
+			requirements,
 			title,
 			titleSize,
 			...props
@@ -158,13 +158,23 @@ const Radio = forwardRef<HTMLInputElement | null, RadioProps>(
 						{error}
 					</p>
 				)}
-				{helpText && (
-					<p
-						className={`font-secondary font-semibold mt-1 px-1 ${helpTextColor} ${helpTextSize}`}
-					>
-						{helpText}
-					</p>
-				)}
+				{requirements &&
+					Array.isArray(requirements) &&
+					requirements.map(
+						(
+							{
+								classes = 'font-semibold mt-1 px-1',
+								color = 'text-gray-400',
+								size = 'text-xs',
+								value = '',
+							},
+							index
+						) => (
+							<p key={index} className={`${size} ${color} ${classes}`}>
+								{value}
+							</p>
+						)
+					)}
 			</Fragment>
 		);
 	}
@@ -178,8 +188,6 @@ Radio.defaultProps = {
 	bdrColor: 'border-gray-400',
 	color: 'text-gray-500',
 	errorSize: 'text-xs',
-	helpTextColor: 'text-gray-400',
-	helpTextSize: 'text-xs',
 	labelSize: 'text-xs md:text-sm',
 	padding: 'p-4',
 	required: true,

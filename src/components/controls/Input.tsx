@@ -29,9 +29,6 @@ export interface InputProps extends InputHTMLAttributes<HTMLInputElement> {
 	errorSize?: string;
 	extraClasses?: string;
 	focus?: string;
-	helpText?: string;
-	helpTextColor?: string;
-	helpTextSize?: string;
 	icon?: IconType;
 	iconColor?: string;
 	iconClass?: string;
@@ -42,6 +39,12 @@ export interface InputProps extends InputHTMLAttributes<HTMLInputElement> {
 	padding?: string;
 	placeholderColor?: string;
 	requiredColor?: string;
+	requirements?: {
+		classes?: string;
+		color?: string;
+		size?: string;
+		value: string;
+	}[];
 	rounded?: string;
 	shadow?: string;
 	textSize?: string;
@@ -63,9 +66,6 @@ const Input = forwardRef<HTMLInputElement | null, InputProps>(
 			errorSize,
 			extraClasses,
 			focus,
-			helpText,
-			helpTextColor,
-			helpTextSize,
 			icon: Icon,
 			iconColor,
 			iconClass,
@@ -76,9 +76,10 @@ const Input = forwardRef<HTMLInputElement | null, InputProps>(
 			name,
 			padding,
 			placeholderColor,
-			rounded,
 			required,
 			requiredColor,
+			requirements,
+			rounded,
 			shadow,
 			textSize,
 			type,
@@ -210,13 +211,23 @@ const Input = forwardRef<HTMLInputElement | null, InputProps>(
 						{error}
 					</p>
 				)}
-				{helpText && (
-					<p
-						className={`font-secondary font-semibold mt-1 px-1 ${helpTextColor} ${helpTextSize}`}
-					>
-						{helpText}
-					</p>
-				)}
+				{requirements &&
+					Array.isArray(requirements) &&
+					requirements.map(
+						(
+							{
+								classes = 'font-semibold mt-1 px-1',
+								color = 'text-gray-400',
+								size = 'text-xs',
+								value = '',
+							},
+							index
+						) => (
+							<p key={index} className={`${size} ${color} ${classes}`}>
+								{value}
+							</p>
+						)
+					)}
 			</Fragment>
 		);
 	}
@@ -229,8 +240,6 @@ Input.defaultProps = {
 	errorSize: 'text-xs',
 	extraClasses: 'appearance-none leading-tight',
 	focus: 'focus:outline-none focus:shadow-outline',
-	helpTextColor: 'text-gray-400',
-	helpTextSize: 'text-xs',
 	iconColor: 'text-primary-500',
 	iconClass: 'mx-2',
 	iconSize: 'text-xs',

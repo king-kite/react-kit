@@ -48,6 +48,12 @@ export type SelectProps = {
 	rounded?: string;
 	required?: boolean;
 	requiredColor?: string;
+	requirements?: {
+		classes?: string;
+		color?: string;
+		size?: string;
+		value: string;
+	}[];
 	textSize?: string;
 	value: string | string[];
 };
@@ -110,6 +116,7 @@ const Select = forwardRef<HTMLDivElement | null, SelectProps>(
 			rounded,
 			required,
 			requiredColor,
+			requirements,
 			textSize,
 			value,
 		},
@@ -219,6 +226,23 @@ const Select = forwardRef<HTMLDivElement | null, SelectProps>(
 							{error}
 						</p>
 					)}
+					{requirements &&
+						Array.isArray(requirements) &&
+						requirements.map(
+							(
+								{
+									classes = 'font-semibold mt-1 px-1',
+									color = 'text-gray-400',
+									size = 'text-xs',
+									value = '',
+								},
+								index
+							) => (
+								<p key={index} className={`${size} ${color} ${classes}`}>
+									{value}
+								</p>
+							)
+						)}
 					{options && disabled === false && (
 						<ul
 							ref={ref}

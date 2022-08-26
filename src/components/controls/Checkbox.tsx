@@ -17,6 +17,12 @@ export interface CheckboxProps extends InputHTMLAttributes<HTMLInputElement> {
 	labelStyle?: CSSProperties;
 	margin?: string;
 	requiredColor?: string;
+	requirements?: {
+		classes?: string;
+		color?: string;
+		size?: string;
+		value: string;
+	}[];
 	reverse?: boolean;
 	textSize?: string;
 	type?: 'checkbox' | 'switch';
@@ -39,6 +45,7 @@ const Checkbox = forwardRef<HTMLInputElement | null, CheckboxProps>(
 			margin,
 			required,
 			requiredColor,
+			requirements,
 			reverse,
 			textSize,
 			type,
@@ -118,6 +125,23 @@ const Checkbox = forwardRef<HTMLInputElement | null, CheckboxProps>(
 						{error}
 					</p>
 				)}
+				{requirements &&
+					Array.isArray(requirements) &&
+					requirements.map(
+						(
+							{
+								classes = 'font-semibold mt-1 px-1',
+								color = 'text-gray-400',
+								size = 'text-xs',
+								value = '',
+							},
+							index
+						) => (
+							<p key={index} className={`${size} ${color} ${classes}`}>
+								{value}
+							</p>
+						)
+					)}
 			</Fragment>
 		);
 	}

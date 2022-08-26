@@ -30,6 +30,12 @@ export interface SelectProps extends SelectHTMLAttributes<HTMLSelectElement> {
 	placeholder?: string;
 	placeholderColor?: string;
 	requiredColor?: string;
+	requirements?: {
+		classes?: string;
+		color?: string;
+		size?: string;
+		value: string;
+	}[];
 	rounded?: string;
 	shadow?: string;
 	textSize?: string;
@@ -64,6 +70,7 @@ const Select = forwardRef<HTMLSelectElement | null, SelectProps>(
 			placeholderColor,
 			required,
 			requiredColor,
+			requirements,
 			rounded,
 			shadow,
 			textSize,
@@ -179,6 +186,23 @@ const Select = forwardRef<HTMLSelectElement | null, SelectProps>(
 						{error}
 					</p>
 				)}
+				{requirements &&
+					Array.isArray(requirements) &&
+					requirements.map(
+						(
+							{
+								classes = 'font-semibold mt-1 px-1',
+								color = 'text-gray-400',
+								size = 'text-xs',
+								value = '',
+							},
+							index
+						) => (
+							<p key={index} className={`${size} ${color} ${classes}`}>
+								{value}
+							</p>
+						)
+					)}
 			</Fragment>
 		);
 	}
