@@ -142,7 +142,7 @@ const Select = forwardRef<HTMLSelectElement | null, SelectProps>(
 					</div>
 				)}
 				<div
-					className={` ${bgColor} ${borderColor} ${rounded} ${bdr}  ${
+					className={` ${bgColor} ${borderColor} ${rounded} ${bdr} ${shadow} ${
 						Icon ? 'flex items-center' : ''
 					} relative w-full`}
 				>
@@ -154,7 +154,7 @@ const Select = forwardRef<HTMLSelectElement | null, SelectProps>(
 					<select
 						className={`${extraClasses} ${textColor} ${padding} ${
 							disabled ? 'cursor-not-allowed' : 'cursor-pointer'
-						} ${textSize} ${rounded} ${focus} ${shadow} bg-transparent block pr-8 w-full`}
+						} ${textSize} ${rounded} ${focus} bg-transparent block pr-8 w-full`}
 						disabled={disabled}
 						name={name}
 						value={value}

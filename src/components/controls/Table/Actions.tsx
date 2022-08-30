@@ -1,5 +1,6 @@
 import React, { ReactNode, CSSProperties } from 'react';
 import { IconType } from 'react-icons';
+import { FaHamburger } from 'react-icons/fa';
 
 const actionStyle = 'rounded-full p-2 text-center';
 
@@ -58,7 +59,7 @@ export type ActionProps = {
 export const Action = ({
 	color,
 	disabled,
-	icon: Icon,
+	icon: Icon = FaHamburger,
 	renderAs,
 	...props
 }: ActionProps) => {
