@@ -70,7 +70,8 @@ const Button = ({
 
 	const fontWeight = getFontWeight();
 
-	const textTrans = caps === true ? 'capitalize' : caps === false ? 'uppercase' : '';
+	const textTrans =
+		caps === true ? 'capitalize' : caps === false ? 'uppercase' : '';
 
 	return (
 		<div className="relative w-full">
@@ -110,7 +111,6 @@ Button.defaultProps = {
 	bg: 'bg-primary-500 hover:bg-primary-400',
 	bold: 'font-semibold',
 	border: 'border-none',
-	caps: true,
 	color: 'text-white',
 	focus: '',
 	iconSize: 'text-xs md:text-sm',
