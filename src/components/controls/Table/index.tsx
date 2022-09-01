@@ -17,7 +17,12 @@ import Checkbox from '../Checkbox';
 import Input from '../Input';
 import Select from '../Select';
 
-import { RowBaseType, TableOptionsProps, TableProps } from './types';
+import {
+	GetTickedValuesParamType,
+	RowBaseType,
+	TableOptionsProps,
+	TableProps,
+} from './types';
 
 const Table = ({
 	heads,
@@ -34,36 +39,69 @@ const Table = ({
 	titleClasses = 'capitalize font-semibold mb-3 text-primary-500 text-sm md:text-base',
 	emptyProps,
 }: TableProps) => {
-	const [tickAll, setTickAll] = useState(false);
-	const [ticked, setTicked] = useState<string[]>([]);
+	const [ticked, setTicked] = useState<GetTickedValuesParamType>({
+		all: false,
+		includes: [],
+		excludes: [],
+	});
 
 	const handleTickAll = useCallback(
 		({ target: { checked } }: ChangeEvent<HTMLInputElement>) => {
 			if (showTicks) {
-				setTickAll(checked);
-				if (!checked) setTicked([]);
+				setTicked({
+					all: checked,
+					includes: [],
+					excludes: [],
+				});
 			}
 		},
-		[showTicks, tickAll]
+		[showTicks]
 	);
 
 	const handleTickChange = useCallback(
 		(id: string, checked: boolean) => {
-			if (showTicks) {
-				let newState: string[] = [];
-				if (checked && !ticked.includes(id)) newState = [...ticked, id];
-				else if (!checked && ticked.includes(id))
-					newState = ticked.filter((value) => value !== id);
-
-				setTicked(newState);
-			}
+			setTicked((prevState) => {
+				// add id to excludes array if "all" is true
+				if (prevState.all) {
+					// add id to excludes array if not checked and not in the array
+					if (!checked && !prevState.excludes.includes(id)) {
+						return {
+							...prevState,
+							excludes: [...prevState.excludes, id],
+						};
+						// remove id excludes array if checked and is in the array
+					} else if (checked && prevState.excludes.includes(id)) {
+						return {
+							...prevState,
+							excludes: prevState.excludes.filter((value) => value !== id),
+						};
+					}
+					// "all" is false
+				} else {
+					// add id to includes array if checked and not in the array
+					if (checked && !prevState.includes.includes(id)) {
+						return {
+							...prevState,
+							includes: [...prevState.includes, id],
+						};
+						// remove id from includes array if not checked and is in the array
+					} else if (!checked && prevState.includes.includes(id)) {
+						return {
+							...prevState,
+							includes: prevState.includes.filter((value) => value !== id),
+						};
+					}
+				}
+				// if above fails return previous state
+				return prevState;
+			});
 		},
-		[showTicks, ticked]
+		[showTicks]
 	);
 
 	useEffect(() => {
-		if (showTicks && getTickedValues) getTickedValues(tickAll ? 'all' : ticked);
-	}, [showTicks, getTickedValues, tickAll, ticked]);
+		if (showTicks && getTickedValues) getTickedValues(ticked);
+	}, [showTicks, getTickedValues, ticked]);
 
 	return (
 		<Fragment>
@@ -99,7 +137,12 @@ const Table = ({
 										}}
 										centered
 										margin=""
-										checked={tickAll}
+										// checked if "all" is true, includes and excludes array are empty
+										checked={
+											ticked.all &&
+											ticked.excludes.length === 0 &&
+											ticked.includes.length === 0
+										}
 										onChange={handleTickAll}
 										required={false}
 									/>
@@ -145,7 +188,7 @@ const Table = ({
 								if (showTicks) {
 									if (isAnArray)
 										throw new Error(
-											'Since showTicks is true, rows must be an object containing an array of RowBaseType Objects and an id key'
+											'showTicks prop is true, hence a row must be an object containing an array of rows and an id key'
 										);
 									else if ('id' in data === false)
 										throw new Error('Value of row must have an id field/key');
@@ -156,9 +199,19 @@ const Table = ({
 									: 'rows' in data
 									? data.rows
 									: [];
-								const rowTicked =
-									tickAll ||
-									(!isAnArray && 'id' in data && ticked.includes(data.id));
+
+								// if rowData is not an array rather an object with id and rows
+								let checked = false;
+								if (!isAnArray) {
+									// "all" is true and id is not in excludes array
+									if (ticked.all && !ticked.excludes.includes(data.id)) {
+										checked = true;
+									} else if (ticked.includes.includes(data.id)) {
+										checked = true;
+									} else {
+										checked = false;
+									}
+								}
 
 								return (
 									<tr
@@ -180,7 +233,7 @@ const Table = ({
 													centered
 													margin=""
 													name={!isAnArray ? data.id : ''}
-													checked={rowTicked}
+													checked={checked}
 													onChange={(e) =>
 														!isAnArray
 															? handleTickChange(data.id, e.target.checked)

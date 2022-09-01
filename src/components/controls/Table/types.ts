@@ -58,7 +58,11 @@ export type TableOptionsProps = {
 	};
 };
 
-export type GetTickedValuesParamType = 'all' | string[];
+export type GetTickedValuesParamType = {
+	all: boolean;
+	includes: string[];
+	excludes: string[];
+};
 export type GetTickedValuesType = (Ids: GetTickedValuesParamType) => void;
 
 export type TableProps = {
