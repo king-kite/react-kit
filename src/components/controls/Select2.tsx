@@ -147,7 +147,7 @@ const Select = forwardRef<HTMLDivElement | null, SelectProps>(
 			? value
 				? 'text-white'
 				: 'placeholder-white text-white'
-			: `${color} ${placeholderColor}`;
+			: `${value ? color : "text-gray-400"} ${placeholderColor}`;
 
 		const isAnArray = value ? Array.isArray(value) : false;
 

@@ -98,12 +98,11 @@ const Select = forwardRef<HTMLSelectElement | null, SelectProps>(
 			? labelColor
 			: 'text-primary-500';
 
-		// const textColor = disabled ? 'text-white' : value ? color : 'text-gray-400';
 		const textColor = disabled
 			? value
 				? 'text-white'
 				: 'placeholder-white text-white'
-			: `${color} ${placeholderColor}`;
+			: `${value ? color : "text-gray-400"} ${placeholderColor}`;
 
 		return (
 			<Fragment>
