@@ -128,7 +128,9 @@ const Table = ({
 						>
 							{showTicks && (
 								<th
-									className="flex items-center justify-center px-2 py-[0.75rem]"
+									className={`bg-gray-300 font-semibold px-2 py-[0.75rem] ${
+										options?.heads?.sticky ? 'sticky top-0 z-10' : ''
+									}`}
 									style={{ minWidth: '16px', maxWidth: '60px' }}
 								>
 									<Checkbox
