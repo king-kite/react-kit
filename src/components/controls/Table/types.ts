@@ -4,6 +4,7 @@ import { IconType } from 'react-icons';
 import { ActionLinkType } from './Actions';
 import { ContainerLinkType } from './DataContainer';
 import { EmptyType } from './Empty';
+import { SplitActionsProps } from './SplitActions';
 
 export type HeadType = {
 	style?: CSSProperties;
@@ -65,17 +66,7 @@ export type TableProps = {
 	options?: TableOptionsProps;
 	loading?: boolean;
 	rows: RowType[];
-	split?: {
-		actions: {
-			active: boolean;
-			onClick: () => void;
-			title: string;
-		}[];
-		length?: {
-			md?: string;
-			lg?: string;
-		};
-	};
+	split?: SplitActionsProps;
 	sn?: boolean;
 	title?: string;
 	titleClasses?: string;

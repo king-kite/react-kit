@@ -44,4 +44,8 @@ export {
 	ActionProps as TableActionType,
 } from './Table/Actions';
 export { TableContainerProps as TableContainerType } from './Table/DataContainer';
+export {
+	SplitActionProps as TableSplitActionType,
+	SplitActionsProps as TableSplitActionsType,
+} from './Table/SplitActions';
 export { TextareaProps as TextareaType } from './Textarea';

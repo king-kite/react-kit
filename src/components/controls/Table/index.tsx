@@ -9,6 +9,7 @@ import React, {
 import Actions from './Actions';
 import Container from './DataContainer';
 import Empty from './Empty';
+import SplitActions from './SplitActions';
 
 import Badge from '../Badge';
 import Button from '../Button';
@@ -30,7 +31,7 @@ const Table = ({
 	showTicks,
 	getTickedValues,
 	title,
-	titleClasses = 'capitalize font-semibold mb-2 text-primary-500 text-sm md:text-base',
+	titleClasses = 'capitalize font-semibold mb-3 text-primary-500 text-sm md:text-base',
 	emptyProps,
 }: TableProps) => {
 	const [tickAll, setTickAll] = useState(false);
@@ -67,31 +68,7 @@ const Table = ({
 	return (
 		<Fragment>
 			{title && <h4 className={titleClasses}>{title}</h4>}
-			{split && (
-				<div
-					className={`${
-						split.length?.md ? split.length.md : 'md:grid-cols-4'
-					} ${
-						split.length?.lg ? split.length.lg : 'lg:grid-cols-6'
-					} grid grid-cols-2 mt-1 w-full`}
-				>
-					{split.actions.map(({ active, onClick, title }) => (
-						<div
-							key={title}
-							onClick={onClick}
-							className={`
-                ${
-									active
-										? 'bg-gray-200 text-primary-500'
-										: 'bg-gray-100 text-gray-400'
-								} cursor-pointer flex font-primary font-bold items-center justify-center px-4 py-2 text-center text-sm uppercase w-full hover:bg-gray-200 hover:text-primary-500
-              `}
-						>
-							<p className="text-center">{title}</p>
-						</div>
-					))}
-				</div>
-			)}
+			{split && <SplitActions {...split} />}
 			<div
 				className={`bg-white overflow-x-scroll relative rounded w-full ${
 					rows.length <= 0 ? 'overflow-y-hidden' : ''

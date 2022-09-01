@@ -5,7 +5,10 @@ import React, {
 	ButtonHTMLAttributes,
 } from 'react';
 import { IconType } from 'react-icons';
+
 import Loader from './Loader';
+import { FontWeightType } from '../../types';
+import { getFontWeight } from '../../utils';
 
 export interface ContainerProps extends ButtonProps {
 	children: ReactNode;
@@ -65,28 +68,9 @@ const Button = ({
 }: ButtonProps) => {
 	const bgColor = disabled ? 'bg-gray-500' : bg;
 
-	const fontWeight =
-		bold === 'thin'
-			? 'font-thin'
-			: bold === 'extralight'
-			? 'font-extralight'
-			: bold === 'light'
-			? 'font-light'
-			: bold === 'normal'
-			? 'font-normal'
-			: bold === 'medium'
-			? 'font-medium'
-			: bold === 'semibold'
-			? 'font-semibold'
-			: bold === 'bold'
-			? 'font-bold'
-			: bold === 'extrabold'
-			? 'font-extrabold'
-			: bold === 'black'
-			? 'font-black'
-			: 'font-normal';
+	const fontWeight = getFontWeight();
 
-	const textTrans = caps ? 'capitalize' : 'uppercase';
+	const textTrans = caps === true ? 'capitalize' : caps === false ? 'uppercase' : '';
 
 	return (
 		<div className="relative w-full">
@@ -139,16 +123,7 @@ Button.defaultProps = {
 
 export interface ButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
 	bg?: string;
-	bold?:
-		| 'thin'
-		| 'extralight'
-		| 'light'
-		| 'normal'
-		| 'medium'
-		| 'semibold'
-		| 'bold'
-		| 'extrabold'
-		| 'black';
+	bold?: FontWeightType;
 	border?: string;
 	caps?: boolean;
 	color?: string;
