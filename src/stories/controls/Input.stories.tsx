@@ -40,8 +40,6 @@ KiteInput.args = {
 	},
 	disabled: false,
 	error: 'This is an error',
-	helpText:
-		'This is where you place any help text for the users to improve the experience',
 	icon: FaUser,
 	iconColor: 'text-red-600',
 	label: 'Message',

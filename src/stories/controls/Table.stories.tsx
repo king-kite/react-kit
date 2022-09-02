@@ -309,6 +309,216 @@ const row2Args: TableRowType[] = [
 			},
 		],
 	},
+	{
+		id: '6',
+		rows: [
+			{ value: 'Mark' },
+			{ value: 'John' },
+			{ value: 'markjohn@gmail.com' },
+			{ value: '28' },
+			{ value: 'Male' },
+			{ value: '29-11-2013' },
+			{
+				type: 'actions',
+				value: [
+					{
+						color: 'primary',
+						onClick: () => window.alert('Table Action that is not disabled'),
+					},
+					{
+						color: 'primary',
+						disabled: true,
+						onClick: () => window.alert('Table action that is disabled'),
+					},
+					{
+						color: 'primary',
+						icon: FaPen,
+						onClick: () => window.alert('Table action that is disabled'),
+					},
+				],
+			},
+		],
+	},
+	{
+		id: '7',
+		rows: [
+			{ value: 'Mary' },
+			{ value: 'Bell' },
+			{ value: 'marybell@gmail.com' },
+			{ value: '50' },
+			{ value: 'Female' },
+			{ value: '29-11-2013' },
+			{
+				type: 'actions',
+				value: [
+					{
+						color: 'primary',
+						onClick: () => window.alert('Table Action that is not disabled'),
+					},
+					{
+						color: 'primary',
+						disabled: true,
+						onClick: () => window.alert('Table action that is disabled'),
+					},
+					{
+						color: 'primary',
+						icon: FaPen,
+						onClick: () => window.alert('Table action that is disabled'),
+					},
+				],
+			},
+		],
+	},
+	{
+		id: '8',
+		rows: [
+			{ value: 'Jimmy' },
+			{ value: 'Steveson' },
+			{ value: 'jimmysteveson@gmail.com' },
+			{ value: '15' },
+			{ value: 'Male' },
+			{ value: '29-11-2013' },
+			{
+				type: 'actions',
+				value: [
+					{
+						color: 'primary',
+						onClick: () => window.alert('Table Action that is not disabled'),
+					},
+					{
+						color: 'primary',
+						disabled: true,
+						onClick: () => window.alert('Table action that is disabled'),
+					},
+					{
+						color: 'primary',
+						icon: FaPen,
+						onClick: () => window.alert('Table action that is disabled'),
+					},
+				],
+			},
+		],
+	},
+	{
+		id: '9',
+		rows: [
+			{ value: 'Jane' },
+			{ value: 'Watson' },
+			{ value: 'janewatson@gmail.com' },
+			{ value: '90' },
+			{ value: 'Female' },
+			{ value: '29-11-2013' },
+			{
+				type: 'actions',
+				value: [
+					{
+						color: 'primary',
+						onClick: () => window.alert('Table Action that is not disabled'),
+					},
+					{
+						color: 'primary',
+						disabled: true,
+						onClick: () => window.alert('Table action that is disabled'),
+					},
+					{
+						color: 'primary',
+						icon: FaPen,
+						onClick: () => window.alert('Table action that is disabled'),
+					},
+				],
+			},
+		],
+	},
+	{
+		id: '10',
+		rows: [
+			{ value: 'Mario' },
+			{ value: 'Longman' },
+			{ value: 'mariolongman@gmail.com' },
+			{ value: '44' },
+			{ value: 'Male' },
+			{ value: '29-11-2013' },
+			{
+				type: 'actions',
+				value: [
+					{
+						color: 'primary',
+						onClick: () => window.alert('Table Action that is not disabled'),
+					},
+					{
+						color: 'primary',
+						disabled: true,
+						onClick: () => window.alert('Table action that is disabled'),
+					},
+					{
+						color: 'primary',
+						icon: FaPen,
+						onClick: () => window.alert('Table action that is disabled'),
+					},
+				],
+			},
+		],
+	},
+	{
+		id: '11',
+		rows: [
+			{ value: 'Mariam' },
+			{ value: 'White' },
+			{ value: 'mariamwhite@gmail.com' },
+			{ value: '23' },
+			{ value: 'Female' },
+			{ value: '29-11-2013' },
+			{
+				type: 'actions',
+				value: [
+					{
+						color: 'primary',
+						onClick: () => window.alert('Table Action that is not disabled'),
+					},
+					{
+						color: 'primary',
+						disabled: true,
+						onClick: () => window.alert('Table action that is disabled'),
+					},
+					{
+						color: 'primary',
+						icon: FaPen,
+						onClick: () => window.alert('Table action that is disabled'),
+					},
+				],
+			},
+		],
+	},
+	{
+		id: '12',
+		rows: [
+			{ value: 'John' },
+			{ value: 'Watson' },
+			{ value: 'johnwatson@gmail.com' },
+			{ value: '36' },
+			{ value: 'Male' },
+			{ value: '29-11-2013' },
+			{
+				type: 'actions',
+				value: [
+					{
+						color: 'primary',
+						onClick: () => window.alert('Table Action that is not disabled'),
+					},
+					{
+						color: 'primary',
+						disabled: true,
+						onClick: () => window.alert('Table action that is disabled'),
+					},
+					{
+						color: 'primary',
+						icon: FaPen,
+						onClick: () => window.alert('Table action that is disabled'),
+					},
+				],
+			},
+		],
+	},
 ];
 
 const Template: ComponentStory<typeof Table> = (args) => <Table {...args} />;

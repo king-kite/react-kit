@@ -9,7 +9,7 @@ export type InputButtonProps = {
 
 export const defaultButtonProps = {
 	caps: true,
-	padding: 'px-4 py-[0.475rem]',
+	padding: 'px-4 py-[0.475rem] sm:py-2 md:py-[0.475rem] lg:py-[0.485rem]',
 	rounded: 'rounded-r-xl',
 };
 export const defaultInputProps = {
