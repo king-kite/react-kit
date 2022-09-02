@@ -18,7 +18,7 @@ import Input from '../Input';
 import Select from '../Select';
 
 import {
-	GetTickedValuesParamType,
+	GetSelectedValuesParamType,
 	RowBaseType,
 	TableOptionsProps,
 	TableProps,
@@ -33,34 +33,34 @@ const Table = ({
 	rows,
 	split,
 	sn,
-	showTicks,
-	getTickedValues,
+	tick,
+	getSelectedValues,
 	title,
 	titleClasses = 'capitalize font-semibold mb-3 text-primary-500 text-sm md:text-base',
 	emptyProps,
 }: TableProps) => {
-	const [ticked, setTicked] = useState<GetTickedValuesParamType>({
+	const [selected, setSelected] = useState<GetSelectedValuesParamType>({
 		all: false,
 		includes: [],
 		excludes: [],
 	});
 
-	const handleTickAll = useCallback(
+	const handleSelectAll = useCallback(
 		({ target: { checked } }: ChangeEvent<HTMLInputElement>) => {
-			if (showTicks) {
-				setTicked({
+			if (tick) {
+				setSelected({
 					all: checked,
 					includes: [],
 					excludes: [],
 				});
 			}
 		},
-		[showTicks]
+		[tick]
 	);
 
-	const handleTickChange = useCallback(
+	const handleSelectChange = useCallback(
 		(id: string, checked: boolean) => {
-			setTicked((prevState) => {
+			setSelected((prevState) => {
 				// add id to excludes array if "all" is true
 				if (prevState.all) {
 					// add id to excludes array if not checked and not in the array
@@ -96,12 +96,12 @@ const Table = ({
 				return prevState;
 			});
 		},
-		[showTicks]
+		[tick]
 	);
 
 	useEffect(() => {
-		if (showTicks && getTickedValues) getTickedValues(ticked);
-	}, [showTicks, getTickedValues, ticked]);
+		if (tick && getSelectedValues) getSelectedValues(selected);
+	}, [tick, getSelectedValues, selected]);
 
 	return (
 		<Fragment>
@@ -126,12 +126,11 @@ const Table = ({
 								options?.heads?.textSize || 'text-sm'
 							} ${options?.heads?.textForm || 'uppercase'}`}
 						>
-							{showTicks && (
+							{tick && (
 								<th
-									className={`bg-gray-300 font-semibold px-2 py-[0.75rem] ${
+									className={`bg-gray-300 font-semibold px-2 py-[0.75rem] w-[50px] ${
 										options?.heads?.sticky ? 'sticky top-0 z-10' : ''
 									}`}
-									style={{ minWidth: '16px', maxWidth: '60px' }}
 								>
 									<Checkbox
 										labelStyle={{
@@ -141,21 +140,20 @@ const Table = ({
 										margin=""
 										// checked if "all" is true, includes and excludes array are empty
 										checked={
-											ticked.all &&
-											ticked.excludes.length === 0 &&
-											ticked.includes.length === 0
+											selected.all &&
+											selected.excludes.length === 0 &&
+											selected.includes.length === 0
 										}
-										onChange={handleTickAll}
+										onChange={handleSelectAll}
 										required={false}
 									/>
 								</th>
 							)}
 							{sn && (
 								<th
-									className={`bg-gray-300 font-semibold py-2 ${
+									className={`bg-gray-300 font-semibold py-2 w-8 ${
 										options?.heads?.sticky ? 'sticky top-0 z-10' : ''
 									}`}
-									style={{ minWidth: '16px', maxWidth: '32px' }}
 								>
 									S/N
 								</th>
@@ -187,10 +185,10 @@ const Table = ({
 							{rows.map((data, index) => {
 								const isAnArray = Array.isArray(data);
 
-								if (showTicks) {
+								if (tick) {
 									if (isAnArray)
 										throw new Error(
-											'showTicks prop is true, hence a row must be an object containing an array of rows and an id key'
+											'tick prop is true, hence a row must be an object containing an array of rows and an id key'
 										);
 									else if ('id' in data === false)
 										throw new Error('Value of row must have an id field/key');
@@ -206,9 +204,9 @@ const Table = ({
 								let checked = false;
 								if (!isAnArray) {
 									// "all" is true and id is not in excludes array
-									if (ticked.all && !ticked.excludes.includes(data.id)) {
+									if (selected.all && !selected.excludes.includes(data.id)) {
 										checked = true;
-									} else if (ticked.includes.includes(data.id)) {
+									} else if (selected.includes.includes(data.id)) {
 										checked = true;
 									} else {
 										checked = false;
@@ -228,8 +226,8 @@ const Table = ({
 												: options?.rows?.hoverClasses || ''
 										} bg-white even:bg-gray-200`}
 									>
-										{showTicks && (
-											<td style={{ minWidth: '16px', maxWidth: '60px' }}>
+										{tick && (
+											<td className="w-[50px]">
 												<Checkbox
 													labelStyle={{ maxWidth: '60px' }}
 													centered
@@ -238,7 +236,7 @@ const Table = ({
 													checked={checked}
 													onChange={(e) =>
 														!isAnArray
-															? handleTickChange(data.id, e.target.checked)
+															? handleSelectChange(data.id, e.target.checked)
 															: undefined
 													}
 													required={false}
@@ -246,10 +244,7 @@ const Table = ({
 											</td>
 										)}
 										{sn && (
-											<td
-												className="text-center"
-												style={{ minWidth: '16px', maxWidth: '32px' }}
-											>
+											<td className="text-center w-8">
 												<Container renderAs={renderContainerLinkAs}>
 													{index + 1}
 												</Container>
@@ -418,7 +413,7 @@ Table.defaultProps = {
 	options: defaultOptions,
 	loading: false,
 	sn: true,
-	showTicks: false,
+	tick: false,
 };
 
 export default Table;

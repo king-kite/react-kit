@@ -528,8 +528,8 @@ export const KiteTickTable = Template.bind({});
 KiteTickTable.args = {
 	rows: row2Args,
 	heads: headArgs,
-	showTicks: true,
-	getTickedValues: (values) => {
+	tick: true,
+	getSelectedValues: (values) => {
 		console.log(
 			'ALL :>> ',
 			values.all,

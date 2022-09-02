@@ -58,12 +58,12 @@ export type TableOptionsProps = {
 	};
 };
 
-export type GetTickedValuesParamType = {
+export type GetSelectedValuesParamType = {
 	all: boolean;
 	includes: string[];
 	excludes: string[];
 };
-export type GetTickedValuesType = (Ids: GetTickedValuesParamType) => void;
+export type GetSelectedValuesType = (Ids: GetSelectedValuesParamType) => void;
 
 export type TableProps = {
 	heads: HeadType;
@@ -74,9 +74,9 @@ export type TableProps = {
 	sn?: boolean;
 	title?: string;
 	titleClasses?: string;
-	showTicks?: boolean;
+	tick?: boolean;
 	emptyProps?: EmptyType;
 	renderContainerLinkAs?: (props: ContainerLinkType) => JSX.Element;
 	renderActionLinkAs?: (props: ActionLinkType) => JSX.Element;
-	getTickedValues?: GetTickedValuesType;
+	getSelectedValues?: GetSelectedValuesType;
 };

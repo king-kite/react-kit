@@ -33,8 +33,8 @@ export { RadioProps as RadioType } from './Radio';
 export { SelectProps as SelectType } from './Select';
 export { SelectProps as Select2Type } from './Select2';
 export {
-	GetTickedValuesParamType as TableGetTickedValuesParamType,
-	GetTickedValuesType as TableGetTickedValuesType,
+	GetSelectedValuesParamType as TableGetSelectedValuesParamType,
+	GetSelectedValuesType as TableGetSelectedValuesType,
 	HeadType as TableHeadType,
 	RowType as TableRowType,
 	RowBaseType as TableRowBaseType,
