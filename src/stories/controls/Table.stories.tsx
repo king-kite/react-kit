@@ -523,6 +523,60 @@ const row2Args: TableRowType[] = [
 
 const Template: ComponentStory<typeof Table> = (args) => <Table {...args} />;
 
+export const KiteTickActionsTable = Template.bind({});
+
+KiteTickActionsTable.args = {
+	actions: {
+		actions: [
+			{
+				title: 'Delete all departments',
+				value: 'delete_departments',
+				onSubmit: (values) => {
+					console.log(
+						'DELETE ALL :>> ',
+						values.all,
+						', DELETE INCLUDES :>> ',
+						values.includes,
+						', DELETE EXCLUDES :>> ',
+						values.excludes
+					);
+				},
+			},
+			{
+				title: 'Mark read departments',
+				value: 'mark_read_departments',
+				onSubmit: (values) => {
+					console.log(
+						'MARK READ ALL :>> ',
+						values.all,
+						', MARK READ INCLUDES :>> ',
+						values.includes,
+						', MARK READ EXCLUDES :>> ',
+						values.excludes
+					);
+				},
+			},
+			{
+				title: 'Mark unread departments',
+				value: 'mark_unread_departments',
+				onSubmit: (values) => {
+					console.log(
+						'MARK UNREAD ALL :>> ',
+						values.all,
+						', MARK UNREAD INCLUDES :>> ',
+						values.includes,
+						', MARK UNREAD EXCLUDES :>> ',
+						values.excludes
+					);
+				},
+			},
+		],
+	},
+	rows: row2Args,
+	heads: headArgs,
+	tick: true,
+};
+
 export const KiteTickTable = Template.bind({});
 
 KiteTickTable.args = {

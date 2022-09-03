@@ -1,19 +1,19 @@
 import React, { forwardRef } from 'react';
 import Button, { ButtonProps } from './Button';
-import Input, { InputProps } from './Input';
+import Select, { SelectProps } from './Select';
 
-export type InputButtonProps = {
+export type SelectButtonProps = {
 	buttonProps: ButtonProps;
-	inputProps: InputProps;
+	selectProps: SelectProps;
 };
 
 export const defaultButtonProps = {
 	caps: true,
-	padding: 'px-4 py-[0.565rem]',
+	padding: 'px-4 py-[0.53rem]',
 	rounded: 'rounded-r-xl',
 	titleSize: 'text-sm',
 };
-export const defaultInputProps = {
+export const defaultSelectProps = {
 	bg: 'bg-white',
 	bdr: 'border',
 	bdrColor: 'border-primary-500',
@@ -22,11 +22,11 @@ export const defaultInputProps = {
 	textSize: 'text-base',
 };
 
-const InputButton = forwardRef<HTMLInputElement | null, InputButtonProps>(
-	({ buttonProps, inputProps }, ref) => (
+const SelectButton = forwardRef<HTMLSelectElement | null, SelectButtonProps>(
+	({ buttonProps, selectProps }, ref) => (
 		<div className="flex items-end w-full">
 			<div className="w-full">
-				<Input {...defaultInputProps} {...inputProps} ref={ref} />
+				<Select {...defaultSelectProps} {...selectProps} ref={ref} />
 			</div>
 			<div>
 				<Button {...defaultButtonProps} {...buttonProps} />
@@ -35,4 +35,4 @@ const InputButton = forwardRef<HTMLInputElement | null, InputButtonProps>(
 	)
 );
 
-export default InputButton;
+export default SelectButton;

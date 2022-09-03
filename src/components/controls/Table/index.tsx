@@ -10,6 +10,7 @@ import Actions from './Actions';
 import Container from './DataContainer';
 import Empty from './Empty';
 import SplitActions from './SplitActions';
+import TableActions from './TableActions';
 
 import Badge from '../Badge';
 import Button from '../Button';
@@ -25,19 +26,20 @@ import {
 } from './types';
 
 const Table = ({
+	actions,
+	emptyProps,
+	getSelectedValues,
 	heads,
-	options,
 	loading = false,
+	options,
 	renderContainerLinkAs,
 	renderActionLinkAs,
 	rows,
-	split,
 	sn,
+	split,
 	tick,
-	getSelectedValues,
 	title,
 	titleClasses = 'capitalize font-semibold mb-3 text-primary-500 text-sm md:text-base',
-	emptyProps,
 }: TableProps) => {
 	const [selected, setSelected] = useState<GetSelectedValuesParamType>({
 		all: false,
@@ -106,14 +108,12 @@ const Table = ({
 	return (
 		<Fragment>
 			{title && <h4 className={titleClasses}>{title}</h4>}
+			{actions && <TableActions {...actions} selected={selected} />}
 			{split && <SplitActions {...split} />}
 			<div
 				className={`bg-white overflow-x-scroll relative rounded w-full ${
 					rows.length <= 0 ? 'overflow-y-hidden' : ''
-				}`}
-				style={{
-					maxHeight: options?.maxHeight,
-				}}
+				} ${options?.maxHeight || ''}`}
 			>
 				<table className="relative table table-auto w-full">
 					<thead>
@@ -401,7 +401,7 @@ export const defaultOptions: TableOptionsProps = {
 		textForm: 'uppercase',
 		textSize: 'text-sm',
 	},
-	maxHeight: '30.2rem',
+	maxHeight: 'max-h-[30.2rem]',
 	rows: {
 		bold: true,
 		center: true,

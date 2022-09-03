@@ -21,7 +21,7 @@ KiteInputButton.args = {
 	inputProps: {
 		bdrColor: 'border-primary-500',
 		icon: FaUser,
-		placeholder: 'Search Job By Name e.g. accountant',
+		placeholder: 'Search by name e.g. accountant',
 		rounded: 'rounded-l-lg',
 		type: 'search',
 	},

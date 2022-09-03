@@ -5,6 +5,7 @@ import { ActionLinkType } from './Actions';
 import { ContainerLinkType } from './DataContainer';
 import { EmptyType } from './Empty';
 import { SplitActionsProps } from './SplitActions';
+import { TableActionsProps } from './TableActions';
 
 export type HeadType = {
 	style?: CSSProperties;
@@ -66,17 +67,18 @@ export type GetSelectedValuesParamType = {
 export type GetSelectedValuesType = (Ids: GetSelectedValuesParamType) => void;
 
 export type TableProps = {
+	actions?: Omit<TableActionsProps, 'selected'>;
+	emptyProps?: EmptyType;
+	getSelectedValues?: GetSelectedValuesType;
 	heads: HeadType;
-	options?: TableOptionsProps;
 	loading?: boolean;
+	options?: TableOptionsProps;
+	renderActionLinkAs?: (props: ActionLinkType) => JSX.Element;
+	renderContainerLinkAs?: (props: ContainerLinkType) => JSX.Element;
 	rows: RowType[];
-	split?: SplitActionsProps;
 	sn?: boolean;
+	split?: SplitActionsProps;
+	tick?: boolean;
 	title?: string;
 	titleClasses?: string;
-	tick?: boolean;
-	emptyProps?: EmptyType;
-	renderContainerLinkAs?: (props: ContainerLinkType) => JSX.Element;
-	renderActionLinkAs?: (props: ActionLinkType) => JSX.Element;
-	getSelectedValues?: GetSelectedValuesType;
 };

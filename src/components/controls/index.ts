@@ -9,6 +9,7 @@ export { default as InputButton } from './InputButton';
 export { DotsLoader, default as Loader } from './Loader';
 export { default as Radio } from './Radio';
 export { default as Select } from './Select';
+export { default as SelectButton } from './SelectButton';
 export { default as Select2 } from './Select2';
 export {
 	defaultOptions as TableDefaultOptions,
@@ -32,6 +33,7 @@ export { DotsLoaderType, LoaderProps as LoaderType } from './Loader';
 export { RadioProps as RadioType } from './Radio';
 export { SelectProps as SelectType } from './Select';
 export { SelectProps as Select2Type } from './Select2';
+export { SelectButtonProps as SelectButtonType } from './SelectButton';
 export {
 	GetSelectedValuesParamType as TableGetSelectedValuesParamType,
 	GetSelectedValuesType as TableGetSelectedValuesType,
@@ -42,13 +44,14 @@ export {
 	TableProps as TableType,
 } from './Table/types';
 export {
-	ContainerProps as TableActionContainerType,
-	ActionLinkType as TableActionLinkType,
-	ActionProps as TableActionType,
+	ContainerProps as TableRowActionContainerType,
+	ActionLinkType as TableRowActionLinkType,
+	ActionProps as TableRowActionType,
 } from './Table/Actions';
 export { TableContainerProps as TableContainerType } from './Table/DataContainer';
 export {
 	SplitActionProps as TableSplitActionType,
 	SplitActionsProps as TableSplitActionsType,
 } from './Table/SplitActions';
+export { TableActionsProps as TableActionsType } from './Table/TableActions';
 export { TextareaProps as TextareaType } from './Textarea';
