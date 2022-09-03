@@ -21,6 +21,7 @@ import Select from '../Select';
 import {
 	GetSelectedValuesParamType,
 	RowBaseType,
+	RowType,
 	TableOptionsProps,
 	TableProps,
 } from './types';
@@ -41,62 +42,38 @@ const Table = ({
 	title,
 	titleClasses = 'capitalize font-semibold mb-3 text-primary-500 text-sm md:text-base',
 }: TableProps) => {
-	const [selected, setSelected] = useState<GetSelectedValuesParamType>({
-		all: false,
-		includes: [],
-		excludes: [],
-	});
+	const [selected, setSelected] = useState<GetSelectedValuesParamType>([]);
 
 	const handleSelectAll = useCallback(
 		({ target: { checked } }: ChangeEvent<HTMLInputElement>) => {
 			if (tick) {
-				setSelected({
-					all: checked,
-					includes: [],
-					excludes: [],
-				});
+				if (checked && rows.length > 0) {
+					const values = rows.reduce((total: string[], row: RowType) => {
+						// Check if the rows array passed is an object not an array
+						// if object then an 'id' should be available
+						if ("id" in row) return [...total, row.id]
+						else return total
+					}, [])
+					setSelected(values)
+				}
+				else setSelected([])
 			}
 		},
-		[tick]
+		[rows,tick]
 	);
 
 	const handleSelectChange = useCallback(
 		(id: string, checked: boolean) => {
-			setSelected((prevState) => {
-				// add id to excludes array if "all" is true
-				if (prevState.all) {
-					// add id to excludes array if not checked and not in the array
-					if (!checked && !prevState.excludes.includes(id)) {
-						return {
-							...prevState,
-							excludes: [...prevState.excludes, id],
-						};
-						// remove id excludes array if checked and is in the array
-					} else if (checked && prevState.excludes.includes(id)) {
-						return {
-							...prevState,
-							excludes: prevState.excludes.filter((value) => value !== id),
-						};
-					}
-					// "all" is false
-				} else {
-					// add id to includes array if checked and not in the array
-					if (checked && !prevState.includes.includes(id)) {
-						return {
-							...prevState,
-							includes: [...prevState.includes, id],
-						};
-						// remove id from includes array if not checked and is in the array
-					} else if (!checked && prevState.includes.includes(id)) {
-						return {
-							...prevState,
-							includes: prevState.includes.filter((value) => value !== id),
-						};
-					}
-				}
-				// if above fails return previous state
-				return prevState;
-			});
+			setSelected(prevState => {
+				// if 'checked' is false and is in the array, remove id
+				if (checked === false && prevState.includes(id))
+					return prevState.filter(value => value !== id)
+				// if 'checked' and is not in the array, add id
+				else if (checked && !prevState.includes(id))
+					return [...prevState, id]
+				// if above conditions fail, return the previous state
+				return prevState
+			})
 		},
 		[tick]
 	);
@@ -139,11 +116,7 @@ const Table = ({
 										centered
 										margin=""
 										// checked if "all" is true, includes and excludes array are empty
-										checked={
-											selected.all &&
-											selected.excludes.length === 0 &&
-											selected.includes.length === 0
-										}
+										checked={selected.length === rows.length}
 										onChange={handleSelectAll}
 										required={false}
 									/>
@@ -202,16 +175,7 @@ const Table = ({
 
 								// if rowData is not an array rather an object with id and rows
 								let checked = false;
-								if (!isAnArray) {
-									// "all" is true and id is not in excludes array
-									if (selected.all && !selected.excludes.includes(data.id)) {
-										checked = true;
-									} else if (selected.includes.includes(data.id)) {
-										checked = true;
-									} else {
-										checked = false;
-									}
-								}
+								if (!isAnArray && selected.includes(data.id)) checked = true
 
 								return (
 									<tr

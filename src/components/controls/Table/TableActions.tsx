@@ -64,7 +64,8 @@ const TableActions = ({
 					...controls?.buttonProps,
 				}}
 				selectProps={{
-					placeholderColor: 'text-gray-600',
+					color: 'text-gray-700,',
+					placeholderColor: 'placeholder-gray-700 text-gray-700',
 					...defaultSelectProps,
 					...controls?.selectProps,
 					options,

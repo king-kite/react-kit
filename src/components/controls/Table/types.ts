@@ -59,11 +59,7 @@ export type TableOptionsProps = {
 	};
 };
 
-export type GetSelectedValuesParamType = {
-	all: boolean;
-	includes: string[];
-	excludes: string[];
-};
+export type GetSelectedValuesParamType = string[];
 export type GetSelectedValuesType = (Ids: GetSelectedValuesParamType) => void;
 
 export type TableProps = {

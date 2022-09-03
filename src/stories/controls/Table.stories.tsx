@@ -532,42 +532,21 @@ KiteTickActionsTable.args = {
 				title: 'Delete all departments',
 				value: 'delete_departments',
 				onSubmit: (values) => {
-					console.log(
-						'DELETE ALL :>> ',
-						values.all,
-						', DELETE INCLUDES :>> ',
-						values.includes,
-						', DELETE EXCLUDES :>> ',
-						values.excludes
-					);
+					console.log('DELETE ALL :>> ', values);
 				},
 			},
 			{
 				title: 'Mark read departments',
 				value: 'mark_read_departments',
 				onSubmit: (values) => {
-					console.log(
-						'MARK READ ALL :>> ',
-						values.all,
-						', MARK READ INCLUDES :>> ',
-						values.includes,
-						', MARK READ EXCLUDES :>> ',
-						values.excludes
-					);
+					console.log('MARK READ ALL :>> ', values);
 				},
 			},
 			{
 				title: 'Mark unread departments',
 				value: 'mark_unread_departments',
 				onSubmit: (values) => {
-					console.log(
-						'MARK UNREAD ALL :>> ',
-						values.all,
-						', MARK UNREAD INCLUDES :>> ',
-						values.includes,
-						', MARK UNREAD EXCLUDES :>> ',
-						values.excludes
-					);
+					console.log('MARK UNREAD ALL :>> ', values);
 				},
 			},
 		],
@@ -584,14 +563,7 @@ KiteTickTable.args = {
 	heads: headArgs,
 	tick: true,
 	getSelectedValues: (values) => {
-		console.log(
-			'ALL :>> ',
-			values.all,
-			', INCLUDES :>> ',
-			values.includes,
-			', EXCLUDES :>> ',
-			values.excludes
-		);
+		console.log(values);
 	},
 };
 
