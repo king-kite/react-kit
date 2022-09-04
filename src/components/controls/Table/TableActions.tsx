@@ -36,7 +36,7 @@ const TableActions = ({
 	controls,
 	selected,
 }: TableActionsProps) => {
-	const selectRef = React.useRef<HTMLSelectElement>(null);
+	const [value, setValue] = React.useState('');
 
 	const options = actions
 		? actions.map((action) => ({
@@ -50,10 +50,8 @@ const TableActions = ({
 			className={classes}
 			onSubmit={(e) => {
 				e.preventDefault();
-				if (selectRef.current !== null) {
-					const action = actions.find(
-						(action) => action.value === selectRef.current?.value
-					);
+				if (value) {
+					const action = actions.find((action) => action.value === value);
 					if (action) action.onSubmit(selected);
 				}
 			}}
@@ -64,13 +62,14 @@ const TableActions = ({
 					...controls?.buttonProps,
 				}}
 				selectProps={{
-					color: 'text-gray-700,',
-					placeholderColor: 'placeholder-gray-700 text-gray-700',
 					...defaultSelectProps,
 					...controls?.selectProps,
+					onChange: (e) => {
+						setValue(e.target.value);
+					},
+					value,
 					options,
 				}}
-				ref={selectRef}
 			/>
 		</form>
 	);

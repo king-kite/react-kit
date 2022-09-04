@@ -33,7 +33,10 @@ const Dropdown = ({ list, setVisible }: DropdownProps) => (
 );
 
 export type ButtonDropdownProps = {
-	component?: JSX.Element;
+	component?: (props: {
+		visible: boolean;
+		setVisible: React.Dispatch<React.SetStateAction<boolean>>;
+	}) => JSX.Element;
 	props: ButtonProps;
 	dropList?: {
 		title: string;
@@ -43,7 +46,7 @@ export type ButtonDropdownProps = {
 };
 
 const ButtonDropdown = ({
-	component,
+	component: DropdownComponent,
 	dropList,
 	props,
 	style,
@@ -84,8 +87,13 @@ const ButtonDropdown = ({
 						</div>
 						{dropList ? (
 							<Dropdown list={dropList} setVisible={controls.setVisible} />
+						) : DropdownComponent ? (
+							<DropdownComponent
+								setVisible={controls.setVisible}
+								visible={controls.visible}
+							/>
 						) : (
-							component
+							<></>
 						)}
 					</div>
 				</div>

@@ -31,12 +31,10 @@ export type RowBaseType = {
 	value?: any;
 };
 
-export type RowType =
-	| RowBaseType[]
-	| {
-			id: string;
-			rows: RowBaseType[];
-	  };
+export type RowType = {
+	id: string;
+	rows: RowBaseType[];
+};
 
 export type TableOptionsProps = {
 	heads?: {

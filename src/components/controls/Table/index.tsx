@@ -20,8 +20,6 @@ import Select from '../Select';
 
 import {
 	GetSelectedValuesParamType,
-	RowBaseType,
-	RowType,
 	TableOptionsProps,
 	TableProps,
 } from './types';
@@ -48,32 +46,25 @@ const Table = ({
 		({ target: { checked } }: ChangeEvent<HTMLInputElement>) => {
 			if (tick) {
 				if (checked && rows.length > 0) {
-					const values = rows.reduce((total: string[], row: RowType) => {
-						// Check if the rows array passed is an object not an array
-						// if object then an 'id' should be available
-						if ("id" in row) return [...total, row.id]
-						else return total
-					}, [])
-					setSelected(values)
-				}
-				else setSelected([])
+					const values = rows.map((row) => row.id);
+					setSelected(values);
+				} else setSelected([]);
 			}
 		},
-		[rows,tick]
+		[rows, tick]
 	);
 
 	const handleSelectChange = useCallback(
 		(id: string, checked: boolean) => {
-			setSelected(prevState => {
+			setSelected((prevState) => {
 				// if 'checked' is false and is in the array, remove id
 				if (checked === false && prevState.includes(id))
-					return prevState.filter(value => value !== id)
+					return prevState.filter((value) => value !== id);
 				// if 'checked' and is not in the array, add id
-				else if (checked && !prevState.includes(id))
-					return [...prevState, id]
+				else if (checked && !prevState.includes(id)) return [...prevState, id];
 				// if above conditions fail, return the previous state
-				return prevState
-			})
+				return prevState;
+			});
 		},
 		[tick]
 	);
@@ -116,7 +107,12 @@ const Table = ({
 										centered
 										margin=""
 										// checked if "all" is true, includes and excludes array are empty
-										checked={selected.length === rows.length}
+										checked={
+											tick &&
+											selected.length > 0 &&
+											rows.length > 0 &&
+											selected.length === rows.length
+										}
 										onChange={handleSelectAll}
 										required={false}
 									/>
@@ -156,26 +152,11 @@ const Table = ({
 					{loading === false && rows && rows.length > 0 && (
 						<tbody>
 							{rows.map((data, index) => {
-								const isAnArray = Array.isArray(data);
-
-								if (tick) {
-									if (isAnArray)
-										throw new Error(
-											'tick prop is true, hence a row must be an object containing an array of rows and an id key'
-										);
-									else if ('id' in data === false)
-										throw new Error('Value of row must have an id field/key');
-								}
-
-								const rowData: RowBaseType[] = isAnArray
-									? data
-									: 'rows' in data
-									? data.rows
-									: [];
+								const rowData = data.rows;
 
 								// if rowData is not an array rather an object with id and rows
 								let checked = false;
-								if (!isAnArray && selected.includes(data.id)) checked = true
+								if (tick && selected.includes(data.id)) checked = true;
 
 								return (
 									<tr
@@ -196,10 +177,10 @@ const Table = ({
 													labelStyle={{ maxWidth: '60px' }}
 													centered
 													margin=""
-													name={!isAnArray ? data.id : ''}
+													name={data.id}
 													checked={checked}
 													onChange={(e) =>
-														!isAnArray
+														tick
 															? handleSelectChange(data.id, e.target.checked)
 															: undefined
 													}
