@@ -61,6 +61,7 @@ const Input = forwardRef<HTMLInputElement | null, InputProps>(
 			btn,
 			color,
 			datalist,
+			defaultValue,
 			disabled,
 			error,
 			errorSize,
@@ -116,11 +117,11 @@ const Input = forwardRef<HTMLInputElement | null, InputProps>(
 		const iconTextColor = disabled ? 'text-white' : iconColor;
 
 		const textColor = disabled
-			? value
+			? value || defaultValue
 				? 'text-white'
 				: 'placeholder-white text-white'
 			: type === 'date'
-			? value === '' || value === null || value === undefined
+			? !!value && !!defaultValue
 				? `text-gray-400 ${placeholderColor}`
 				: `${color} ${placeholderColor}`
 			: `${color} ${placeholderColor}`;
@@ -175,6 +176,7 @@ const Input = forwardRef<HTMLInputElement | null, InputProps>(
 						className={`${bgColor} ${extraClasses} ${textColor} ${rounded} ${padding} ${
 							_type === 'date' ? 'cursor-text' : ''
 						} ${textSize} ${focus} w-full`}
+						defaultValue={defaultValue}
 						disabled={disabled}
 						name={name}
 						ref={ref}

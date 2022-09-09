@@ -35,6 +35,7 @@ const Checkbox = forwardRef<HTMLInputElement | null, CheckboxProps>(
 			between,
 			checked,
 			centered,
+			defaultChecked,
 			disabled,
 			error,
 			errorSize,
@@ -66,10 +67,11 @@ const Checkbox = forwardRef<HTMLInputElement | null, CheckboxProps>(
 					}}
 				>
 					<div
-						className={`${
+						className={`
+						${
 							disabled
 								? 'bg-gray-500'
-								: checked === undefined || checked === false
+								: !checked && !defaultChecked
 								? 'bg-gray-300 transition-colors'
 								: 'bg-primary-100 transition-colors'
 						} ${type === 'switch' ? '' : 'hidden'} ${
@@ -78,7 +80,7 @@ const Checkbox = forwardRef<HTMLInputElement | null, CheckboxProps>(
 					>
 						<div
 							className={`${
-								checked === undefined || checked === false
+								!checked && !defaultChecked
 									? `${disabled ? 'bg-gray-700' : 'bg-gray-400 transition-all'}`
 									: `${
 											disabled
@@ -92,6 +94,7 @@ const Checkbox = forwardRef<HTMLInputElement | null, CheckboxProps>(
 						className={`${type === 'switch' ? 'hidden' : ''} ${
 							disabled ? 'cursor-not-allowed' : 'cursor-pointer'
 						} ${textSize} ${margin} leading-tight`}
+						defaultChecked={defaultChecked}
 						disabled={disabled}
 						required={required}
 						ref={ref}

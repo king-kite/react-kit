@@ -84,6 +84,7 @@ const InfoComp: FC<InfoCompType> = ({
 								<div className="font-medium w-full">
 									<div className="max-w-[120px]">
 										<Badge
+											txtClasses="text-center"
 											margin="mx-1"
 											title={String(detail.value)}
 											{...detail.options}

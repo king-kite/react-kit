@@ -41,6 +41,7 @@ const Textarea = forwardRef<HTMLTextAreaElement | null, TextareaProps>(
 			btn,
 			color,
 			disabled,
+			defaultValue,
 			error,
 			errorSize,
 			extraClasses,
@@ -82,7 +83,7 @@ const Textarea = forwardRef<HTMLTextAreaElement | null, TextareaProps>(
 
 		// const textColor = disabled ? placeholderColor : color;
 		const textColor = disabled
-			? value
+			? (value || defaultValue)
 				? 'text-white'
 				: 'placeholder-white text-white'
 			: `${color} ${placeholderColor}`;
@@ -123,9 +124,12 @@ const Textarea = forwardRef<HTMLTextAreaElement | null, TextareaProps>(
 						)}
 					</div>
 				)}
-				<div className={`${borderColor} ${bgColor} ${rounded} ${bdr} ${shadow} w-full`}>
+				<div
+					className={`${borderColor} ${bgColor} ${rounded} ${bdr} ${shadow} w-full`}
+				>
 					<textarea
 						className={`${bgColor} ${extraClasses} ${padding} ${focus} ${textColor} ${textSize} w-full`}
+						defaultValue={defaultValue}
 						disabled={disabled}
 						name={name}
 						required={required}

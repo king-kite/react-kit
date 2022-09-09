@@ -51,6 +51,7 @@ const Select = forwardRef<HTMLSelectElement | null, SelectProps>(
 			bdrColor,
 			btn,
 			color,
+			defaultValue,
 			disabled,
 			error,
 			errorSize,
@@ -99,10 +100,10 @@ const Select = forwardRef<HTMLSelectElement | null, SelectProps>(
 			: 'text-primary-500';
 
 		const textColor = disabled
-			? value
+			? (value || defaultValue)
 				? 'text-white'
 				: 'placeholder-white text-white'
-			: `${value ? color : "text-gray-400"} ${placeholderColor}`;
+			: `${(value || defaultValue) ? color : placeholderColor}`;
 
 		return (
 			<Fragment>
@@ -154,6 +155,7 @@ const Select = forwardRef<HTMLSelectElement | null, SelectProps>(
 						className={`${extraClasses} ${textColor} ${padding} ${
 							disabled ? 'cursor-not-allowed' : 'cursor-pointer'
 						} ${textSize} ${rounded} ${focus} bg-transparent block pr-8 w-full`}
+						defaultValue={defaultValue}
 						disabled={disabled}
 						name={name}
 						value={value}
@@ -221,7 +223,7 @@ Select.defaultProps = {
 	labelSize: 'text-xs md:text-sm',
 	multiple: false,
 	padding: 'px-3 py-2',
-	placeholderColor: 'text-gray-400',
+	placeholderColor: 'placeholder-gray-400 text-gray-400',
 	rounded: 'rounded',
 	required: true,
 	requiredColor: 'text-red-500',

@@ -11,7 +11,7 @@ export type BadgeProps = {
 		| 'secondary'
 		| 'success'
 		| 'warning';
-	cap?: boolean | null;
+	cap?: 'capitalize' | 'uppercase';
 	centered?: boolean;
 	container?: string;
 	color?: string;
@@ -20,7 +20,9 @@ export type BadgeProps = {
 	padding?: string;
 	rounded?: 'none' | 'sm' | 'md' | 'lg' | 'full';
 	title: string;
+	txtClasses?: string;
 	txtColor?: string;
+	txtSize?: string;
 };
 
 const Badge = ({
@@ -34,7 +36,9 @@ const Badge = ({
 	padding,
 	rounded,
 	title,
+	txtClasses,
 	txtColor,
+	txtSize,
 }: BadgeProps) => {
 	const background =
 		bg === 'success'
@@ -53,7 +57,7 @@ const Badge = ({
 			? 'bg-secondary-500'
 			: 'bg-green-600';
 
-	const textT = cap === false ? '' : cap === true ? 'capitalize' : 'uppercase';
+	const textT = cap || '';
 	const round =
 		rounded === 'none'
 			? 'rounded-none'
@@ -75,10 +79,10 @@ const Badge = ({
 				centered ? 'justify-center' : ''
 			}`}
 		>
-			<p className={`${textT} ${padding} text-xs w-full`}>
+			<p className={`${txtClasses} ${textT} ${padding} ${txtSize} w-full`}>
 				{Icon && (
 					<span className="inline-block mr-1">
-						<Icon className="block text-xs" />
+						<Icon className={`block ${txtSize}`} />
 					</span>
 				)}
 				{title}
@@ -89,11 +93,12 @@ const Badge = ({
 
 Badge.defaultProps = {
 	bg: 'success',
-	cap: false,
 	centered: true,
 	container: '',
 	padding: 'p-1',
+	txtClasses: '',
 	txtColor: 'text-white',
+	txtSize: 'text-xs',
 };
 
 export default Badge;
