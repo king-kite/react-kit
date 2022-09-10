@@ -96,7 +96,7 @@ const Table = ({
 						>
 							{tick && (
 								<th
-									className={`bg-gray-300 ${
+									className={`bg-gray-300 w-[50px] ${
 										options?.heads?.sticky ? 'sticky top-0 z-10' : ''
 									}`}
 								>
@@ -126,7 +126,7 @@ const Table = ({
 							)}
 							{sn && (
 								<th
-									className={`bg-gray-300 ${
+									className={`bg-gray-300 w-8 ${
 										options?.heads?.sticky ? 'sticky top-0 z-10' : ''
 									}`}
 								>
@@ -141,13 +141,23 @@ const Table = ({
 							)}
 							{heads?.map(({ style, type, value }) => (
 								<th
+									key={value}
 									className={`bg-gray-300 ${
 										options?.heads?.sticky ? 'sticky top-0 z-10' : ''
 									}`}
+									style={{
+										minWidth:
+											value?.length > 10
+												? '130px'
+												: value?.length > 8
+												? '100px'
+												: '70px',
+										maxWidth: type === 'actions' ? '160px' : '',
+										...style,
+									}}
 								>
 									<div
-										key={value}
-										className={`bg-gray-300 py-2 ${
+										className={`bg-gray-300 py-2 w-full ${
 											options?.heads?.bold || 'font-semibold'
 										} ${options?.heads?.sticky ? 'sticky top-0 z-10' : ''}`}
 										style={{
