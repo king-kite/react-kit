@@ -79,16 +79,16 @@ const Table = ({
 			{actions && <TableActions {...actions} selected={selected} />}
 			{split && <SplitActions {...split} />}
 			<div
-				className={`bg-white overflow-x-scroll relative rounded w-full ${
-					rows.length <= 0 ? 'overflow-y-hidden' : ''
-				} ${options?.maxHeight || ''}`}
+				className={`bg-white overflow-x-scroll relative ${
+					options?.heads?.rounded || 'rounded'
+				} w-full ${rows.length <= 0 ? 'overflow-y-hidden' : ''} ${
+					options?.maxHeight || ''
+				}`}
 			>
 				<table className="relative table table-auto w-full">
 					<thead>
 						<tr
 							className={`${options?.heads?.bg || 'bg-gray-300'} ${
-								options?.heads?.bold || 'font-extrabold'
-							} ${options?.heads?.rounded || 'rounded-lg'} ${
 								options?.heads?.textAlign || 'text-center'
 							} ${options?.heads?.textColor || 'text-primary-500'} ${
 								options?.heads?.textSize || 'text-sm'
@@ -96,55 +96,73 @@ const Table = ({
 						>
 							{tick && (
 								<th
-									className={`bg-gray-300 font-semibold px-2 py-[0.75rem] w-[50px] ${
+									className={`bg-gray-300 ${
 										options?.heads?.sticky ? 'sticky top-0 z-10' : ''
 									}`}
 								>
-									<Checkbox
-										labelStyle={{
-											maxWidth: '60px',
-										}}
-										centered
-										margin=""
-										// checked if "all" is true, includes and excludes array are empty
-										checked={
-											tick &&
-											selected.length > 0 &&
-											rows.length > 0 &&
-											selected.length === rows.length
-										}
-										onChange={handleSelectAll}
-										required={false}
-									/>
+									<div
+										className={`bg-gray-300 px-2 py-[0.75rem] w-[50px] ${
+											options?.heads?.sticky ? 'sticky top-0 z-10' : ''
+										}`}
+									>
+										<Checkbox
+											labelStyle={{
+												maxWidth: '60px',
+											}}
+											centered
+											margin=""
+											// checked if "all" is true, includes and excludes array are empty
+											checked={
+												tick &&
+												selected.length > 0 &&
+												rows.length > 0 &&
+												selected.length === rows.length
+											}
+											onChange={handleSelectAll}
+											required={false}
+										/>
+									</div>
 								</th>
 							)}
 							{sn && (
 								<th
-									className={`bg-gray-300 font-semibold py-2 w-8 ${
+									className={`bg-gray-300 ${
 										options?.heads?.sticky ? 'sticky top-0 z-10' : ''
 									}`}
 								>
-									S/N
+									<div
+										className={`bg-gray-300 py-2 w-8 ${
+											options?.heads?.bold || 'font-semibold'
+										} ${options?.heads?.sticky ? 'sticky top-0 z-10' : ''}`}
+									>
+										S/N
+									</div>
 								</th>
 							)}
 							{heads?.map(({ style, type, value }) => (
 								<th
-									key={value}
-									className={`bg-gray-300 font-semibold py-2 ${
+									className={`bg-gray-300 ${
 										options?.heads?.sticky ? 'sticky top-0 z-10' : ''
 									}`}
-									style={{
-										minWidth:
-											value?.length > 10
-												? '130px'
-												: value?.length > 8
-												? '100px'
-												: '70px',
-										maxWidth: type === 'actions' ? '160px' : '',
-										...style,
-									}}
 								>
-									{value}
+									<div
+										key={value}
+										className={`bg-gray-300 py-2 ${
+											options?.heads?.bold || 'font-semibold'
+										} ${options?.heads?.sticky ? 'sticky top-0 z-10' : ''}`}
+										style={{
+											minWidth:
+												value?.length > 10
+													? '130px'
+													: value?.length > 8
+													? '100px'
+													: '70px',
+											maxWidth: type === 'actions' ? '160px' : '',
+											...style,
+										}}
+									>
+										{value}
+									</div>
 								</th>
 							))}
 						</tr>
@@ -161,7 +179,7 @@ const Table = ({
 								return (
 									<tr
 										key={index + 1}
-										className={`font-primary ${
+										className={`${
 											options?.rows?.bold ? 'font-bold' : 'font-normal'
 										} leading-5 text-gray-600 text-sm ${
 											options?.rows?.textForm || 'uppercase'
@@ -338,8 +356,8 @@ const Table = ({
 export const defaultOptions: TableOptionsProps = {
 	heads: {
 		bg: 'bg-gray-300',
-		bold: 'font-extrabold',
-		rounded: 'rounded-lg',
+		bold: 'font-semibold',
+		rounded: 'rounded',
 		sticky: true,
 		textAlign: 'text-center',
 		textColor: 'text-primary-500',
