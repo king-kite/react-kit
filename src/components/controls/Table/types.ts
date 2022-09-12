@@ -62,6 +62,8 @@ export type GetSelectedValuesType = (Ids: GetSelectedValuesParamType) => void;
 
 export type TableProps = {
 	actions?: Omit<TableActionsProps, 'selected'>;
+	disabled?: boolean;
+	disabledClasses?: string;
 	emptyProps?: EmptyType;
 	getSelectedValues?: GetSelectedValuesType;
 	heads: HeadType;

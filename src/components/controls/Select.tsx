@@ -39,7 +39,6 @@ export interface SelectProps extends SelectHTMLAttributes<HTMLSelectElement> {
 	rounded?: string;
 	shadow?: string;
 	textSize?: string;
-	value?: string | number;
 }
 
 const Select = forwardRef<HTMLSelectElement | null, SelectProps>(
@@ -100,10 +99,10 @@ const Select = forwardRef<HTMLSelectElement | null, SelectProps>(
 			: 'text-primary-500';
 
 		const textColor = disabled
-			? (value || defaultValue)
+			? value || defaultValue
 				? 'text-white'
 				: 'placeholder-white text-white'
-			: `${(value || defaultValue) ? color : placeholderColor}`;
+			: `${value || defaultValue ? color : placeholderColor}`;
 
 		return (
 			<Fragment>

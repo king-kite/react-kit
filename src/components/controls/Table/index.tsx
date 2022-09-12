@@ -26,6 +26,8 @@ import {
 
 const Table = ({
 	actions,
+	disabled,
+	disabledClasses,
 	emptyProps,
 	getSelectedValues,
 	heads,
@@ -357,6 +359,11 @@ const Table = ({
 				</table>
 				{(rows === null || rows === undefined || rows.length <= 0) && (
 					<Empty loading={loading || false} {...emptyProps} />
+				)}
+				{disabled && (
+					<div className={`${
+						disabledClasses || "bg-dark-transparent"
+					} absolute h-full left-0 top-0 w-full`} />
 				)}
 			</div>
 		</Fragment>
