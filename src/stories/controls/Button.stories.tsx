@@ -21,3 +21,9 @@ KiteIconRightButton.args = {
 	iconRight: FaPen,
 	title: 'Button With Icon',
 };
+
+export const KiteButtonLink = Template.bind({});
+KiteButtonLink.args = {
+	link: '#',
+	title: 'Link Button',
+};

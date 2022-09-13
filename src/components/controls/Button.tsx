@@ -20,7 +20,7 @@ export interface ContainerProps extends ButtonProps {
 export type ButtonLinkType = {
 	children: ReactNode;
 	link: string;
-	props: Omit<ButtonProps, 'renderLinkAs'>;
+	// props: Omit<ButtonProps, 'renderLinkAs'>;
 };
 
 export const DefaultLink = ({ children, link, ...props }: ButtonLinkType) => (
@@ -36,7 +36,7 @@ export const Container = forwardRef<HTMLButtonElement | null, ContainerProps>(
 		ref
 	) =>
 		link ? (
-			<LinkComponent link={link} props={props}>
+			<LinkComponent link={link} {...props}>
 				{children}
 			</LinkComponent>
 		) : (
