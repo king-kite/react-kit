@@ -582,6 +582,37 @@ KiteTickTable.args = {
 	},
 };
 
+export const KiteSplitTable = Template.bind({});
+// More on args: https://storybook.js.org/docs/react/writing-stories/args
+KiteSplitTable.args = {
+	rows: rowArgs,
+	heads: headArgs,
+	split: {
+		actions: [
+			{
+				active: true,
+				onClick: () => window.alert('Show All!'),
+				title: 'all',
+			},
+			{
+				active: false,
+				onClick: () => window.alert('Show Only Active!'),
+				title: 'active',
+			},
+			{
+				active: true,
+				onClick: () => window.alert('Show Only On Leave!'),
+				title: 'on leave',
+			},
+			{
+				active: false,
+				onClick: () => window.alert('Show Inactive!'),
+				title: 'inactive',
+			},
+		],
+	},
+};
+
 export const KiteTable = Template.bind({});
 // More on args: https://storybook.js.org/docs/react/writing-stories/args
 KiteTable.args = {
