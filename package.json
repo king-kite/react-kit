@@ -1,5 +1,5 @@
 {
-	"name": "@king-kite/react-kit",
+	"name": "kite-react-tailwind",
 	"version": "0.2.3",
 	"description": "A React Component Library Built With Tailwind And React Icons",
 	"author": "Emmanuel (king-kite)",
@@ -15,9 +15,6 @@
 		"dist"
 	],
 	"types": "dist/index.d.ts",
-	"publishConfig": {
-		"registry": "https://npm.pkg.github.com/king-kite"
-	},
 	"devDependencies": {
 		"@babel/core": "^7.18.10",
 		"@lopatnov/rollup-plugin-uglify": "^2.1.2",
