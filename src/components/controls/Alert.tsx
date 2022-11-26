@@ -20,6 +20,7 @@ export type ColorTypes =
 export type AlertProps = {
 	message?: string;
 	onClose?: () => void;
+	padding?: string;
 	rounded?: string;
 	type?: ColorTypes;
 	visible?: boolean;
@@ -49,9 +50,9 @@ const Icon = ({ type }: { type?: ColorTypes }) => {
 };
 
 const classes =
-	'p-3 text-sm inline-flex items-center justify-between w-full sm:px-4 md:px-6 md:py-5 md:text-base';
+	'text-sm inline-flex items-center justify-between w-full md:text-base';
 
-const Alert = ({ message, onClose, rounded, type, visible }: AlertProps) => {
+const Alert = ({ message, onClose, padding, rounded, type, visible }: AlertProps) => {
 	const [_visible, setVisible] = useState(false);
 
 	const visibility = visible !== undefined ? visible : _visible;
@@ -79,7 +80,7 @@ const Alert = ({ message, onClose, rounded, type, visible }: AlertProps) => {
 	}, [message, visible]);
 
 	return visibility ? (
-		<div className={`${color} ${rounded} ${classes}`}>
+		<div className={`${color} ${rounded} ${padding} ${classes}`}>
 			<div className="inline-flex items-center">
 				<Icon type={type} />
 				{message}
@@ -103,6 +104,7 @@ const Alert = ({ message, onClose, rounded, type, visible }: AlertProps) => {
 
 Alert.defaultProps = {
 	message: '',
+	padding: 'p-3 sm:px-4 md:px-6 md:py-5',
 	rounded: 'rounded-lg',
 	type: 'success',
 };
