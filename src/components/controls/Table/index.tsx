@@ -226,7 +226,7 @@ const Table = ({
 											</td>
 										)}
 										{rowData?.map((props, index: number) => {
-											const { style, classes, Icon, type, link, value } = props;
+											const { style, classes, icon: Icon, type, link, value } = props;
 											const rowOptions = props?.options || {};
 
 											return type === 'actions' ? (

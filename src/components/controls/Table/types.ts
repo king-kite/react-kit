@@ -16,7 +16,7 @@ export type HeadType = {
 export type RowBaseType = {
 	options?: any;
 	classes?: string;
-	Icon?: IconType;
+	icon?: IconType;
 	link?: string;
 	type?:
 		| 'actions'
