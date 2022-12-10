@@ -1,4 +1,4 @@
-import { CSSProperties } from 'react';
+import { ComponentPropsWithRef, CSSProperties } from 'react';
 import { IconType } from 'react-icons';
 
 import { ActionLinkType } from './Actions';
@@ -15,9 +15,11 @@ export type HeadType = {
 
 export type RowBaseType = {
 	options?: any;
+	component?: ComponentPropsWithRef<any>;
 	classes?: string;
 	icon?: IconType;
 	link?: string;
+	onClick?: (e: any) => void; // Check how to make this a html event param
 	type?:
 		| 'actions'
 		| 'badge'
