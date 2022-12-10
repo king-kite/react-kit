@@ -226,7 +226,15 @@ const Table = ({
 											</td>
 										)}
 										{rowData?.map((props, index: number) => {
-											const { style, classes, icon: Icon, type, link, value } = props;
+											const {
+												style,
+												classes,
+												icon: Icon,
+												type,
+												link,
+												value,
+												...itemProps
+											} = props;
 											const rowOptions = props?.options || {};
 
 											return type === 'actions' ? (
@@ -244,6 +252,7 @@ const Table = ({
 													<Container
 														renderAs={renderContainerLinkAs}
 														link={link}
+														{...itemProps}
 													>
 														<div
 															style={{
@@ -262,7 +271,10 @@ const Table = ({
 													className="text-center"
 													style={style}
 												>
-													<Container renderAs={renderContainerLinkAs}>
+													<Container
+														renderAs={renderContainerLinkAs}
+														{...itemProps}
+													>
 														<Checkbox
 															required={false}
 															{...rowOptions}
@@ -291,6 +303,7 @@ const Table = ({
 															renderAs={renderContainerLinkAs}
 															classes={classes}
 															link={link}
+															{...itemProps}
 														>
 															<Badge title={value} {...rowOptions} />
 														</Container>
@@ -298,6 +311,7 @@ const Table = ({
 														<Container
 															renderAs={renderContainerLinkAs}
 															classes={classes}
+															{...itemProps}
 														>
 															<Button
 																bg="bg-primary-600 hover:bg-primary-400"
@@ -312,6 +326,7 @@ const Table = ({
 															renderAs={renderContainerLinkAs}
 															classes={classes}
 															link={link}
+															{...itemProps}
 														>
 															<Icon {...rowOptions} />
 														</Container>
@@ -319,6 +334,7 @@ const Table = ({
 														<Container
 															renderAs={renderContainerLinkAs}
 															classes={classes}
+															{...itemProps}
 														>
 															<Input
 																required={false}
@@ -331,6 +347,7 @@ const Table = ({
 														<Container
 															renderAs={renderContainerLinkAs}
 															classes={classes}
+															{...itemProps}
 														>
 															<Select
 																required={false}
@@ -344,6 +361,7 @@ const Table = ({
 															renderAs={renderContainerLinkAs}
 															classes={classes}
 															link={link}
+															{...itemProps}
 														>
 															{value}
 														</Container>
@@ -361,9 +379,11 @@ const Table = ({
 					<Empty loading={loading || false} {...emptyProps} />
 				)}
 				{disabled && (
-					<div className={`${
-						disabledClasses || "bg-dark-transparent"
-					} absolute h-full left-0 top-0 w-full`} />
+					<div
+						className={`${
+							disabledClasses || 'bg-dark-transparent'
+						} absolute h-full left-0 top-0 w-full`}
+					/>
 				)}
 			</div>
 		</Fragment>

@@ -3,7 +3,9 @@ import React, { FC, ReactNode } from 'react';
 export type TableContainerProps = {
 	children: ReactNode;
 	link?: string;
+	onClick?: (e: any) => void; // Check how to make this a html event param
 	classes?: string;
+	component?: React.ComponentPropsWithRef<any>;
 	renderAs?: (props: ContainerLinkType) => JSX.Element;
 	props?: any;
 };
@@ -29,23 +31,24 @@ const Container: FC<TableContainerProps> = ({
 	children,
 	link,
 	classes,
+	onClick,
+	component: Component,
 	renderAs: LinkComponent = DefaultLink,
 	...props
 }) => {
 	const defaultClasses =
 		'flex items-center justify-center px-2 py-3 w-full ' + (classes || '');
 	const linkClass = !classes ? ' cursor-pointer hover:bg-purple-100 ' : '';
+	const className = defaultClasses + (link || onClick ? linkClass : '');
 
 	return link ? (
-		<LinkComponent
-			className={defaultClasses + linkClass}
-			link={link}
-			{...props}
-		>
+		<LinkComponent className={className} link={link} {...props}>
 			{children}
 		</LinkComponent>
+	) : Component ? (
+		<Component className={defaultClasses}>{children}</Component>
 	) : (
-		<div className={defaultClasses} {...props}>
+		<div className={className} onClick={onClick} {...props}>
 			{children}
 		</div>
 	);

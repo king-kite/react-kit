@@ -154,7 +154,7 @@ Checkbox.defaultProps = {
 	between: false,
 	centered: false,
 	reverse: false,
-	required: true,
+	required: false,
 	requiredColor: 'text-red-500',
 	margin: 'mr-2',
 	errorSize: 'text-xs',

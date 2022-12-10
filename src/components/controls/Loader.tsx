@@ -153,7 +153,7 @@ const Loader = ({
 	return (
 		<div className={containerStyle + " " + (className || "")}>
 			<div
-				className={`${border} ${rounded} ${_animation} ${bg} ${colour} ${_type} ${_width} rounded-full`}
+				className={`${border} ${rounded} ${_animation} ${bg} ${colour} ${_type} ${_width}`}
 				style={styleLoader}
 				{...props}
 			/>
