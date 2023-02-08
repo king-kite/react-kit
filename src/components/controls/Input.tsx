@@ -163,7 +163,7 @@ const Input = forwardRef<HTMLInputElement | null, InputProps>(
 					</div>
 				)}
 				<div
-					className={`${borderColor} ${bgColor} ${rounded} ${bdr} ${shadow} flex items-center w-full`}
+					className={`${borderColor} ${bgColor} ${rounded} ${bdr} ${shadow} flex h-full items-center w-full`}
 				>
 					{Icon && (
 						<span
@@ -175,7 +175,7 @@ const Input = forwardRef<HTMLInputElement | null, InputProps>(
 					<input
 						className={`${bgColor} ${extraClasses} ${textColor} ${rounded} ${padding} ${
 							_type === 'date' ? 'cursor-text' : ''
-						} ${textSize} ${focus} w-full`}
+						} ${textSize} ${focus} h-full w-full`}
 						defaultValue={defaultValue}
 						disabled={disabled}
 						name={name}

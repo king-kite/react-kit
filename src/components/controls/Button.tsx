@@ -80,7 +80,7 @@ const Button = ({
 					margin || ''
 				} ${padding} ${
 					disabled ? 'cursor-not-allowed' : 'cursor-pointer'
-				} ${border} ${color} ${titleSize} flex items-center justify-center text-center tracking-wide w-full focus:outline-none focus:shadow-outline`}
+				} ${border} ${color} ${titleSize} flex h-full items-center justify-center text-center tracking-wide w-full focus:outline-none focus:shadow-outline`}
 				disabled={disabled}
 				title={title}
 				{...props}
