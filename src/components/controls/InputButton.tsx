@@ -19,6 +19,7 @@ export const defaultInputProps = {
 	bg: 'bg-white',
 	bdr: 'border',
 	bdrColor: 'border-primary-500',
+	height: 'h-full',
 	padding: 'px-3',
 	rounded: 'rounded-l-lg',
 	required: false,

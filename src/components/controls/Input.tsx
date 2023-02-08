@@ -29,6 +29,7 @@ export interface InputProps extends InputHTMLAttributes<HTMLInputElement> {
 	errorSize?: string;
 	extraClasses?: string;
 	focus?: string;
+	height?: string;
 	icon?: IconType;
 	iconColor?: string;
 	iconClass?: string;
@@ -67,6 +68,7 @@ const Input = forwardRef<HTMLInputElement | null, InputProps>(
 			errorSize,
 			extraClasses,
 			focus,
+			height,
 			icon: Icon,
 			iconColor,
 			iconClass,
@@ -163,7 +165,7 @@ const Input = forwardRef<HTMLInputElement | null, InputProps>(
 					</div>
 				)}
 				<div
-					className={`${borderColor} ${bgColor} ${rounded} ${bdr} ${shadow} flex h-full items-center w-full`}
+					className={`${borderColor} ${bgColor} ${rounded} ${bdr} ${shadow} flex ${height} items-center w-full`}
 				>
 					{Icon && (
 						<span
@@ -242,6 +244,7 @@ Input.defaultProps = {
 	errorSize: 'text-xs',
 	extraClasses: 'appearance-none leading-tight',
 	focus: 'focus:outline-none focus:shadow-outline',
+	height: '',
 	iconColor: 'text-primary-500',
 	iconClass: 'mx-2',
 	iconSize: 'text-xs',
