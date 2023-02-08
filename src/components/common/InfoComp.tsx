@@ -8,6 +8,7 @@ export type InfoCompImageType = {
 };
 
 export type InfoCompType = {
+	bg?: string;
 	description?: string;
 	infos: {
 		options?: any;
@@ -33,6 +34,7 @@ export const DefaultImage = ({ alt, className, src }: InfoCompImageType) => (
 );
 
 const InfoComp: FC<InfoCompType> = ({
+	bg,
 	description,
 	infos,
 	evenBgColor,
@@ -47,7 +49,7 @@ const InfoComp: FC<InfoCompType> = ({
 	titleColSpan,
 	valueColSpan,
 }) => (
-	<div className="bg-white shadow-md mt-4 mb-4 p-2 overflow-hidden sm:rounded-lg">
+	<div className={`${bg} shadow-md mt-4 mb-4 p-2 overflow-hidden sm:rounded-lg`}>
 		{(title || description) && (
 			<div className="px-4 py-5 sm:px-6">
 				{title && (
@@ -121,6 +123,7 @@ const InfoComp: FC<InfoCompType> = ({
 );
 
 InfoComp.defaultProps = {
+	bg: "bg-white",
 	gridStyle: 'sm:grid sm:grid-cols-3 sm:gap-4',
 	padding: 'px-4 py-5 sm:px-6',
 	oddBgColor: 'bg-white',

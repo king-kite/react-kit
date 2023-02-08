@@ -72,6 +72,7 @@ export type NavigatorProps = {
   container?: string;
   disableNavButtons?: boolean;
   gridClass?: string;
+  bg?: string;
 };
 
 const TabNavigator = ({
@@ -80,6 +81,7 @@ const TabNavigator = ({
   screens,
   disableNavButtons,
   gridClass = 'w-full md:w-1/2 lg:w-1/3',
+  bg = "bg-white",
 }: NavigatorProps) => {
   const [activeScreen, setActiveScreen] = useState<number>(screenIndex || 0);
   const title = screens[activeScreen]?.title;
@@ -115,8 +117,8 @@ const TabNavigator = ({
         }
         gridClass={gridClass}
       />
-      <div className="bg-white m-2 rounded-lg shadow-lg md:mx-4 md:my-6">
-        <div className="bg-gray-200 my-2 rounded-t-lg w-full">
+      <div className={`${bg} m-2 rounded-lg shadow-lg md:mx-4 md:my-6`}>
+        <div className="bg-gray-200 mt-2 rounded-t-lg w-full">
           {title && (
             <h5 className="capitalize font-bold mx-2 py-1 text-sm text-gray-500 tracking-wide md:mx-4 md:text-base">
               {title}
