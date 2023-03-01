@@ -80,7 +80,7 @@ const Button = ({
 					margin || ''
 				} ${padding} ${
 					disabled ? 'cursor-not-allowed' : 'cursor-pointer'
-				} ${border} ${color} ${titleSize} flex h-full items-center justify-center text-center tracking-wide w-full focus:outline-none focus:shadow-outline`}
+				} ${border} ${color} ${titleSize} flex h-full items-center justify-center text-center tracking-wide w-full`}
 				disabled={disabled}
 				title={title}
 				{...props}
@@ -112,7 +112,7 @@ Button.defaultProps = {
 	bold: 'font-semibold',
 	border: 'border-none',
 	color: 'text-white',
-	focus: '',
+	focus: 'focus:outline-none focus:shadow-outline',
 	iconSize: 'text-xs md:text-sm',
 	padding: 'px-4 py-2',
 	renderLinkAs: DefaultLink,
