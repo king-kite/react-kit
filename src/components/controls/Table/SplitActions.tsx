@@ -39,14 +39,21 @@ function SplitAction({
 			className={`${
 				active
 					? colors?.active ||
-					  'bg-gray-200 text-primary-500 hover:bg-gray-200 hover:text-primary-500'
+					  'bg-gray-200 text-gray-500 hover:bg-gray-200 hover:text-gray-500'
 					: colors?.inactive ||
-					  'bg-gray-100 text-gray-400 hover:bg-gray-200 hover:text-primary-500'
+					  'bg-gray-100 text-gray-400 hover:bg-gray-200 hover:text-gray-500'
 			} ${fontWeight} ${padding} ${textSize} ${textTrans} ${extraClasses} cursor-pointer flex items-center justify-center text-center w-full`}
 		>
 			<p className="text-center">{title}</p>
 		</div>
 	);
+}
+
+SplitAction.defaultProps = {
+	colors: {
+		active: 'bg-gray-200 text-blue-600 hover:bg-gray-200 hover:text-blue-500',
+		inactive: 'bg-gray-100 text-gray-400 hover:bg-gray-200 hover:text-blue-500'
+	}
 }
 
 export type SplitActionsProps = {

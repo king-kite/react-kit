@@ -73,7 +73,7 @@ const Checkbox = forwardRef<HTMLInputElement | null, CheckboxProps>(
 								? 'bg-gray-500'
 								: !checked && !defaultChecked
 								? 'bg-gray-300 transition-colors'
-								: 'bg-primary-100 transition-colors'
+								: 'bg-blue-100 transition-colors'
 						} ${type === 'switch' ? '' : 'hidden'} ${
 							disabled ? 'cursor-not-allowed' : 'cursor-pointer'
 						} duration-1000 rounded-lg flex items-center h-3 mr-2 transform w-7`}
@@ -85,7 +85,7 @@ const Checkbox = forwardRef<HTMLInputElement | null, CheckboxProps>(
 									: `${
 											disabled
 												? 'bg-gray-700'
-												: 'bg-primary-500 transition-all '
+												: 'bg-blue-600 transition-all '
 									  } translate-x-4`
 							} duration-500 h-4 rounded-full shadow-lg transform w-4`}
 						/>
@@ -123,7 +123,7 @@ const Checkbox = forwardRef<HTMLInputElement | null, CheckboxProps>(
 				</label>
 				{error && (
 					<p
-						className={`font-primary font-semibold italic mt-1 text-red-500 ${errorSize}`}
+						className={`font-semibold italic mt-1 text-red-500 ${errorSize}`}
 					>
 						{error}
 					</p>
@@ -158,7 +158,7 @@ Checkbox.defaultProps = {
 	requiredColor: 'text-red-500',
 	margin: 'mr-2',
 	errorSize: 'text-xs',
-	labelColor: 'text-primary-500',
+	labelColor: 'text-gray-600',
 	labelSize: 'text-xs md:text-sm',
 	textSize: 'text-xs md:text-sm',
 };

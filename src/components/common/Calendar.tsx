@@ -102,7 +102,7 @@ const Topbar = ({
 			className={`${
 				disabled.left
 					? "bg-gray-500 cursor-not-allowed invisible text-gray-50"
-					: "cursor-pointer text-primary-500 hover:bg-gray-100"
+					: "cursor-pointer text-gray-500 hover:bg-gray-100"
 			} ${arrowClasses}`}
 		>
 			<span>
@@ -122,7 +122,7 @@ const Topbar = ({
 			className={`${
 				disabled.right
 					? "bg-gray-500 cursor-not-allowed invisible text-gray-50"
-					: "cursor-pointer text-primary-500 hover:bg-gray-100"
+					: "cursor-pointer text-gray-500 hover:bg-gray-100"
 			} ${arrowClasses}`}
 		>
 			<span>

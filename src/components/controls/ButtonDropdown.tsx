@@ -18,7 +18,7 @@ const Dropdown = ({ list, setVisible }: DropdownProps) => (
 	<ul className="divide-y divide-gray-300 divide-opacity-50">
 		{list?.map(({ onClick, title, ...props }) => (
 			<li
-				className="cursor-pointer px-5 py-1 text-gray-500 hover:bg-gray-200 hover:text-primary-500"
+				className="cursor-pointer px-5 py-1 text-gray-500 hover:bg-gray-200 hover:text-blue-500"
 				key={title}
 				onClick={() => {
 					onClick();
@@ -79,10 +79,10 @@ const ButtonDropdown = ({
 					<div className="bg-white rounded">
 						<div className="flex justify-end">
 							<span
-								className="cursor-pointer mx-2 text-primary-500"
+								className="cursor-pointer mx-2 text-blue-500"
 								onClick={() => controls.setVisible(false)}
 							>
-								<FaTimes className="text-xs text-primary-500 sm:text-sm" />
+								<FaTimes className="text-xs text-blue-500 sm:text-sm" />
 							</span>
 						</div>
 						{dropList ? (

@@ -78,7 +78,7 @@ const Radio = forwardRef<HTMLInputElement | null, RadioProps>(
 			? 'border-red-500'
 			: bdrColor
 			? bdrColor
-			: 'border-primary-500';
+			: 'border-transparent';
 
 		const _labelColor = disabled
 			? 'text-gray-500'
@@ -86,7 +86,7 @@ const Radio = forwardRef<HTMLInputElement | null, RadioProps>(
 			? 'text-red-500'
 			: labelColor
 			? labelColor
-			: 'text-primary-500';
+			: 'text-gray-600';
 
 		const textColor = disabled
 			? 'text-white'
@@ -182,7 +182,7 @@ const Radio = forwardRef<HTMLInputElement | null, RadioProps>(
 
 Radio.defaultProps = {
 	active: false,
-	activeColor: 'text-primary-500',
+	activeColor: 'text-blue-600',
 	bg: 'bg-transparent hover:bg-gray-400',
 	bdr: 'border',
 	bdrColor: 'border-gray-400',
