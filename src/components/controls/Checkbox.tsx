@@ -73,7 +73,7 @@ const Checkbox = forwardRef<HTMLInputElement | null, CheckboxProps>(
 								? 'bg-gray-500'
 								: !checked && !defaultChecked
 								? 'bg-gray-300 transition-colors'
-								: 'bg-blue-100 transition-colors'
+								: 'bg-indigo-100 transition-colors'
 						} ${type === 'switch' ? '' : 'hidden'} ${
 							disabled ? 'cursor-not-allowed' : 'cursor-pointer'
 						} duration-1000 rounded-lg flex items-center h-3 mr-2 transform w-7`}
@@ -85,7 +85,7 @@ const Checkbox = forwardRef<HTMLInputElement | null, CheckboxProps>(
 									: `${
 											disabled
 												? 'bg-gray-700'
-												: 'bg-blue-600 transition-all '
+												: 'bg-indigo-900 transition-all '
 									  } translate-x-4`
 							} duration-500 h-4 rounded-full shadow-lg transform w-4`}
 						/>

@@ -216,7 +216,7 @@ Select.defaultProps = {
 	errorSize: 'text-xs',
 	extraClasses: 'appearance-none leading-tight',
 	focus: 'focus:bg-gray-100 focus:border-gray-500 focus:outline-none',
-	iconColor: 'text-gray-600',
+	iconColor: 'text-indigo-900',
 	iconSize: 'text-xs',
 	iconClass: 'mx-2',
 	labelSize: 'text-xs md:text-sm',

@@ -325,7 +325,7 @@ Select.defaultProps = {
 	disabled: false,
 	errorSize: 'text-xs',
 	focus: 'focus:outline-none focus:ring-1',
-	iconColor: 'text-gray-600',
+	iconColor: 'text-indigo-900',
 	iconSize: 'text-xs',
 	labelSize: 'text-xs md:text-sm',
 	imageSize: 'h-6 w-6',

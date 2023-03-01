@@ -40,7 +40,7 @@ const Table = ({
 	split,
 	tick,
 	title,
-	titleClasses = 'capitalize font-semibold mb-3 text-blue-600 text-sm md:text-base',
+	titleClasses = 'capitalize font-semibold mb-3 text-indigo-900 text-sm md:text-base',
 }: TableProps) => {
 	const [selected, setSelected] = useState<GetSelectedValuesParamType>([]);
 
@@ -92,7 +92,7 @@ const Table = ({
 						<tr
 							className={`${options?.heads?.bg || 'bg-gray-300'} ${
 								options?.heads?.textAlign || 'text-center'
-							} ${options?.heads?.textColor || 'text-blue-600'} ${
+							} ${options?.heads?.textColor || 'text-indigo-900'} ${
 								options?.heads?.textSize || 'text-sm'
 							} ${options?.heads?.textForm || 'uppercase'}`}
 						>
@@ -314,7 +314,7 @@ const Table = ({
 															{...itemProps}
 														>
 															<Button
-																bg="bg-blue-600 hover:bg-blue-500"
+																bg="bg-indigo-900 hover:bg-indigo-800"
 																caps
 																padding="px-4 py-1"
 																title={value}
@@ -397,7 +397,7 @@ export const defaultOptions: TableOptionsProps = {
 		rounded: 'rounded',
 		sticky: true,
 		textAlign: 'text-center',
-		textColor: 'text-blue-600',
+		textColor: 'text-indigo-900',
 		textForm: 'uppercase',
 		textSize: 'text-sm',
 	},

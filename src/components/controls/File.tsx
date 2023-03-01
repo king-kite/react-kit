@@ -152,7 +152,7 @@ const File = forwardRef<HTMLInputElement | null, FileProps>(
 
 File.defaultProps = {
 	accept: '*',
-	bg: 'bg-blue-600 hover:bg-blue-500',
+	bg: 'bg-indigo-900 hover:bg-indigo-800',
 	bdr: 'border',
 	bdrColor: 'border-gray-300',
 	errorSize: 'text-xs',
