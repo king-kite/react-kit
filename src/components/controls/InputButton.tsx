@@ -11,6 +11,7 @@ export type InputButtonProps = {
 export const defaultButtonProps = {
 	caps: true,
 	// padding: 'px-4 py-[0.565rem]',
+	containerClass: 'h-full',
 	padding: 'px-4',
 	rounded: 'rounded-r-xl',
 	titleSize: 'text-sm',

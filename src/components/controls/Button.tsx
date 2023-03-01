@@ -52,6 +52,7 @@ const Button = ({
 	border,
 	caps,
 	color,
+	containerClass,
 	disabled,
 	focus,
 	iconSize,
@@ -74,7 +75,7 @@ const Button = ({
 		caps === true ? 'capitalize' : caps === false ? 'uppercase' : '';
 
 	return (
-		<div className="relative w-full">
+		<div className={`${containerClass} relative w-full`}>
 			<Container
 				className={`${bgColor} ${focus} ${rounded} ${textTrans} ${fontWeight} ${
 					margin || ''
@@ -112,6 +113,7 @@ Button.defaultProps = {
 	bold: 'font-semibold',
 	border: 'border-none',
 	color: 'text-white',
+	containerClass: '',
 	focus: 'focus:outline-none focus:shadow-outline',
 	iconSize: 'text-xs md:text-sm',
 	padding: 'px-4 py-2',
@@ -127,6 +129,7 @@ export interface ButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
 	border?: string;
 	caps?: boolean;
 	color?: string;
+	containerClass?: string;
 	focus?: string;
 	iconSize?: string;
 	iconLeft?: IconType;
