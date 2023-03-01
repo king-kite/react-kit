@@ -60,7 +60,7 @@ export const DotsLoader = ({
 }
 
 DotsLoader.defaultProps = {
-	color: "primary",
+	color: "success",
 	delay: [0, 0.2, 0.45],
 	margin: 4,
 	noOfDots: 3,

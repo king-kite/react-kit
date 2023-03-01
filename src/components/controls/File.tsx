@@ -62,7 +62,7 @@ const File = forwardRef<HTMLInputElement | null, FileProps>(
 			? 'border-red-500'
 			: bdrColor
 			? bdrColor
-			: 'border-primary-500';
+			: 'border-transparent';
 
 		const _labelColor = disabled
 			? 'text-gray-500'
@@ -116,14 +116,14 @@ const File = forwardRef<HTMLInputElement | null, FileProps>(
 				</div>
 				{value && (
 					<p
-						className={`font-primary font-semibold italic mt-1 text-primary-500 ${textSize}`}
+						className={`font-semibold italic mt-1 text-gray-600 ${textSize}`}
 					>
 						{String(value)}
 					</p>
 				)}
 				{error && (
 					<p
-						className={`font-primary font-semibold italic mt-1 text-red-500 ${errorSize}`}
+						className={`font-semibold italic mt-1 text-red-500 ${errorSize}`}
 					>
 						{error}
 					</p>
@@ -152,12 +152,13 @@ const File = forwardRef<HTMLInputElement | null, FileProps>(
 
 File.defaultProps = {
 	accept: '*',
-	bg: 'bg-primary-500 hover:bg-primary-400',
+	bg: 'bg-blue-600 hover:bg-blue-500',
 	bdr: 'border',
+	bdrColor: 'border-gray-300',
 	errorSize: 'text-xs',
 	iconColor: 'text-gray-100',
 	iconSize: 'text-xs',
-	labelColor: 'text-primary-500',
+	labelColor: 'text-gray-600',
 	labelSize: 'text-xs md:text-sm',
 	padding: 'px-3 py-2',
 	required: true,

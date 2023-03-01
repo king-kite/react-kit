@@ -52,8 +52,8 @@ const BreadcrumbLink = ({
 }: BreadcrumbLinkType) => {
 	const compClassName = `${
 		props?.active
-			? props?.colors?.active || 'text-primary-600'
-			: props?.colors?.inactive || 'text-gray-400 hover:text-primary-600'
+			? props?.colors?.active || 'text-gray-600'
+			: props?.colors?.inactive || 'text-gray-400 hover:text-gray-600'
 	} ${defaultClassName}`;
 
 	const classes = overwriteClassName
@@ -69,8 +69,8 @@ const BreadcrumbLink = ({
 BreadcrumbLink.defaultProps = {
 	active: false,
 	colors: {
-		active: 'text-primary-600',
-		inactive: 'text-gray-400 hover:text-primary-600',
+		active: 'text-gray-600',
+		inactive: 'text-gray-400 hover:text-gray-600',
 	},
 	link: '#',
 	title: '',

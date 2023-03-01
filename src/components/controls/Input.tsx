@@ -106,7 +106,7 @@ const Input = forwardRef<HTMLInputElement | null, InputProps>(
 			? 'border-red-500'
 			: bdrColor
 			? bdrColor
-			: 'border-primary-500';
+			: 'border-transparent';
 
 		const _labelColor = disabled
 			? 'text-gray-500'
@@ -114,7 +114,7 @@ const Input = forwardRef<HTMLInputElement | null, InputProps>(
 			? 'text-red-500'
 			: labelColor
 			? labelColor
-			: 'text-primary-500';
+			: 'text-gray-600';
 
 		const iconTextColor = disabled ? 'text-white' : iconColor;
 
@@ -240,12 +240,13 @@ const Input = forwardRef<HTMLInputElement | null, InputProps>(
 Input.defaultProps = {
 	bg: 'bg-transparent',
 	bdr: 'border',
+	bdrColor: 'border-gray-300',
 	color: 'text-gray-600',
 	errorSize: 'text-xs',
 	extraClasses: 'appearance-none leading-tight',
 	focus: 'focus:outline-none focus:shadow-outline',
 	height: '',
-	iconColor: 'text-primary-500',
+	iconColor: 'text-blue-700',
 	iconClass: 'mx-2',
 	iconSize: 'text-xs',
 	labelSize: 'text-xs md:text-sm',

@@ -24,7 +24,8 @@ const NavDesign1 = ({
   setScreen?: (e: number) => void;
   gridClass: string;
 }) => (
-  <div className="bg-gray-100 border-b border-gray-300 divide-y divide-white flex flex-wrap items-center mb-4 md:divide-y-0 md:divide-x">
+  // <div className="bg-gray-100 border-b border-gray-300 divide-y divide-white flex flex-wrap items-center mb-4 md:divide-y-0 md:divide-x">
+  <div className="bg-gray-100 border-b border-gray-300 flex flex-wrap items-center mb-4">
     {screens?.map(({ title }, index) => (
       <NavDesignLink1
         active={activeScreen === index}
@@ -39,7 +40,7 @@ const NavDesign1 = ({
 
 const NavDesignLink1 = ({ active, gridClass, onClick, title }: NavProps) => {
   const [hovering, setHovering] = useState<boolean>(false);
-  const activeStyle = 'border-primary-500 text-gray-600 border-b-2';
+  const activeStyle = 'border-gray-500 text-gray-600 border-b-2';
   const inActiveStyle = 'border-transparent text-gray-500';
   const containerStyle = `${gridClass} ${
     onClick ? 'cursor-pointer' : ''

@@ -16,7 +16,7 @@ export const defaultButtonProps = {
 export const defaultSelectProps = {
 	bg: 'bg-white',
 	bdr: 'border',
-	bdrColor: 'border-primary-500',
+	bdrColor: 'border-gray-300',
 	rounded: 'rounded-l-lg',
 	required: false,
 	textSize: 'text-base',

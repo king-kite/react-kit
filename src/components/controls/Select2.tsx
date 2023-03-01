@@ -136,7 +136,7 @@ const Select = forwardRef<HTMLDivElement | null, SelectProps>(
 			? 'text-red-500'
 			: labelColor
 			? labelColor
-			: 'text-primary-500';
+			: 'text-gray-600';
 
 		const { buttonRef, ref, setVisible, visible } =
 			useOutClick<HTMLUListElement, HTMLButtonElement>();
@@ -221,7 +221,7 @@ const Select = forwardRef<HTMLDivElement | null, SelectProps>(
 					</button>
 					{error && (
 						<p
-							className={`font-primary font-semibold italic mt-1 text-red-500 ${errorSize}`}
+							className={`font-semibold italic mt-1 text-red-500 ${errorSize}`}
 						>
 							{error}
 						</p>
@@ -325,7 +325,7 @@ Select.defaultProps = {
 	disabled: false,
 	errorSize: 'text-xs',
 	focus: 'focus:outline-none focus:ring-1',
-	iconColor: 'text-primary-500',
+	iconColor: 'text-gray-600',
 	iconSize: 'text-xs',
 	labelSize: 'text-xs md:text-sm',
 	imageSize: 'h-6 w-6',

@@ -71,7 +71,7 @@ const Textarea = forwardRef<HTMLTextAreaElement | null, TextareaProps>(
 			? 'border-red-500'
 			: bdrColor
 			? bdrColor
-			: 'border-primary-500';
+			: 'border-transparent';
 
 		const _labelColor = disabled
 			? 'text-gray-500'
@@ -79,7 +79,7 @@ const Textarea = forwardRef<HTMLTextAreaElement | null, TextareaProps>(
 			? 'text-red-500'
 			: labelColor
 			? labelColor
-			: 'text-primary-500';
+			: 'text-gray-600';
 
 		// const textColor = disabled ? placeholderColor : color;
 		const textColor = disabled
@@ -140,7 +140,7 @@ const Textarea = forwardRef<HTMLTextAreaElement | null, TextareaProps>(
 				</div>
 				{error && (
 					<p
-						className={`font-primary font-semibold italic mt-1 text-red-500 ${errorSize}`}
+						className={`font-semibold italic mt-1 text-red-500 ${errorSize}`}
 					>
 						{error}
 					</p>
@@ -170,6 +170,7 @@ const Textarea = forwardRef<HTMLTextAreaElement | null, TextareaProps>(
 Textarea.defaultProps = {
 	bg: 'bg-transparent',
 	bdr: 'border',
+	bdrColor: 'border-gray-300',
 	color: 'text-gray-600',
 	errorSize: 'text-xs',
 	extraClasses: 'appearance-none leading-tight resize',

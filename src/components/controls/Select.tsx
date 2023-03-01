@@ -96,7 +96,7 @@ const Select = forwardRef<HTMLSelectElement | null, SelectProps>(
 			? 'text-red-500'
 			: labelColor
 			? labelColor
-			: 'text-primary-500';
+			: 'text-gray-600';
 
 		const textColor = disabled
 			? value || defaultValue
@@ -181,7 +181,7 @@ const Select = forwardRef<HTMLSelectElement | null, SelectProps>(
 				</div>
 				{error && (
 					<p
-						className={`font-primary font-semibold italic mt-1 text-red-500 ${errorSize}`}
+						className={`font-semibold italic mt-1 text-red-500 ${errorSize}`}
 					>
 						{error}
 					</p>
@@ -211,12 +211,12 @@ const Select = forwardRef<HTMLSelectElement | null, SelectProps>(
 Select.defaultProps = {
 	bg: 'bg-transparent',
 	bdr: 'border',
-	bdrColor: 'border-primary-500',
+	bdrColor: 'border-gray-300',
 	color: 'text-gray-700',
 	errorSize: 'text-xs',
 	extraClasses: 'appearance-none leading-tight',
-	focus: 'focus:bg-gray-100 focus:border-primary-300 focus:outline-none',
-	iconColor: 'text-primary-500',
+	focus: 'focus:bg-gray-100 focus:border-gray-500 focus:outline-none',
+	iconColor: 'text-gray-600',
 	iconSize: 'text-xs',
 	iconClass: 'mx-2',
 	labelSize: 'text-xs md:text-sm',
