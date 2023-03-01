@@ -51,8 +51,8 @@ function SplitAction({
 
 SplitAction.defaultProps = {
 	colors: {
-		active: 'bg-gray-200 text-blue-600 hover:bg-gray-200 hover:text-blue-500',
-		inactive: 'bg-gray-100 text-gray-400 hover:bg-gray-200 hover:text-blue-500'
+		active: 'bg-gray-200 text-indigo-900 hover:bg-gray-200 hover:text-indigo-800',
+		inactive: 'bg-gray-100 text-gray-400 hover:bg-gray-200 hover:text-indigo-800'
 	}
 }
 

@@ -108,7 +108,7 @@ const Button = ({
 };
 
 Button.defaultProps = {
-	bg: 'bg-blue-600 hover:bg-blue-500',
+	bg: 'bg-indigo-900 hover:bg-indigo-800',
 	bold: 'font-semibold',
 	border: 'border-none',
 	color: 'text-white',

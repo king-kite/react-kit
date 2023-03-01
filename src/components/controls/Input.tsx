@@ -246,7 +246,7 @@ Input.defaultProps = {
 	extraClasses: 'appearance-none leading-tight',
 	focus: 'focus:outline-none focus:shadow-outline',
 	height: '',
-	iconColor: 'text-blue-700',
+	iconColor: 'text-indigo-900',
 	iconClass: 'mx-2',
 	iconSize: 'text-xs',
 	labelSize: 'text-xs md:text-sm',

@@ -206,11 +206,11 @@ const Days = ({
 								onClick={() => changeDate(day)}
 								className={`${
 									selected
-										? "bg-blue-700 text-gray-50 hover:bg-blue-600"
+										? "bg-gray-700 text-gray-50 hover:bg-gray-600"
 										: active
 										? "bg-green-700 text-gray-50 hover:bg-green-600"
 										: "bg-white text-gray-600 hover:bg-gray-50"
-								} border-blue-700 cursor-pointer duration-300 font-medium inline-block px-2 py-[0.3125rem] rounded-full shadow-lg text-sm hover:border hover:scale-110 md:text-base`}
+								} border-gray-700 cursor-pointer duration-300 font-medium inline-block px-2 py-[0.3125rem] rounded-full shadow-lg text-sm hover:border hover:scale-110 md:text-base`}
 							>
 								{`${day > 9 ? "" : "0"}${day}`}
 							</span>
