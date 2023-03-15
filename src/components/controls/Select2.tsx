@@ -20,6 +20,7 @@ export type SelectProps = {
 	errorSize?: string;
 	focus?: string;
 	focusColor?: string;
+	height?: string;
 	icon?: IconType;
 	iconColor?: string;
 	iconSize?: string;
@@ -93,6 +94,7 @@ const Select = forwardRef<HTMLDivElement | null, SelectProps>(
 			errorSize,
 			focus,
 			focusColor,
+			height,
 			icon: Icon,
 			iconColor,
 			iconSize,
@@ -147,7 +149,7 @@ const Select = forwardRef<HTMLDivElement | null, SelectProps>(
 			? value
 				? 'text-white'
 				: 'placeholder-white text-white'
-			: `${value ? color : "text-gray-400"} ${placeholderColor}`;
+			: `${value ? color : placeholderColor}`;
 
 		const isAnArray = value ? Array.isArray(value) : false;
 
@@ -196,7 +198,7 @@ const Select = forwardRef<HTMLDivElement | null, SelectProps>(
 						type="button"
 						className={`${bgColor} ${
 							disabled ? 'cursor-not-allowed' : 'cursor-pointer'
-						} ${padding} ${bdr} ${borderColor} ${rounded} ${textSize} ${focus} ${focusColor} min-h-[36px] relative shadow-sm w-full`}
+						} ${padding} ${bdr} ${borderColor} ${rounded} ${textSize} ${focus} ${focusColor} ${height} relative shadow-sm w-full`}
 					>
 						<span className="flex items-center">
 							{Icon ? (
@@ -325,6 +327,8 @@ Select.defaultProps = {
 	disabled: false,
 	errorSize: 'text-xs',
 	focus: 'focus:outline-none focus:ring-1',
+	focusColor: '',
+	height: 'min-h-[28px] md:min-h-[32px]',
 	iconColor: 'text-indigo-900',
 	iconSize: 'text-xs',
 	labelSize: 'text-xs md:text-sm',
@@ -336,7 +340,7 @@ Select.defaultProps = {
 	optionTextColor: 'text-gray-900',
 	optionTextHover: 'hover:text-gray-700',
 	placeholderColor: 'text-gray-400',
-	padding: 'pl-3 pr-10 py-2',
+	padding: 'pl-3 pr-10',
 	rounded: 'rounded-md',
 	required: true,
 	requiredColor: 'text-red-500',
