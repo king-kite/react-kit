@@ -156,13 +156,14 @@ const Select = forwardRef<HTMLDivElement | null, SelectProps>(
 								? color
 								: placeholderColor
 					  }`;
-			} else {
-				const colour = disabled
-					? value
-						? "text-white"
-						: "placeholder-white text-white"
-					: `${value ? color : placeholderColor}`;
+				return colour;
 			}
+			const colour = disabled
+				? value
+					? "text-white"
+					: "placeholder-white text-white"
+				: `${value ? color : placeholderColor}`;
+			return colour;
 		}, [color, disabled, multiple, placeholderColor, value]);
 
 		const isAnArray = value ? Array.isArray(value) : false;
