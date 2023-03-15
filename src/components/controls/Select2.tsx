@@ -55,6 +55,7 @@ export type SelectProps = {
 		size?: string;
 		value: string;
 	}[];
+	shadow?: string;
 	textSize?: string;
 	value: string | string[];
 };
@@ -119,6 +120,7 @@ const Select = forwardRef<HTMLDivElement | null, SelectProps>(
 			required,
 			requiredColor,
 			requirements,
+			shadow,
 			textSize,
 			value,
 		},
@@ -213,7 +215,7 @@ const Select = forwardRef<HTMLDivElement | null, SelectProps>(
 						type="button"
 						className={`${bgColor} ${
 							disabled ? "cursor-not-allowed" : "cursor-pointer"
-						} ${padding} ${bdr} ${borderColor} ${rounded} ${textSize} ${focus} ${focusColor} ${height} relative shadow-sm w-full`}
+						} ${padding} ${bdr} ${borderColor} ${rounded} ${textSize} ${focus} ${focusColor} ${height} ${shadow} relative w-full`}
 					>
 						<span className="flex items-center">
 							{Icon ? (
@@ -359,6 +361,7 @@ Select.defaultProps = {
 	rounded: "rounded",
 	required: true,
 	requiredColor: "text-red-500",
+	shadow: "shadow-sm",
 	textSize: "text-xs md:text-sm",
 };
 
