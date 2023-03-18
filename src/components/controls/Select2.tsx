@@ -267,7 +267,7 @@ const Select = forwardRef<HTMLDivElement | null, SelectProps>(
 							className={`${
 								// visible ? "opacity-100 visible" : "opacity-0 invisible"
 								visible ? 'opacity-100 visible' : 'hidden opacity-0 invisible'
-							} ${rounded} ${textSize} ${divide} ${divideColor} absolute bg-white z-20 w-full shadow-lg transition ease-in duration-100 max-h-56 ring-1 ring-gray-400 ring-opacity-50 overflow-x-hidden overflow-y-auto focus:outline-none`}
+							} ${rounded} ${textSize} ${divide} ${divideColor} absolute bg-white z-20 w-full shadow-lg transition ease-in duration-100 max-h-56 ring-1 ring-gray-300 ring-opacity-50 overflow-x-hidden overflow-y-auto focus:outline-none`}
 						>
 							{options.map(({ icon: OptionIcon, ...option }, index) => {
 								const active =
