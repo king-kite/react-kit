@@ -97,9 +97,9 @@ const Table = ({
 			<div
 				className={`bg-white overflow-x-scroll relative ${
 					options?.heads?.rounded || 'rounded'
-				} w-full ${rows.length <= 0 ? 'overflow-y-hidden' : ''} ${
-					options?.maxHeight || ''
-				}`}
+				} ${actions ? 'rounded-tl-none' : ''} w-full ${
+					rows.length <= 0 ? 'overflow-y-hidden' : ''
+				} ${options?.maxHeight || ''}`}
 			>
 				<table className="relative table table-auto w-full">
 					<thead>

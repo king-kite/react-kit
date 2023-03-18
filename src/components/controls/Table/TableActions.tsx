@@ -8,14 +8,14 @@ const defaultSelectProps = {
 	bdrColor: 'border-gray-400',
 	bg: 'bg-white',
 	placeholder: 'Perform an action...',
-	rounded: 'rounded-l-sm rounded-tl',
+	rounded: 'rounded-none rounded-tl',
 	required: false,
 };
 
 const defaultButtonProps = {
 	bg: 'bg-gray-400 hover:bg-gray-500',
 	caps: true,
-	rounded: 'rounded-r-sm rounded-tr',
+	rounded: 'rounded-none rounded-tr',
 	title: 'Procced',
 };
 
