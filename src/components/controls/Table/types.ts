@@ -1,5 +1,4 @@
-import { ComponentPropsWithRef, CSSProperties } from 'react';
-import { IconType } from 'react-icons';
+import { ComponentPropsWithRef, CSSProperties, MouseEvent } from 'react';
 
 import { ActionLinkType } from './Actions';
 import { ContainerLinkType } from './DataContainer';
@@ -17,24 +16,23 @@ export type RowBaseType = {
 	options?: any;
 	component?: ComponentPropsWithRef<any>;
 	classes?: string;
-	icon?: IconType;
+	icon?: (props: any) => JSX.Element;
 	link?: string;
 	onClick?: (e: any) => void; // Check how to make this a html event param
-	type?:
-		| 'actions'
-		| 'badge'
-		| 'button'
-		| 'icon'
-		| 'image'
-		| 'switch'
-		| 'input'
-		| 'select';
+	type?: 'actions' | 'badge' | 'icon';
 	style?: CSSProperties;
 	value?: any;
 };
 
 export type RowType = {
 	id: string;
+	onClick?: (
+		e: MouseEvent<HTMLTableRowElement>,
+		data: {
+			id: string;
+			rows: RowBaseType[];
+		}
+	) => void;
 	rows: RowBaseType[];
 };
 
@@ -53,7 +51,7 @@ export type TableOptionsProps = {
 	rows?: {
 		bold?: boolean;
 		center?: boolean;
-		hoverDefault?: boolean;
+		hover?: boolean;
 		hoverClasses?: string;
 		textForm?: 'capitalize' | 'uppercase' | 'normal';
 	};

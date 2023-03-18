@@ -6,6 +6,7 @@ const actionStyle = 'rounded-full p-2 text-center';
 
 export type ContainerProps = {
 	children: ReactNode;
+	onClick?: () => void;
 	className?: string;
 	link?: string;
 	renderAs?: (props: ActionLinkType) => JSX.Element;
@@ -15,10 +16,6 @@ export type ContainerProps = {
 export type ActionLinkType = {
 	children: ReactNode;
 	link: string;
-	props: {
-		className?: string;
-		style?: CSSProperties;
-	};
 };
 
 export const DefaultLink = ({ children, link, ...props }: ActionLinkType) => (
@@ -34,7 +31,7 @@ const Container = ({
 	...props
 }: ContainerProps) =>
 	link ? (
-		<LinkComponent props={props} link={link}>
+		<LinkComponent link={link} {...props}>
 			{children}
 		</LinkComponent>
 	) : (
@@ -53,6 +50,7 @@ export type ActionProps = {
 		| 'warning';
 	disabled?: boolean;
 	icon: IconType;
+	onClick?: () => void;
 	renderAs?: (props: ActionLinkType) => JSX.Element;
 };
 
@@ -61,6 +59,7 @@ export const Action = ({
 	disabled,
 	icon: Icon = FaHamburger,
 	renderAs,
+	onClick,
 	...props
 }: ActionProps) => {
 	const _color = disabled
@@ -92,6 +91,7 @@ export const Action = ({
 			} ${actionStyle} ${_color}`}
 			renderAs={renderAs}
 			style={{ fontSize: '10px' }}
+			onClick={!disabled ? onClick : undefined}
 			{...props}
 		>
 			<Icon className={'text-xs md:text-sm ' + _color} />
@@ -106,15 +106,15 @@ export type ActionsProps = {
 };
 
 const Actions = ({ actions, renderLinkAs, style }: ActionsProps) => (
-	<td>
-		<div
-			className="flex items-center justify-around mx-auto py-2 text-center text-gray-600 w-full"
+	<td className="relative">
+		<section
+			className="flex h-full items-center justify-around mx-auto py-1 text-center text-gray-600 w-full"
 			style={{ maxWidth: '160px', ...style }}
 		>
 			{actions.map((action: ActionProps, index: number) => (
 				<Action key={index + 1} renderAs={renderLinkAs} {...action} />
 			))}
-		</div>
+		</section>
 	</td>
 );
 

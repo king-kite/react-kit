@@ -1,6 +1,6 @@
 import { ComponentStory, ComponentMeta } from '@storybook/react';
 import React from 'react';
-import { FaPen } from 'react-icons/fa';
+import { FaEye, FaPen } from 'react-icons/fa';
 
 import { Table, TableHeadType, TableRowType } from '../../components';
 
@@ -12,6 +12,15 @@ export default {
 	},
 } as ComponentMeta<typeof Table>;
 
+const headArgs: TableHeadType = [
+	{ value: 'first name' },
+	{ value: 'last name' },
+	{ value: 'email' },
+	{ value: 'age' },
+	{ value: 'gender' },
+	{ value: 'date' },
+	{ type: 'actions', value: 'actions' },
+];
 const rowArgs: TableRowType[] = [
 	{
 		id: '1',
@@ -164,20 +173,11 @@ const rowArgs: TableRowType[] = [
 		],
 	},
 ];
-const headArgs: TableHeadType = [
-	{ value: 'first name' },
-	{ value: 'last name' },
-	{ value: 'email' },
-	{ value: 'age' },
-	{ value: 'gender' },
-	{ value: 'date' },
-	{ type: 'actions', value: 'actions' },
-];
 const row2Args: TableRowType[] = [
 	{
 		id: '1',
 		rows: [
-			{ value: 'John' },
+			{ link: '#', value: 'John' },
 			{ value: 'Doe' },
 			{ value: 'johndoe@gmail.com' },
 			{ value: '28' },
@@ -200,6 +200,11 @@ const row2Args: TableRowType[] = [
 						icon: FaPen,
 						onClick: () => window.alert('Table action that is disabled'),
 					},
+					{
+						color: 'secondary',
+						icon: FaEye,
+						link: '#',
+					},
 				],
 			},
 		],
@@ -207,7 +212,7 @@ const row2Args: TableRowType[] = [
 	{
 		id: '2',
 		rows: [
-			{ value: 'Jane' },
+			{ link: '#', value: 'Jane' },
 			{ value: 'Doe' },
 			{ value: 'janedoe@gmail.com' },
 			{ value: '22' },
@@ -230,6 +235,11 @@ const row2Args: TableRowType[] = [
 						icon: FaPen,
 						onClick: () => window.alert('Table action that is disabled'),
 					},
+					{
+						color: 'secondary',
+						icon: FaEye,
+						link: '#',
+					},
 				],
 			},
 		],
@@ -237,7 +247,7 @@ const row2Args: TableRowType[] = [
 	{
 		id: '3',
 		rows: [
-			{ value: 'Mark' },
+			{ link: '#', value: 'Mark' },
 			{ value: 'Bill' },
 			{ value: 'markbill@gmail.com' },
 			{ value: '36' },
@@ -260,6 +270,11 @@ const row2Args: TableRowType[] = [
 						icon: FaPen,
 						onClick: () => window.alert('Table action that is disabled'),
 					},
+					{
+						color: 'secondary',
+						icon: FaEye,
+						link: '#',
+					},
 				],
 			},
 		],
@@ -267,7 +282,7 @@ const row2Args: TableRowType[] = [
 	{
 		id: '4',
 		rows: [
-			{ value: 'Micheal' },
+			{ link: '#', value: 'Micheal' },
 			{ value: 'Billy' },
 			{ value: 'michealbilly@gmail.com' },
 			{ value: '40' },
@@ -290,6 +305,11 @@ const row2Args: TableRowType[] = [
 						icon: FaPen,
 						onClick: () => window.alert('Table action that is disabled'),
 					},
+					{
+						color: 'secondary',
+						icon: FaEye,
+						link: '#',
+					},
 				],
 			},
 		],
@@ -297,7 +317,7 @@ const row2Args: TableRowType[] = [
 	{
 		id: '5',
 		rows: [
-			{ value: 'Jennifer' },
+			{ link: '#', value: 'Jennifer' },
 			{ value: 'Watson' },
 			{ value: 'jenniferwatson@gmail.com' },
 			{ value: '28' },
@@ -320,6 +340,11 @@ const row2Args: TableRowType[] = [
 						icon: FaPen,
 						onClick: () => window.alert('Table action that is disabled'),
 					},
+					{
+						color: 'secondary',
+						icon: FaEye,
+						link: '#',
+					},
 				],
 			},
 		],
@@ -327,7 +352,7 @@ const row2Args: TableRowType[] = [
 	{
 		id: '6',
 		rows: [
-			{ value: 'Mark' },
+			{ link: '#', value: 'Mark' },
 			{ value: 'John' },
 			{ value: 'markjohn@gmail.com' },
 			{ value: '28' },
@@ -350,6 +375,11 @@ const row2Args: TableRowType[] = [
 						icon: FaPen,
 						onClick: () => window.alert('Table action that is disabled'),
 					},
+					{
+						color: 'secondary',
+						icon: FaEye,
+						link: '#',
+					},
 				],
 			},
 		],
@@ -357,7 +387,7 @@ const row2Args: TableRowType[] = [
 	{
 		id: '7',
 		rows: [
-			{ value: 'Mary' },
+			{ link: '#', value: 'Mary' },
 			{ value: 'Bell' },
 			{ value: 'marybell@gmail.com' },
 			{ value: '50' },
@@ -380,6 +410,11 @@ const row2Args: TableRowType[] = [
 						icon: FaPen,
 						onClick: () => window.alert('Table action that is disabled'),
 					},
+					{
+						color: 'secondary',
+						icon: FaEye,
+						link: '#',
+					},
 				],
 			},
 		],
@@ -387,7 +422,7 @@ const row2Args: TableRowType[] = [
 	{
 		id: '8',
 		rows: [
-			{ value: 'Jimmy' },
+			{ link: '#', value: 'Jimmy' },
 			{ value: 'Steveson' },
 			{ value: 'jimmysteveson@gmail.com' },
 			{ value: '15' },
@@ -410,6 +445,11 @@ const row2Args: TableRowType[] = [
 						icon: FaPen,
 						onClick: () => window.alert('Table action that is disabled'),
 					},
+					{
+						color: 'secondary',
+						icon: FaEye,
+						link: '#',
+					},
 				],
 			},
 		],
@@ -417,7 +457,7 @@ const row2Args: TableRowType[] = [
 	{
 		id: '9',
 		rows: [
-			{ value: 'Jane' },
+			{ link: '#', value: 'Jane' },
 			{ value: 'Watson' },
 			{ value: 'janewatson@gmail.com' },
 			{ value: '90' },
@@ -440,6 +480,11 @@ const row2Args: TableRowType[] = [
 						icon: FaPen,
 						onClick: () => window.alert('Table action that is disabled'),
 					},
+					{
+						color: 'secondary',
+						icon: FaEye,
+						link: '#',
+					},
 				],
 			},
 		],
@@ -447,7 +492,7 @@ const row2Args: TableRowType[] = [
 	{
 		id: '10',
 		rows: [
-			{ value: 'Mario' },
+			{ link: '#', value: 'Mario' },
 			{ value: 'Longman' },
 			{ value: 'mariolongman@gmail.com' },
 			{ value: '44' },
@@ -470,6 +515,11 @@ const row2Args: TableRowType[] = [
 						icon: FaPen,
 						onClick: () => window.alert('Table action that is disabled'),
 					},
+					{
+						color: 'secondary',
+						icon: FaEye,
+						link: '#',
+					},
 				],
 			},
 		],
@@ -477,7 +527,7 @@ const row2Args: TableRowType[] = [
 	{
 		id: '11',
 		rows: [
-			{ value: 'Mariam' },
+			{ link: '#', value: 'Mariam' },
 			{ value: 'White' },
 			{ value: 'mariamwhite@gmail.com' },
 			{ value: '23' },
@@ -500,6 +550,11 @@ const row2Args: TableRowType[] = [
 						icon: FaPen,
 						onClick: () => window.alert('Table action that is disabled'),
 					},
+					{
+						color: 'secondary',
+						icon: FaEye,
+						link: '#',
+					},
 				],
 			},
 		],
@@ -507,7 +562,7 @@ const row2Args: TableRowType[] = [
 	{
 		id: '12',
 		rows: [
-			{ value: 'John' },
+			{ link: '#', value: 'John' },
 			{ value: 'Watson' },
 			{ value: 'johnwatson@gmail.com' },
 			{ value: '36' },
@@ -530,13 +585,54 @@ const row2Args: TableRowType[] = [
 						icon: FaPen,
 						onClick: () => window.alert('Table action that is disabled'),
 					},
+					{
+						color: 'secondary',
+						icon: FaEye,
+						link: '#',
+					},
 				],
 			},
 		],
 	},
 ];
+const row3Args: TableRowType[] = [
+	...rowArgs.map((arg) => ({
+		...arg,
+		onClick(e: React.MouseEvent<HTMLTableRowElement>) {
+			const targetName = (
+				e.target as HTMLTableRowElement
+			).tagName.toLowerCase();
+			switch (targetName) {
+				case 'input':
+				case 'label':
+				case 'path':
+				case 'section':
+				case 'span':
+				case 'svg':
+					console.log('Do not open!');
+					break;
+				default:
+					console.log('Open Sesami!');
+			}
+		},
+		rows: arg.rows,
+	})),
+];
 
 const Template: ComponentStory<typeof Table> = (args) => <Table {...args} />;
+
+export const KiteHoverTable = Template.bind({});
+
+KiteHoverTable.args = {
+	heads: headArgs,
+	rows: row3Args,
+	tick: true,
+	options: {
+		rows: {
+			hover: true,
+		},
+	},
+};
 
 export const KiteTickActionsTable = Template.bind({});
 

@@ -1,5 +1,4 @@
 import React, { Fragment } from 'react';
-import { IconType } from 'react-icons';
 import { FaSadTear } from 'react-icons/fa';
 
 import Loader, { DotsLoader, DotsLoaderType, LoaderProps } from '../Loader';
@@ -9,7 +8,7 @@ export type EmptyType = {
 	loaderProps?: DotsLoaderType | LoaderProps;
 	loaderType?: 'dots' | 'spinner';
 	description?: string;
-	icon?: IconType;
+	icon?: (props: any) => JSX.Element;
 };
 
 const Empty = ({
