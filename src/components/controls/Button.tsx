@@ -90,13 +90,13 @@ const Button = ({
 				) : (
 					<Fragment>
 						{IconLeft && (
-							<span className="flex items-center justify-center mx-2 text-xs">
+							<span className="flex items-center justify-center mx-2 select-none text-xs">
 								<IconLeft className={`${color} ${iconSize}`} />
 							</span>
 						)}
-						<span className="flex items-center justify-center">{title}</span>
+						<span className="flex items-center justify-center select-none">{title}</span>
 						{IconRight && (
-							<span className="flex items-center justify-center mx-2 text-xs">
+							<span className="flex items-center justify-center mx-2 select-none text-xs">
 								<IconRight className={`${color} ${iconSize}`} />
 							</span>
 						)}

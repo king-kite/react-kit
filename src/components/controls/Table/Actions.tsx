@@ -87,7 +87,7 @@ export const Action = ({
 			className={`${
 				disabled
 					? 'cursor-not-allowed'
-					: 'duration-300 cursor-pointer transform transition-all hover:bg-gray-300 hover:scale-105'
+					: 'duration-300 cursor-pointer select-none transform transition-all hover:bg-gray-300 hover:scale-105'
 			} ${actionStyle} ${_color}`}
 			renderAs={renderAs}
 			style={{ fontSize: '10px' }}

@@ -88,8 +88,8 @@ const Select = forwardRef<HTMLDivElement | null, SelectProps>(
 			color,
 			closeOnClick,
 			disabled,
-			divide,
-			divideColor,
+			divide = '',
+			divideColor = '',
 			error,
 			errorSize,
 			focus,
@@ -284,9 +284,7 @@ const Select = forwardRef<HTMLDivElement | null, SelectProps>(
 											active ? optionBgActive : bgColor
 										} ${optionBgHover} ${
 											active ? optionTextActive : optionTextColor
-										} ${optionTextHover}
-										cursor-pointer select-none relative py-2 pl-3 pr-9
-									`}
+										} ${optionTextHover} cursor-pointer select-none relative py-2 pl-3 pr-9`}
 										onClick={
 											disabled === false
 												? () => {
