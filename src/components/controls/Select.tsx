@@ -1,5 +1,4 @@
 import React, { forwardRef, Fragment, SelectHTMLAttributes } from 'react';
-import { IconType } from 'react-icons';
 import { FaChevronDown } from 'react-icons/fa';
 import Badge, { BadgeProps } from './Badge';
 import Button, { ButtonProps } from './Button';
@@ -15,7 +14,7 @@ export interface SelectProps extends SelectHTMLAttributes<HTMLSelectElement> {
 	errorSize?: string;
 	extraClasses?: string;
 	focus?: string;
-	icon?: IconType;
+	icon?: (props: any) => JSX.Element;
 	iconColor?: string;
 	iconClass?: string;
 	iconSize?: string;
@@ -180,9 +179,7 @@ const Select = forwardRef<HTMLSelectElement | null, SelectProps>(
 					</div>
 				</div>
 				{error && (
-					<p
-						className={`font-semibold italic mt-1 text-red-500 ${errorSize}`}
-					>
+					<p className={`font-semibold italic mt-1 text-red-500 ${errorSize}`}>
 						{error}
 					</p>
 				)}

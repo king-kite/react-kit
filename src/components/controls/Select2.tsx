@@ -1,5 +1,4 @@
 import React, { forwardRef } from 'react';
-import { IconType } from 'react-icons';
 import { FaCheck, FaChevronDown } from 'react-icons/fa';
 import Badge, { BadgeProps } from './Badge';
 import Button, { ButtonProps } from './Button';
@@ -21,7 +20,7 @@ export type SelectProps = {
 	focus?: string;
 	focusColor?: string;
 	height?: string;
-	icon?: IconType;
+	icon?: (props: any) => JSX.Element;
 	iconColor?: string;
 	iconSize?: string;
 	label?: string;
@@ -37,7 +36,7 @@ export type SelectProps = {
 	optionTextColor?: string;
 	optionTextHover?: string;
 	options: {
-		Icon?: IconType;
+		icon?: (props: any) => JSX.Element;
 		image?: string;
 		title: string;
 		value: string;
@@ -270,7 +269,7 @@ const Select = forwardRef<HTMLDivElement | null, SelectProps>(
 								visible ? 'opacity-100 visible' : 'hidden opacity-0 invisible'
 							} ${rounded} ${textSize} ${divide} ${divideColor} absolute bg-white z-20 w-full shadow-lg transition ease-in duration-100 max-h-56 ring-1 ring-black ring-opacity-50 overflow-x-hidden overflow-y-auto focus:outline-none`}
 						>
-							{options.map((option, index) => {
+							{options.map(({ icon: OptionIcon, ...option }, index) => {
 								const active =
 									multiple && Array.isArray(value)
 										? Boolean(
@@ -302,8 +301,8 @@ const Select = forwardRef<HTMLDivElement | null, SelectProps>(
 										}
 									>
 										<div className="flex items-center">
-											{option.Icon ? (
-												<option.Icon
+											{OptionIcon ? (
+												<OptionIcon
 													className={`${iconTextColor} mx-2 ${iconSize}`}
 												/>
 											) : (

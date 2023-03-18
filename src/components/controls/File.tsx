@@ -1,5 +1,4 @@
 import React, { forwardRef, InputHTMLAttributes } from 'react';
-import { IconType } from 'react-icons';
 
 export interface FileProps extends InputHTMLAttributes<HTMLInputElement> {
 	bg?: string;
@@ -8,7 +7,7 @@ export interface FileProps extends InputHTMLAttributes<HTMLInputElement> {
 	error?: string;
 	errorSize?: string;
 	label?: string;
-	icon?: IconType;
+	icon?: (props: any) => JSX.Element;
 	iconColor?: string;
 	iconSize?: string;
 	labelColor?: string;
@@ -115,16 +114,12 @@ const File = forwardRef<HTMLInputElement | null, FileProps>(
 					</label>
 				</div>
 				{value && (
-					<p
-						className={`font-semibold italic mt-1 text-gray-600 ${textSize}`}
-					>
+					<p className={`font-semibold italic mt-1 text-gray-600 ${textSize}`}>
 						{String(value)}
 					</p>
 				)}
 				{error && (
-					<p
-						className={`font-semibold italic mt-1 text-red-500 ${errorSize}`}
-					>
+					<p className={`font-semibold italic mt-1 text-red-500 ${errorSize}`}>
 						{error}
 					</p>
 				)}

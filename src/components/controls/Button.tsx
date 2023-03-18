@@ -4,7 +4,6 @@ import React, {
 	ReactNode,
 	ButtonHTMLAttributes,
 } from 'react';
-import { IconType } from 'react-icons';
 
 import Loader from './Loader';
 import { FontWeightType } from '../../types';
@@ -132,8 +131,8 @@ export interface ButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
 	containerClass?: string;
 	focus?: string;
 	iconSize?: string;
-	iconLeft?: IconType;
-	iconRight?: IconType;
+	iconLeft?: (props: any) => JSX.Element;
+	iconRight?: (props: any) => JSX.Element;
 	link?: string;
 	loader?: boolean;
 	loading?: boolean;

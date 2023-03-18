@@ -5,7 +5,6 @@ import React, {
 	useCallback,
 	useState,
 } from 'react';
-import { IconType } from 'react-icons';
 import { FaEye, FaEyeSlash } from 'react-icons/fa';
 import Badge, { BadgeProps } from './Badge';
 import Button, { ButtonProps } from './Button';
@@ -30,7 +29,7 @@ export interface InputProps extends InputHTMLAttributes<HTMLInputElement> {
 	extraClasses?: string;
 	focus?: string;
 	height?: string;
-	icon?: IconType;
+	icon?: (props: any) => JSX.Element;
 	iconColor?: string;
 	iconClass?: string;
 	iconSize?: string;

@@ -1,5 +1,4 @@
 import React from 'react';
-import { IconType } from 'react-icons';
 
 export type BadgeProps = {
 	bg?:
@@ -15,7 +14,7 @@ export type BadgeProps = {
 	centered?: boolean;
 	container?: string;
 	color?: string;
-	icon?: IconType;
+	icon?: (props: any) => JSX.Element;
 	margin?: string;
 	padding?: string;
 	rounded?: 'none' | 'sm' | 'md' | 'lg' | 'full';
