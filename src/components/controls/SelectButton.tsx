@@ -5,30 +5,33 @@ import Select, { SelectProps } from './Select';
 export type SelectButtonProps = {
 	buttonProps: ButtonProps;
 	selectProps: SelectProps;
+	height?: string;
 };
 
 export const defaultButtonProps = {
 	caps: true,
-	padding: 'px-4 py-[0.53rem]',
+	containerClass: 'h-full',
+	padding: 'px-4',
 	rounded: 'rounded-r-xl',
 	titleSize: 'text-sm',
 };
 export const defaultSelectProps = {
 	bg: 'bg-white',
 	bdr: 'border',
-	bdrColor: 'border-gray-300',
+	height: 'h-full',
+	padding: 'px-3',
 	rounded: 'rounded-l-lg',
 	required: false,
 	textSize: 'text-base',
 };
 
 const SelectButton = forwardRef<HTMLSelectElement | null, SelectButtonProps>(
-	({ buttonProps, selectProps }, ref) => (
-		<div className="flex items-end w-full">
-			<div className="w-full">
+	({ buttonProps, height, selectProps }, ref) => (
+		<div className={`${height || 'h-[2.2rem]'} flex items-end w-full`}>
+			<div className="h-full w-full">
 				<Select {...defaultSelectProps} {...selectProps} ref={ref} />
 			</div>
-			<div>
+			<div className="h-full">
 				<Button {...defaultButtonProps} {...buttonProps} />
 			</div>
 		</div>

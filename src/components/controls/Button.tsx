@@ -4,7 +4,6 @@ import React, {
 	ReactNode,
 	ButtonHTMLAttributes,
 } from 'react';
-import { IconType } from 'react-icons';
 
 import Loader from './Loader';
 import { FontWeightType } from '../../types';
@@ -91,13 +90,13 @@ const Button = ({
 				) : (
 					<Fragment>
 						{IconLeft && (
-							<span className="flex items-center justify-center mx-2 text-xs">
+							<span className="flex items-center justify-center mx-2 select-none text-xs">
 								<IconLeft className={`${color} ${iconSize}`} />
 							</span>
 						)}
-						<span className="flex items-center justify-center">{title}</span>
+						<span className="flex items-center justify-center select-none">{title}</span>
 						{IconRight && (
-							<span className="flex items-center justify-center mx-2 text-xs">
+							<span className="flex items-center justify-center mx-2 select-none text-xs">
 								<IconRight className={`${color} ${iconSize}`} />
 							</span>
 						)}
@@ -132,8 +131,8 @@ export interface ButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
 	containerClass?: string;
 	focus?: string;
 	iconSize?: string;
-	iconLeft?: IconType;
-	iconRight?: IconType;
+	iconLeft?: (props: any) => JSX.Element;
+	iconRight?: (props: any) => JSX.Element;
 	link?: string;
 	loader?: boolean;
 	loading?: boolean;

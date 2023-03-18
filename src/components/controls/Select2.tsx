@@ -1,9 +1,8 @@
-import React, { forwardRef } from "react";
-import { IconType } from "react-icons";
-import { FaCheck, FaChevronDown } from "react-icons/fa";
-import Badge, { BadgeProps } from "./Badge";
-import Button, { ButtonProps } from "./Button";
-import { useOutClick } from "../../hooks";
+import React, { forwardRef } from 'react';
+import { FaCheck, FaChevronDown } from 'react-icons/fa';
+import Badge, { BadgeProps } from './Badge';
+import Button, { ButtonProps } from './Button';
+import { useOutClick } from '../../hooks';
 
 export type SelectProps = {
 	bg?: string;
@@ -21,7 +20,7 @@ export type SelectProps = {
 	focus?: string;
 	focusColor?: string;
 	height?: string;
-	icon?: IconType;
+	icon?: (props: any) => JSX.Element;
 	iconColor?: string;
 	iconSize?: string;
 	label?: string;
@@ -37,7 +36,7 @@ export type SelectProps = {
 	optionTextColor?: string;
 	optionTextHover?: string;
 	options: {
-		Icon?: IconType;
+		icon?: (props: any) => JSX.Element;
 		image?: string;
 		title: string;
 		value: string;
@@ -74,8 +73,8 @@ const getTitle = (
 		const option = options.find((option) => option.value === value);
 		if (option) titles.push(String(option.title));
 	}
-	if (titles.length > 0) return titles.join(", ");
-	return "";
+	if (titles.length > 0) return titles.join(', ');
+	return '';
 };
 
 const Select = forwardRef<HTMLDivElement | null, SelectProps>(
@@ -89,8 +88,8 @@ const Select = forwardRef<HTMLDivElement | null, SelectProps>(
 			color,
 			closeOnClick,
 			disabled,
-			divide,
-			divideColor,
+			divide = '',
+			divideColor = '',
 			error,
 			errorSize,
 			focus,
@@ -126,33 +125,33 @@ const Select = forwardRef<HTMLDivElement | null, SelectProps>(
 		},
 		containerRef
 	) => {
-		const bgColor = disabled ? "bg-gray-500" : bg;
+		const bgColor = disabled ? 'bg-gray-500' : bg;
 
 		const borderColor = disabled
-			? "border-transparent"
+			? 'border-transparent'
 			: error
-			? "border-red-500"
+			? 'border-red-500'
 			: bdrColor;
 
 		const _labelColor = disabled
-			? "text-gray-500"
+			? 'text-gray-500'
 			: error
-			? "text-red-500"
+			? 'text-red-500'
 			: labelColor
 			? labelColor
-			: "text-gray-600";
+			: 'text-gray-600';
 
 		const { buttonRef, ref, setVisible, visible } =
 			useOutClick<HTMLUListElement, HTMLButtonElement>();
-		const iconTextColor = disabled ? "text-white" : iconColor;
+		const iconTextColor = disabled ? 'text-white' : iconColor;
 
 		// const textColor = disabled ? 'text-white' : value ? color : 'text-gray-400';
 		const textColor = React.useMemo(() => {
 			if (multiple) {
 				const colour = disabled
 					? Array.isArray(value) && value.length > 0
-						? "text-white"
-						: "placeholder-white text-white"
+						? 'text-white'
+						: 'placeholder-white text-white'
 					: `${
 							Array.isArray(value) && value.length > 0
 								? color
@@ -162,8 +161,8 @@ const Select = forwardRef<HTMLDivElement | null, SelectProps>(
 			}
 			const colour = disabled
 				? value
-					? "text-white"
-					: "placeholder-white text-white"
+					? 'text-white'
+					: 'placeholder-white text-white'
 				: `${value ? color : placeholderColor}`;
 			return colour;
 		}, [color, disabled, multiple, placeholderColor, value]);
@@ -183,7 +182,7 @@ const Select = forwardRef<HTMLDivElement | null, SelectProps>(
 							>
 								{label}
 								{required && (
-									<span className={`${requiredColor || "text-red-500"} mx-1`}>
+									<span className={`${requiredColor || 'text-red-500'} mx-1`}>
 										*
 									</span>
 								)}
@@ -214,23 +213,23 @@ const Select = forwardRef<HTMLDivElement | null, SelectProps>(
 						onClick={() => setVisible(!visible)}
 						type="button"
 						className={`${bgColor} ${
-							disabled ? "cursor-not-allowed" : "cursor-pointer"
+							disabled ? 'cursor-not-allowed' : 'cursor-pointer'
 						} ${padding} ${bdr} ${borderColor} ${rounded} ${textSize} ${focus} ${focusColor} ${height} ${shadow} relative w-full`}
 					>
 						<span className="flex items-center">
 							{Icon ? (
-								<Icon className={`${iconTextColor} mx-2 ${iconSize}`} />
+								<Icon className={`${iconTextColor} mr-2 ${iconSize}`} />
 							) : (
 								placeholderImage && (
 									<img
 										src={placeholderImage}
 										alt=""
-										className={`flex-shrink-0 ${imageSize} rounded-full`}
+										className={`flex-shrink-0 ${imageSize} mr-3 rounded-full`}
 									/>
 								)
 							)}
 
-							<span className={`${textColor} ml-3 block truncate`}>
+							<span className={`${textColor} block truncate`}>
 								{containsValue ? getTitle(options, value) : placeholder}
 							</span>
 						</span>
@@ -250,10 +249,10 @@ const Select = forwardRef<HTMLDivElement | null, SelectProps>(
 						requirements.map(
 							(
 								{
-									classes = "font-semibold mt-1 px-1",
-									color = "text-gray-400",
-									size = "text-xs",
-									value = "",
+									classes = 'font-semibold mt-1 px-1',
+									color = 'text-gray-400',
+									size = 'text-xs',
+									value = '',
 								},
 								index
 							) => (
@@ -266,10 +265,11 @@ const Select = forwardRef<HTMLDivElement | null, SelectProps>(
 						<ul
 							ref={ref}
 							className={`${
-								visible ? "opacity-100 visible" : "opacity-0 invisible"
-							} ${rounded} ${textSize} ${divide} ${divideColor} absolute bg-white z-20 w-full shadow-lg transition ease-in duration-100 max-h-56 ring-1 ring-black ring-opacity-50 overflow-x-hidden overflow-y-auto focus:outline-none`}
+								// visible ? "opacity-100 visible" : "opacity-0 invisible"
+								visible ? 'opacity-100 visible' : 'hidden opacity-0 invisible'
+							} ${rounded} ${textSize} ${divide} ${divideColor} absolute bg-white z-20 w-full shadow-lg transition ease-in duration-100 max-h-56 ring-1 ring-gray-300 ring-opacity-50 overflow-x-hidden overflow-y-auto focus:outline-none`}
 						>
-							{options.map((option, index) => {
+							{options.map(({ icon: OptionIcon, ...option }, index) => {
 								const active =
 									multiple && Array.isArray(value)
 										? Boolean(
@@ -284,25 +284,24 @@ const Select = forwardRef<HTMLDivElement | null, SelectProps>(
 											active ? optionBgActive : bgColor
 										} ${optionBgHover} ${
 											active ? optionTextActive : optionTextColor
-										} ${optionTextHover}
-										cursor-pointer select-none relative py-2 pl-3 pr-9
-									`}
+										} ${optionTextHover} cursor-pointer select-none relative py-2 pl-3 pr-9`}
 										onClick={
-											disabled === false && onSelect
+											disabled === false
 												? () => {
-														onSelect({
-															title: option.title,
-															value: option.value,
-														});
+														if (onSelect)
+															onSelect({
+																title: option.title,
+																value: option.value,
+															});
 														if (closeOnClick && multiple === false)
 															setVisible(false);
 												  }
-												: () => {}
+												: undefined
 										}
 									>
 										<div className="flex items-center">
-											{option.Icon ? (
-												<option.Icon
+											{OptionIcon ? (
+												<OptionIcon
 													className={`${iconTextColor} mx-2 ${iconSize}`}
 												/>
 											) : (
@@ -336,33 +335,33 @@ const Select = forwardRef<HTMLDivElement | null, SelectProps>(
 );
 
 Select.defaultProps = {
-	bg: "bg-transparent",
-	bdr: "border",
-	bdrColor: "border-gray-300",
-	color: "text-gray-700",
+	bg: 'bg-transparent',
+	bdr: 'border',
+	bdrColor: 'border-gray-300',
+	color: 'text-gray-700',
 	closeOnClick: true,
 	disabled: false,
-	errorSize: "text-xs",
-	focus: "focus:outline-none focus:ring-1",
-	focusColor: "",
-	height: "min-h-[28px] md:min-h-[32px]",
-	iconColor: "text-indigo-900",
-	iconSize: "text-xs",
-	labelSize: "text-xs md:text-sm",
-	imageSize: "h-6 w-6",
+	errorSize: 'text-xs',
+	focus: 'focus:outline-none focus:ring-1',
+	focusColor: '',
+	height: 'min-h-[28px] md:min-h-[32px]',
+	iconColor: 'text-indigo-900',
+	iconSize: 'text-xs',
+	labelSize: 'text-xs md:text-sm',
+	imageSize: 'h-6 w-6',
 	multiple: false,
-	optionBgActive: "bg-gray-300",
-	optionBgHover: "hover:bg-gray-100",
-	optionTextActive: "text-gray-700",
-	optionTextColor: "text-gray-900",
-	optionTextHover: "hover:text-gray-700",
-	placeholderColor: "text-gray-400",
-	padding: "pl-3 pr-10",
-	rounded: "rounded",
+	optionBgActive: 'bg-gray-300',
+	optionBgHover: 'hover:bg-gray-100',
+	optionTextActive: 'text-gray-700',
+	optionTextColor: 'text-gray-900',
+	optionTextHover: 'hover:text-gray-700',
+	placeholderColor: 'text-gray-400',
+	padding: 'pl-3 pr-10',
+	rounded: 'rounded',
 	required: true,
-	requiredColor: "text-red-500",
-	shadow: "shadow-sm",
-	textSize: "text-xs md:text-sm",
+	requiredColor: 'text-red-500',
+	shadow: 'shadow-lg',
+	textSize: 'text-xs md:text-sm',
 };
 
 export default Select;

@@ -1,5 +1,4 @@
 import React, { forwardRef, Fragment, SelectHTMLAttributes } from 'react';
-import { IconType } from 'react-icons';
 import { FaChevronDown } from 'react-icons/fa';
 import Badge, { BadgeProps } from './Badge';
 import Button, { ButtonProps } from './Button';
@@ -15,7 +14,8 @@ export interface SelectProps extends SelectHTMLAttributes<HTMLSelectElement> {
 	errorSize?: string;
 	extraClasses?: string;
 	focus?: string;
-	icon?: IconType;
+	height?: string;
+	icon?: (props: any) => JSX.Element;
 	iconColor?: string;
 	iconClass?: string;
 	iconSize?: string;
@@ -56,6 +56,7 @@ const Select = forwardRef<HTMLSelectElement | null, SelectProps>(
 			errorSize,
 			extraClasses,
 			focus,
+			height,
 			icon: Icon,
 			iconColor,
 			iconClass,
@@ -141,9 +142,9 @@ const Select = forwardRef<HTMLSelectElement | null, SelectProps>(
 					</div>
 				)}
 				<div
-					className={` ${bgColor} ${borderColor} ${rounded} ${bdr} ${shadow} ${
+					className={` ${bgColor} ${borderColor} ${rounded} ${bdr} ${height} ${shadow} relative w-full ${
 						Icon ? 'flex items-center' : ''
-					} relative w-full`}
+					}`}
 				>
 					{Icon && (
 						<Icon
@@ -153,7 +154,7 @@ const Select = forwardRef<HTMLSelectElement | null, SelectProps>(
 					<select
 						className={`${extraClasses} ${textColor} ${padding} ${
 							disabled ? 'cursor-not-allowed' : 'cursor-pointer'
-						} ${textSize} ${rounded} ${focus} bg-transparent block pr-8 w-full`}
+						} ${textSize} ${rounded} ${focus} bg-transparent block h-full pr-8 w-full`}
 						defaultValue={defaultValue}
 						disabled={disabled}
 						name={name}
@@ -180,9 +181,7 @@ const Select = forwardRef<HTMLSelectElement | null, SelectProps>(
 					</div>
 				</div>
 				{error && (
-					<p
-						className={`font-semibold italic mt-1 text-red-500 ${errorSize}`}
-					>
+					<p className={`font-semibold italic mt-1 text-red-500 ${errorSize}`}>
 						{error}
 					</p>
 				)}
@@ -216,6 +215,7 @@ Select.defaultProps = {
 	errorSize: 'text-xs',
 	extraClasses: 'appearance-none leading-tight',
 	focus: 'focus:bg-gray-100 focus:border-gray-500 focus:outline-none',
+	height: '',
 	iconColor: 'text-indigo-900',
 	iconSize: 'text-xs',
 	iconClass: 'mx-2',

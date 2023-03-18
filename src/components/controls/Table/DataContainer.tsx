@@ -37,7 +37,7 @@ const Container: FC<TableContainerProps> = ({
 	...props
 }) => {
 	const defaultClasses =
-		'flex items-center justify-center px-2 py-3 w-full ' + (classes || '');
+		'flex h-full items-center justify-center py-2 w-full ' + (classes || '');
 	const linkClass = !classes ? ' cursor-pointer hover:bg-purple-100 ' : '';
 	const className = defaultClasses + (link || onClick ? linkClass : '');
 

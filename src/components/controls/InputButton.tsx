@@ -19,7 +19,6 @@ export const defaultButtonProps = {
 export const defaultInputProps = {
 	bg: 'bg-white',
 	bdr: 'border',
-	bdrColor: 'border-gray-300',
 	height: 'h-full',
 	padding: 'px-3',
 	rounded: 'rounded-l-lg',

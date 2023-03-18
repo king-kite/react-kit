@@ -3,6 +3,7 @@ import React, {
 	Fragment,
 	useCallback,
 	useEffect,
+	useMemo,
 	useState,
 } from 'react';
 
@@ -13,10 +14,7 @@ import SplitActions from './SplitActions';
 import TableActions from './TableActions';
 
 import Badge from '../Badge';
-import Button from '../Button';
 import Checkbox from '../Checkbox';
-import Input from '../Input';
-import Select from '../Select';
 
 import {
 	GetSelectedValuesParamType,
@@ -32,7 +30,7 @@ const Table = ({
 	getSelectedValues,
 	heads,
 	loading = false,
-	options,
+	options: propOptions,
 	renderContainerLinkAs,
 	renderActionLinkAs,
 	rows,
@@ -43,6 +41,22 @@ const Table = ({
 	titleClasses = 'capitalize font-semibold mb-3 text-indigo-900 text-sm md:text-base',
 }: TableProps) => {
 	const [selected, setSelected] = useState<GetSelectedValuesParamType>([]);
+
+	const options = useMemo(() => {
+		if (!propOptions) return defaultOptions;
+		return {
+			...defaultOptions,
+			...propOptions,
+			heads: {
+				...defaultOptions.heads,
+				...propOptions.heads,
+			},
+			rows: {
+				...defaultOptions.rows,
+				...propOptions.rows,
+			},
+		};
+	}, [propOptions]);
 
 	const handleSelectAll = useCallback(
 		({ target: { checked } }: ChangeEvent<HTMLInputElement>) => {
@@ -83,9 +97,9 @@ const Table = ({
 			<div
 				className={`bg-white overflow-x-scroll relative ${
 					options?.heads?.rounded || 'rounded'
-				} w-full ${rows.length <= 0 ? 'overflow-y-hidden' : ''} ${
-					options?.maxHeight || ''
-				}`}
+				} ${actions ? 'rounded-tl-none' : ''} w-full ${
+					rows.length <= 0 ? 'overflow-y-hidden' : ''
+				} ${options?.maxHeight || ''}`}
 			>
 				<table className="relative table table-auto w-full">
 					<thead>
@@ -169,7 +183,7 @@ const Table = ({
 													: value?.length > 8
 													? '100px'
 													: '70px',
-											maxWidth: type === 'actions' ? '160px' : '',
+											// maxWidth: type === 'actions' ? '160px' : '',
 											...style,
 										}}
 									>
@@ -196,15 +210,22 @@ const Table = ({
 										} leading-5 text-gray-600 text-sm ${
 											options?.rows?.textForm || 'uppercase'
 										} ${
-											options?.rows?.hoverDefault
-												? 'hover:bg-gray-100 hover:even:bg-gray-300 cursor-pointer'
-												: options?.rows?.hoverClasses || ''
+											options?.rows?.hover
+												? options?.rows?.hoverClasses ||
+												  'hover:bg-gray-100 hover:even:bg-gray-300 cursor-pointer'
+												: ''
 										} bg-white even:bg-gray-200`}
+										onClick={(e) => {
+											if (data?.onClick)
+												data.onClick(e, { id: data.id, rows: data.rows });
+										}}
 									>
 										{tick && (
-											<td className="w-[50px]">
+											<td className="relative w-[50px]">
 												<Checkbox
-													labelStyle={{ maxWidth: '60px' }}
+													labelStyle={{
+														maxWidth: '60px',
+													}}
 													centered
 													margin=""
 													name={data.id}
@@ -219,7 +240,7 @@ const Table = ({
 											</td>
 										)}
 										{sn && (
-											<td className="text-center w-8">
+											<td className="relative text-center w-8">
 												<Container renderAs={renderContainerLinkAs}>
 													{index + 1}
 												</Container>
@@ -244,45 +265,6 @@ const Table = ({
 													actions={value}
 													style={style}
 												/>
-											) : type === 'image' ? (
-												<td
-													key={index + 1}
-													className="flex items-center justify-center relative"
-												>
-													<Container
-														renderAs={renderContainerLinkAs}
-														link={link}
-														{...itemProps}
-													>
-														<div
-															style={{
-																height: '30px',
-																width: '30px',
-																...style,
-															}}
-														>
-															<img {...value} />
-														</div>
-													</Container>
-												</td>
-											) : type === 'switch' ? (
-												<td
-													key={index + 1}
-													className="text-center"
-													style={style}
-												>
-													<Container
-														renderAs={renderContainerLinkAs}
-														{...itemProps}
-													>
-														<Checkbox
-															required={false}
-															{...rowOptions}
-															value={value}
-															key={index}
-														/>
-													</Container>
-												</td>
 											) : (
 												<td
 													key={index + 1}
@@ -292,80 +274,26 @@ const Table = ({
 															: options?.rows?.center === false || undefined
 															? 'text-left'
 															: 'text-center'
-													}`}
+													} relative`}
 													style={{
 														minWidth: type === 'badge' ? '130px' : '',
 														...style,
 													}}
 												>
-													{type === 'badge' ? (
-														<Container
-															renderAs={renderContainerLinkAs}
-															classes={classes}
-															link={link}
-															{...itemProps}
-														>
+													<Container
+														classes={classes}
+														link={link}
+														renderAs={renderContainerLinkAs}
+														{...itemProps}
+													>
+														{type === 'badge' ? (
 															<Badge title={value} {...rowOptions} />
-														</Container>
-													) : type === 'button' ? (
-														<Container
-															renderAs={renderContainerLinkAs}
-															classes={classes}
-															{...itemProps}
-														>
-															<Button
-																bg="bg-indigo-900 hover:bg-indigo-800"
-																caps
-																padding="px-4 py-1"
-																title={value}
-																{...rowOptions}
-															/>
-														</Container>
-													) : type === 'icon' && Icon ? (
-														<Container
-															renderAs={renderContainerLinkAs}
-															classes={classes}
-															link={link}
-															{...itemProps}
-														>
+														) : type === 'icon' && Icon ? (
 															<Icon {...rowOptions} />
-														</Container>
-													) : type === 'input' ? (
-														<Container
-															renderAs={renderContainerLinkAs}
-															classes={classes}
-															{...itemProps}
-														>
-															<Input
-																required={false}
-																bdrColor="border-gray-300"
-																value={value}
-																{...rowOptions}
-															/>
-														</Container>
-													) : type === 'select' ? (
-														<Container
-															renderAs={renderContainerLinkAs}
-															classes={classes}
-															{...itemProps}
-														>
-															<Select
-																required={false}
-																bdrColor="border-gray-300"
-																value={value}
-																{...rowOptions}
-															/>
-														</Container>
-													) : (
-														<Container
-															renderAs={renderContainerLinkAs}
-															classes={classes}
-															link={link}
-															{...itemProps}
-														>
-															{value}
-														</Container>
-													)}
+														) : (
+															value
+														)}
+													</Container>
 												</td>
 											);
 										})}
