@@ -63,17 +63,17 @@ const getTitle = (
 	options: { title: string; value: string }[],
 	value: string | string[]
 ): string => {
-	const titles: string[] = [];
 	if (Array.isArray(value)) {
+		const titles: string[] = [];
 		value.forEach((val) => {
 			const option = options.find((option) => option.value === val);
 			if (option) titles.push(String(option.title));
 		});
+		if (titles.length > 0) return titles.join(', ');
 	} else {
 		const option = options.find((option) => option.value === value);
-		if (option) titles.push(String(option.title));
+		if (option) return String(option.title);
 	}
-	if (titles.length > 0) return titles.join(', ');
 	return '';
 };
 
@@ -169,7 +169,10 @@ const Select = forwardRef<HTMLDivElement | null, SelectProps>(
 
 		const isAnArray = value ? Array.isArray(value) : false;
 
-		const containsValue = value ? isAnArray && value.length > 0 && true : false;
+		const containsValue = value ? 
+			isAnArray && value.length > 0 ? 
+				true : false
+			: true
 
 		return (
 			<div>
