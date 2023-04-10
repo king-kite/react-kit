@@ -42,6 +42,26 @@ KiteSelect2.args = {
 	closeOnClick: true,
 	disabled: false,
 	icon: FaUser,
+	label: 'User',
+	name: 'user',
+	placeholder: 'Select User',
+};
+
+export const KiteSelect2Multiple = Template.bind({});
+// More on args: https://storybook.js.org/docs/react/writing-stories/args
+KiteSelect2Multiple.args = {
+	options: [
+		{ icon: FaUser, title: 'Janet Johnson', value: 'janet_johnson' },
+		{ icon: FaUserFriends, title: 'Peter Hale', value: 'peter_hale' },
+		{ icon: FaUserTie, title: 'Gabriel Adams', value: 'gabriel_adams' },
+		{ icon: FaUserShield, title: 'Jane Dawson', value: 'jane_dawson' },
+		{ icon: FaUsers, title: 'Jonathan Peach', value: 'jonathan_peach' },
+		{ icon: FaUserAstronaut, title: 'Sarah Jacobs', value: 'sarah_jacobs' },
+	],
+	bdr: 'border-2',
+	closeOnClick: true,
+	disabled: false,
+	icon: FaUser,
 	label: 'Supervisor',
 	multiple: true,
 	name: 'supervisor',
