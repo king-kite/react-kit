@@ -1,23 +1,18 @@
-import React, {
-	forwardRef,
-	Fragment,
-	ReactNode,
-	ButtonHTMLAttributes,
-} from 'react';
+import React from 'react';
 
 import Loader from './Loader';
 import { FontWeightType } from '../../types';
 import { getFontWeight } from '../../utils';
 
 export interface ContainerProps extends ButtonProps {
-	children: ReactNode;
+	children: React.ReactNode;
 	className: string;
 	link?: string;
 	ref?: any;
 }
 
 export type ButtonLinkType = {
-	children: ReactNode;
+	children: React.ReactNode;
 	link: string;
 	// props: Omit<ButtonProps, 'renderLinkAs'>;
 };
@@ -29,7 +24,7 @@ export const DefaultLink = ({ children, link, ...props }: ButtonLinkType) => (
 );
 
 // eslint-disable-next-line react/display-name
-export const Container = forwardRef<HTMLButtonElement | null, ContainerProps>(
+export const Container = React.forwardRef<HTMLButtonElement | null, ContainerProps>(
 	(
 		{ children, link, renderLinkAs: LinkComponent = DefaultLink, ...props },
 		ref
@@ -50,6 +45,7 @@ const Button = ({
 	bold,
 	border,
 	caps,
+	children,
 	color,
 	containerClass,
 	disabled,
@@ -62,7 +58,7 @@ const Button = ({
 	margin,
 	padding,
 	rounded,
-	title,
+	title = '',
 	titleSize,
 	...props
 }: ButtonProps) => {
@@ -88,19 +84,19 @@ const Button = ({
 				{loader === true && loading === true ? (
 					<Loader color="white" size={4} type="dashed" width="xs" />
 				) : (
-					<Fragment>
+					<React.Fragment>
 						{IconLeft && (
 							<span className="flex items-center justify-center mx-2 select-none text-xs">
 								<IconLeft className={`${color} ${iconSize}`} />
 							</span>
 						)}
-						<span className="flex items-center justify-center select-none">{title}</span>
+						{children ? children : <span className="flex items-center justify-center select-none">{title}</span>}
 						{IconRight && (
 							<span className="flex items-center justify-center mx-2 select-none text-xs">
 								<IconRight className={`${color} ${iconSize}`} />
 							</span>
 						)}
-					</Fragment>
+					</React.Fragment>
 				)}
 			</Container>
 		</div>
@@ -122,11 +118,12 @@ Button.defaultProps = {
 	type: 'submit',
 };
 
-export interface ButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
+export interface ButtonProps extends React.ButtonHTMLAttributes<HTMLButtonElement> {
 	bg?: string;
 	bold?: FontWeightType;
 	border?: string;
 	caps?: boolean;
+	children?: React.ReactNode;
 	color?: string;
 	containerClass?: string;
 	focus?: string;
@@ -140,7 +137,7 @@ export interface ButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
 	padding?: string;
 	renderLinkAs?: (props: ButtonLinkType) => JSX.Element;
 	rounded?: string;
-	title: string;
+	title?: string;
 	titleSize?: string;
 }
 
