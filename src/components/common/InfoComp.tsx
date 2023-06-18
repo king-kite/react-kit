@@ -11,6 +11,7 @@ export type InfoCompType = {
 	bg?: string;
 	description?: string;
 	infos: {
+		component?: (props?: any) => JSX.Element;
 		options?: any;
 		title: string;
 		type?: 'badge' | 'image';
@@ -67,7 +68,7 @@ const InfoComp: FC<InfoCompType> = ({
 
 		<div className="border-t border-gray-200">
 			<dl>
-				{infos.map((detail, index) => (
+				{infos.map(({component: Component, ...detail}, index) => (
 					<div
 						key={index}
 						className={`${
@@ -82,7 +83,7 @@ const InfoComp: FC<InfoCompType> = ({
 						<dd
 							className={`${valueColSpan} mt-1 text-sm text-gray-700 sm:mt-0 md:text-base`}
 						>
-							{detail?.type === 'badge' ? (
+							{Component ? <Component /> : detail?.type === 'badge' ? (
 								<div className="font-medium w-full">
 									<div className="max-w-[120px]">
 										<Badge
