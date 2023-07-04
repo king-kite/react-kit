@@ -15,7 +15,7 @@ export type InfoCompType = {
 		options?: any;
 		title: string;
 		type?: 'badge' | 'image';
-		value: any; // string | { alt: string; src: string }
+		value?: any; // string | { alt: string; src: string }
 	}[];
 	evenBgColor?: string;
 	gridStyle?: string;

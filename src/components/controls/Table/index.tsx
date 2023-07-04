@@ -1,11 +1,4 @@
-import React, {
-	ChangeEvent,
-	Fragment,
-	useCallback,
-	useEffect,
-	useMemo,
-	useState,
-} from 'react';
+import React from 'react';
 
 import Actions from './Actions';
 import Container from './DataContainer';
@@ -40,9 +33,11 @@ const Table = ({
 	title,
 	titleClasses = 'capitalize font-semibold mb-3 text-indigo-900 text-sm md:text-base',
 }: TableProps) => {
-	const [selected, setSelected] = useState<GetSelectedValuesParamType>([]);
+	const [selected, setSelected] = React.useState<GetSelectedValuesParamType>(
+		[]
+	);
 
-	const options = useMemo(() => {
+	const options = React.useMemo(() => {
 		if (!propOptions) return defaultOptions;
 		return {
 			...defaultOptions,
@@ -58,8 +53,20 @@ const Table = ({
 		};
 	}, [propOptions]);
 
-	const handleSelectAll = useCallback(
-		({ target: { checked } }: ChangeEvent<HTMLInputElement>) => {
+	const headerChecked = React.useMemo(() => {
+		// checked if "all" is true, includes and excludes array are empty
+		return (
+			tick &&
+			selected.length > 0 &&
+			rows.length > 0 &&
+			selected.length === rows.length &&
+			// also check that the every selected item is present in the currently shown rows
+			selected.every((item) => !!rows.find((row) => row.id === item))
+		);
+	}, [rows, selected, tick]);
+
+	const handleSelectAll = React.useCallback(
+		({ target: { checked } }: React.ChangeEvent<HTMLInputElement>) => {
 			if (tick) {
 				if (checked && rows.length > 0) {
 					const values = rows.map((row) => row.id);
@@ -70,7 +77,7 @@ const Table = ({
 		[rows, tick]
 	);
 
-	const handleSelectChange = useCallback(
+	const handleSelectChange = React.useCallback(
 		(id: string, checked: boolean) => {
 			setSelected((prevState) => {
 				// if 'checked' is false and is in the array, remove id
@@ -85,12 +92,12 @@ const Table = ({
 		[tick]
 	);
 
-	useEffect(() => {
+	React.useEffect(() => {
 		if (tick && getSelectedValues) getSelectedValues(selected);
 	}, [tick, getSelectedValues, selected]);
 
 	return (
-		<Fragment>
+		<React.Fragment>
 			{title && <h4 className={titleClasses}>{title}</h4>}
 			{actions && <TableActions {...actions} selected={selected} />}
 			{split && <SplitActions {...split} />}
@@ -122,25 +129,17 @@ const Table = ({
 										}`}
 									>
 										<Checkbox
-											labelStyle={{
-												maxWidth: '60px',
-											}}
+											labelStyle={{ maxWidth: '60px' }}
 											centered
 											margin=""
-											// checked if "all" is true, includes and excludes array are empty
-											checked={
-												tick &&
-												selected.length > 0 &&
-												rows.length > 0 &&
-												selected.length === rows.length
-											}
+											checked={headerChecked}
 											onChange={handleSelectAll}
 											required={false}
 										/>
 									</div>
 								</th>
 							)}
-							{sn && (
+							{sn !== undefined && (
 								<th
 									className={`bg-gray-300 w-8 ${
 										options?.heads?.sticky ? 'sticky top-0 z-10' : ''
@@ -239,10 +238,10 @@ const Table = ({
 												/>
 											</td>
 										)}
-										{sn && (
+										{sn !== undefined && (
 											<td className="relative text-center w-8">
 												<Container renderAs={renderContainerLinkAs}>
-													{index + 1}
+													{typeof sn === 'number' ? sn + index + 1 : index + 1}
 												</Container>
 											</td>
 										)}
@@ -314,7 +313,7 @@ const Table = ({
 					/>
 				)}
 			</div>
-		</Fragment>
+		</React.Fragment>
 	);
 };
 
