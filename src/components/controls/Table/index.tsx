@@ -139,7 +139,7 @@ const Table = ({
 									</div>
 								</th>
 							)}
-							{sn !== undefined && (
+							{sn !== undefined && sn !== false && (
 								<th
 									className={`bg-gray-300 w-8 ${
 										options?.heads?.sticky ? 'sticky top-0 z-10' : ''
@@ -238,7 +238,7 @@ const Table = ({
 												/>
 											</td>
 										)}
-										{sn !== undefined && (
+										{sn !== undefined && sn !== false && (
 											<td className="relative text-center w-8">
 												<Container renderAs={renderContainerLinkAs}>
 													{typeof sn === 'number' ? sn + index + 1 : index + 1}
@@ -339,7 +339,6 @@ export const defaultOptions: TableOptionsProps = {
 Table.defaultProps = {
 	options: defaultOptions,
 	loading: false,
-	sn: true,
 	tick: false,
 };
 
