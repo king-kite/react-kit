@@ -72,7 +72,7 @@ export type TableProps = {
 	renderActionLinkAs?: (props: ActionLinkType) => JSX.Element;
 	renderContainerLinkAs?: (props: ContainerLinkType) => JSX.Element;
 	rows: RowType[];
-	sn?: boolean;
+	sn?: boolean | number;
 	split?: SplitActionsProps;
 	tick?: boolean;
 	title?: string;
